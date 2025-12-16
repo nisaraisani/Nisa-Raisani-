@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Nisa Raisani Neurologist</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Segoe UI, Arial, sans-serif;
+background:#eef2f7;
+color:#222;
+line-height:1.7;
+}
+
+/* NAV */
+nav{
+background:#0b3c5d;
+padding:16px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+nav ul{
+list-style:none;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+}
+nav ul li{
+margin:6px 14px;
+}
+nav ul li a{
+color:#fff;
+text-decoration:none;
+font-weight:600;
+cursor:pointer;
+}
+
+/* HERO */
+header{
+background:linear-gradient(135deg,#0b3c5d,#328cc1);
+color:#fff;
+text-align:center;
+padding:100px 20px;
+}
+header h1{
+font-size:40px;
+}
+header p{
+font-size:18px;
+margin-top:10px;
+max-width:800px;
+margin:auto;
+}
+
+/* SECTION */
+section{
+max-width:1100px;
+margin:45px auto;
+background:#fff;
+padding:40px;
+border-radius:16px;
+box-shadow:0 12px 30px rgba(0,0,0,0.12);
+}
+section h2{
+color:#0b3c5d;
+margin-bottom:15px;
+font-size:25px;
+}
+
+/* LIST */
+ul{
+padding-left:22px;
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+margin-top:14px;
+padding:12px 30px;
+background:#0b3c5d;
+color:#fff;
+text-decoration:none;
+border-radius:35px;
+font-weight:600;
+}
+
+/* GALLERY */
+.gallery{
+display:flex;
+flex-wrap:wrap;
+gap:16px;
+justify-content:center;
+}
+.gallery img{
+width:100%;
+max-width:260px;
+border-radius:14px;
+}
+
+/* FORM */
+form input, form textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+form button{
+background:#0b3c5d;
+color:#fff;
+border:none;
+padding:14px;
+border-radius:30px;
+font-size:16px;
+cursor:pointer;
+width:100%;
+}
+
+/* MAP */
+iframe{
+width:100%;
+height:300px;
+border:none;
+border-radius:14px;
+}
+
+/* FOOTER */
+footer{
+background:#0b3c5d;
+color:#fff;
+text-align:center;
+padding:24px;
+margin-top:50px;
+font-size:14px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:#fff;
+padding:14px 20px;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 6px 18px rgba(0,0,0,0.3);
+}
+
+/* LANG SWITCH */
+.lang{
+position:fixed;
+top:15px;
+right:15px;
+background:#fff;
+padding:8px 14px;
+border-radius:20px;
+font-size:14px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+header h1{font-size:28px;}
+section{padding:26px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="lang" onclick="toggleLang()">Sindhi | اردو</div>
+
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#research">Research</a></li>
+<li><a href="#cases">Case Studies</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#location">Location</a></li>
+<li><a href="#appointment">Appointment</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<header id="home">
+<h1 id="name">Dr Nisa Raisani</h1>
+<p id="tagline">
+Neurologist and Global Mental Health Researcher<br>
+Clinical neurology connected with international mental health research
+</p>
+</header>
+
+<section id="about">
+<h2>About</h2>
+<p id="aboutText">
+Dr Nisa Raisani is a neurologist focused on patient care, neuroscience,
+and global mental health research. She actively collaborates with
+international academic platforms.
+</p>
+<ul>
+<li>MBBS</li>
+<li>FCPS Neurology</li>
+<li>Independent Global Researcher</li>
+</ul>
+</section>
+
+<section id="research">
+<h2>Research</h2>
+<ul>
+<li>ORCID 0009 0003 8786 0440</li>
+<li>PubMed indexed research</li>
+<li>Zenodo open access publications</li>
+<li>Global mental health projects</li>
+</ul>
+</section>
+
+<section id="cases">
+<h2>Case Studies</h2>
+<ul>
+<li>Seizure disorders</li>
+<li>Chronic headaches</li>
+<li>Neuropsychiatric cases</li>
+<li>Stroke management</li>
+</ul>
+</section>
+
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="https://via.placeholder.com/260">
+<img src="https://via.placeholder.com/260">
+<img src="https://via.placeholder.com/260">
+</div>
+</section>
+
+<section id="location">
+<h2>Location</h2>
+<p>Sharjah Dubai United Arab Emirates</p>
+<iframe src="https://www.google.com/maps?q=Sharjah%20Dubai&output=embed"></iframe>
+</section>
+
+<section id="appointment">
+<h2>Appointment</h2>
+<form>
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<input type="date" required>
+<textarea rows="4" placeholder="Message"></textarea>
+<button type="submit">Submit</button>
+</form>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email drnisaraisani@doctor.com</p>
+<p>ORCID 0009 0003 8786 0440</p>
+</section>
+
+<footer>
+2025 Dr Nisa Raisani Neurology and Mental Health Research
+</footer>
+
+<a class="whatsapp" href="https://wa.me/971500000000" target="_blank">WhatsApp</a>
+
+<script>
+let sindhi=true;
+function toggleLang(){
+if(sindhi){
+document.getElementById("tagline").innerText=
+"نيورولوجسٽ ۽ عالمي ذهني صحت جي محقق\nڪلينڪل نيورولوجي ۽ عالمي تحقيق جو سنگم";
+document.getElementById("aboutText").innerText=
+"ڊاڪٽر نسا رئيساني نيورولوجي، مريضن جي سنڀال ۽ عالمي ذهني صحت جي تحقيق سان وابسته آهي.";
+sindhi=false;
+}else{
+location.reload();
+}
+}
+</script>
+
+</body>
+</html>
