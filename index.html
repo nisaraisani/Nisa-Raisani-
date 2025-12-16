@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Nisa Raisani  Professional Digital Card</title>
+<style>
+    /* Body & background gradient */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #89f7fe, #66a6ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* Card container */
+    .card {
+        background: #fff;
+        max-width: 800px;
+        width: 90%;
+        border-radius: 25px;
+        padding: 50px 40px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        text-align: center;
+        transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2.8rem;
+        color: #2c3e50;
+        animation: fadeInDown 1s ease forwards;
+    }
+
+    h2 {
+        margin: 10px 0 30px 0;
+        font-size: 1.6rem;
+        color: #34495e;
+        animation: fadeInDown 1.2s ease forwards;
+    }
+
+    /* Sections */
+    .section {
+        margin: 30px 0;
+        text-align: left;
+        animation: fadeIn 1.5s ease forwards;
+    }
+
+    .section h3 {
+        color: #e67e22;
+        margin-bottom: 12px;
+        font-size: 1.3rem;
+    }
+
+    .section p, .section li {
+        margin: 6px 0;
+        line-height: 1.6;
+        font-size: 1rem;
+        color: #2c3e50;
+    }
+
+    ul {
+        padding-left: 22px;
+    }
+
+    /* Contact buttons */
+    .contact a {
+        display: inline-block;
+        margin: 5px 10px 0 0;
+        color: #fff;
+        background: #e67e22;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s, transform 0.3s;
+    }
+    .contact a:hover {
+        background: #d35400;
+        transform: scale(1.1);
+    }
+
+    /* Social media links */
+    .social a {
+        display: inline-block;
+        margin: 5px 12px 0 0;
+        font-size: 1.2rem;
+        color: #2980b9;
+        text-decoration: none;
+        transition: color 0.3s, transform 0.3s;
+    }
+    .social a:hover {
+        color: #1c5980;
+        transform: scale(1.1);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .card {
+            padding: 30px 20px;
+        }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.3rem; }
+        .section h3 { font-size: 1.1rem; }
+        .section p, .section li { font-size: 0.95rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Dr. Nisa Raisani</h1>
+    <h2>Neurologist & Global Mental Health Researcher</h2>
+
+    <div class="section">
+        <h3>About Me</h3>
+        <p>Hello! I'm Dr. Nisa Raisani, a neurologist passionate about advancing mental health globally. I collaborate with researchers worldwide to improve patient care and inspire meaningful change.</p>
+    </div>
+
+    <div class="section">
+        <h3>Education & Certifications</h3>
+        <ul>
+            <li>MBBS  Bachelor of Medicine, Bachelor of Surgery</li>
+            <li>FCPS (Neurology)  Fellow of College of Physicians & Surgeons, Pakistan</li>
+            <li>Internationally recognized neurology specialist</li>
+        </ul>
+    </div>
+
+    <div class="section contact">
+        <h3>Contact & Research Links</h3>
+        <a href="mailto:nisaraisani@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-8786-0440" target="_blank">ORCID</a>
+        <a href="https://www.ncbi.nlm.nih.gov/myncbi/dr%20nisa.raisani.1/bibliography/public/" target="_blank">PubMed</a>
+        <a href="https://zenodo.org/records/17931702" target="_blank">Zenodo</a>
+    </div>
+
+    <div class="section social">
+        <h3>Social Media</h3>
+        <a href="https://www.linkedin.com/in/nisaraisani" target="_blank">LinkedIn</a>
+        <a href="https://twitter.com/nisaraisani" target="_blank">Twitter</a>
+        <a href="https://facebook.com/DrRaisani" target="_blank">Facebook</a>
+    </div>
+
+    <div class="section">
+        <h3>Research Interests</h3>
+        <p>Neurology, Neuroscience, Mental Health, Global Collaboration in Medical Science</p>
+    </div>
+
+    <div class="section">
+        <h3>Message</h3>
+        <p>"Bridging clinical neurology with global mental health research - innovating, collaborating, and inspiring change worldwide."</p>
+    </div>
+</div>
+
+</body>
+  </html>
+  
