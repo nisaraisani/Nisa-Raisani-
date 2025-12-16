@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dr. Nisa Raisani - Neurologist, Global Researcher, Patient Care Expert">
+<title>Dr. Nisa Raisani</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Additional CSS for professional animations & styling -->
+<style>
+body { font-family: 'Roboto', sans-serif; margin:0; padding:0; background:#f8f9fa; color:#333; }
+header { position: sticky; top:0; z-index:1000; background:#0b3d91; }
+header .nav-link { color:#fff !important; font-weight:600; transition:0.3s; }
+header .nav-link:hover { color:#f39c12 !important; }
+.hero { position:relative; background:url('images/hero-professional.jpg') no-repeat center center/cover; height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
+.hero h1 { font-size:3rem; margin-bottom:20px; text-shadow:2px 2px 8px rgba(0,0,0,0.6); animation: fadeInDown 1s ease-in-out; }
+.hero p { font-size:1.5rem; text-shadow:1px 1px 6px rgba(0,0,0,0.6); animation: fadeInUp 1.2s ease-in-out; }
+.hero .btn { padding:15px 30px; font-size:1.2rem; animation: fadeIn 1.5s ease-in-out; }
+@keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+.section-title { text-align:center; margin-bottom:50px; font-weight:700; color:#0b3d91; }
+.card { transition: transform 0.3s; border:none; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+.card:hover { transform: translateY(-10px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+.testimonial { background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:20px; }
+footer { background:#0b3d91; color:#fff; text-align:center; padding:20px 0; }
+iframe { border:none; width:100%; }
+</style>
+</head>
+<body>
+
+<header class="py-3">
+    <nav class="container d-flex justify-content-center gap-3">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#research">Research</a>
+        <a class="nav-link" href="#cases">Case Studies</a>
+        <a class="nav-link" href="#gallery">Gallery</a>
+        <a class="nav-link" href="#testimonials">Testimonials</a>
+        <a class="nav-link" href="#appointment">Appointment</a>
+        <a class="nav-link" href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div>
+        <h1>Dr. Nisa Raisani</h1>
+        <p>Neurologist | Global Researcher | Patient Care Expert</p>
+        <a href="#appointment" class="btn btn-warning btn-lg mt-3">Book Appointment</a>
+    </div>
+</section>
+
+<section id="about" class="container my-5">
+    <h2 class="section-title">About Me</h2>
+    <p class="text-center">Dr. Nisa Raisani is a certified MBBS, FCPS Neurology professional and an independent global researcher, specializing in patient care, neuroscience, and global mental health research.</p>
+</section>
+
+<section id="research" class="container my-5">
+    <h2 class="section-title">Research & Publications</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col"><div class="card p-3 h-100 text-center"><a href="https://orcid.org/0009-0003-8786-0440" target="_blank">ORCID Profile</a></div></div>
+        <div class="col"><div class="card p-3 h-100 text-center"><a href="https://zenodo.org/records/17931702" target="_blank">Zenodo Publications</a></div></div>
+        <div class="col"><div class="card p-3 h-100 text-center"><a href="https://www.ncbi.nlm.nih.gov/myncbi/dr%20nisa.raisani.1/bibliography/public/" target="_blank">NCBI Publications</a></div></div>
+    </div>
+</section>
+
+<section id="cases" class="container my-5">
+    <h2 class="section-title">Case Studies</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col"><div class="card p-3 h-100 text-center">Professional clinical case examples and treatment protocols.</div></div>
+        <div class="col"><div class="card p-3 h-100 text-center">Advanced neurological study cases and outcomes.</div></div>
+        <div class="col"><div class="card p-3 h-100 text-center">Innovative treatments and research insights.</div></div>
+    </div>
+</section>
+
+<section id="gallery" class="container my-5">
+    <h2 class="section-title">Gallery</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col"><div class="card h-100"><img src="images/photo1.jpg" class="card-img-top" alt="Clinic Image 1"></div></div>
+        <div class="col"><div class="card h-100"><img src="images/photo2.jpg" class="card-img-top" alt="Clinic Image 2"></div></div>
+        <div class="col"><div class="card h-100"><img src="images/photo3.jpg" class="card-img-top" alt="Clinic Image 3"></div></div>
+    </div>
+</section>
+
+<section id="testimonials" class="container my-5">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col"><div class="testimonial">"Dr. Nisa provided exceptional care and guidance. Highly recommended!"</div></div>
+        <div class="col"><div class="testimonial">"Professional, knowledgeable, and compassionate neurologist."</div></div>
+    </div>
+</section>
+
+<section id="appointment" class="container my-5">
+    <h2 class="section-title">Book Appointment</h2>
+    <iframe src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true" height="500">Loading…</iframe>
+</section>
+
+<section id="contact" class="container my-5">
+    <h2 class="section-title">Contact Me</h2>
+    <p class="text-center">Email: <a href="mailto:researcher@drnisaraisani.info">researcher@drnisaraisani.info</a></p>
+    <p class="text-center">WhatsApp / Phone: +XXX-XXXX-XXXX</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!..." height="400"></iframe>
+</section>
+
+<footer>
+    <p>&copy; 2025 Dr. Nisa Raisani. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+          </html>
+          
