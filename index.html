@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Nisa Raisani | Neurologist & Researcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+    body { line-height:1.6; color:#333; }
+    a { text-decoration:none; color:inherit; }
+
+    /* Header & Menu */
+    header { background:#0077b6; color:#fff; padding:20px 0; position: sticky; top:0; z-index:1000; }
+    .container { width:90%; max-width:1200px; margin:auto; }
+    nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    nav .logo { font-weight:700; font-size:1.5rem; }
+    nav .menu a { color:#fff; margin:0 15px; font-weight:600; }
+    nav .menu a:hover { text-decoration:underline; }
+
+    /* Hero Section */
+    .hero { background:url('https://via.placeholder.com/1600x600') center/cover no-repeat; height:600px; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
+    .hero h1 { font-size:3rem; margin-bottom:20px; }
+    .hero p { font-size:1.2rem; margin-bottom:20px; }
+    .hero a { background:#fff; color:#0077b6; padding:10px 25px; border-radius:5px; font-weight:600; }
+    .hero a:hover { background:#f0f0f0; }
+
+    section { padding:80px 0; }
+    h2 { text-align:center; font-size:2rem; margin-bottom:40px; color:#0077b6; }
+    .about p { max-width:800px; margin:10px auto; text-align:center; font-size:1.1rem; }
+    .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .card { background:#f0f0f0; padding:20px; border-radius:10px; width:280px; text-align:center; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+    .card h3 { margin-bottom:10px; color:#0077b6; }
+    .card p { font-size:0.95rem; }
+    .card a { color:#0077b6; font-weight:600; }
+
+    .form-container { max-width:600px; margin:auto; display:flex; flex-direction:column; gap:15px; }
+    .form-container input, .form-container textarea, .form-container select, .form-container button { padding:10px; border:1px solid #ccc; border-radius:5px; width:100%; }
+    .form-container button { background:#0077b6; color:#fff; border:none; font-weight:600; cursor:pointer; }
+    .form-container button:hover { background:#005f87; }
+
+    footer { background:#023e8a; color:#fff; text-align:center; padding:20px 0; }
+
+    @media (max-width:768px){
+      nav { flex-direction:column; }
+      .cards { flex-direction:column; align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header/Menu -->
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Dr. Nisa Raisani</div>
+      <div class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#research">Research</a>
+        <a href="#services">Clinical Services</a>
+        <a href="#appointment">Book Appointment</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div>
+    <h1>Dr. Nisa Raisani</h1>
+    <p>Neurologist & Mental Health Researcher</p>
+    <a href="#research">View Publications</a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <p>I am a neurologist and researcher specializing in neuroscience and mental health. With years of clinical experience and research publications in international journals, I aim to bridge medical practice with scientific knowledge.</p>
+  </div>
+</section>
+
+<!-- Research / Publications Section -->
+<section id="research">
+  <h2>Research & Publications</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>ORCID</h3>
+      <p><a href="https://orcid.org/0009-0003-8786-0440" target="_blank">View ORCID Profile</a></p>
+    </div>
+    <div class="card">
+      <h3>Zenodo</h3>
+      <p><a href="https://zenodo.org/records/17931702" target="_blank">View Publications</a></p>
+    </div>
+    <div class="card">
+      <h3>NCBI</h3>
+      <p><a href="https://www.ncbi.nlm.nih.gov/myncbi/dr%20nisa.raisani.1/bibliography/public/" target="_blank">View Research Papers</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Clinical Services Section -->
+<section id="services">
+  <h2>Clinical Services</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Neurology Consultation</h3>
+      <p>Expert consultation for neurological disorders and mental health conditions.</p>
+    </div>
+    <div class="card">
+      <h3>Mental Health Therapy</h3>
+      <p>Individual and group therapy sessions for mental well-being.</p>
+    </div>
+    <div class="card">
+      <h3>Research Collaboration</h3>
+      <p>Collaborative projects in neuroscience and clinical research.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Appointment / Payment Section -->
+<section id="appointment">
+  <h2>Book an Appointment</h2>
+  <div class="form-container">
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="date" placeholder="Preferred Date" required>
+      <input type="time" placeholder="Preferred Time" required>
+      <textarea placeholder="Reason for Appointment / Notes"></textarea>
+    </form>
+
+    <h3>Pay & Confirm Appointment</h3>
+
+    <!-- PKR Button -->
+    <form action="https://www.skrill.com/pay" method="post" target="_blank">
+      <input type="hidden" name="pay_to_email" value="nisaraisani@gmail.com">
+      <input type="hidden" name="amount" value="3000.00">
+      <input type="hidden" name="currency" value="PKR">
+      <input type="hidden" name="detail1_description" value="Doctor Appointment">
+      <input type="hidden" name="detail1_text" value="Neurology Consultation">
+      <button type="submit">Pay 3000 PKR</button>
+    </form>
+
+    <!-- USD Button (Approx 3000 PKR → 11.50 USD) -->
+    <form action="https://www.skrill.com/pay" method="post" target="_blank">
+      <input type="hidden" name="pay_to_email" value="nisaraisani@gmail.com">
+      <input type="hidden" name="amount" value="11.50">
+      <input type="hidden" name="currency" value="USD">
+      <input type="hidden" name="detail1_description" value="Doctor Appointment">
+      <input type="hidden" name="detail1_text" value="Neurology Consultation">
+      <button type="submit">Pay 11.50 USD</button>
+    </form>
+
+    <!-- AED Button (Approx 3000 PKR → 42 AED) -->
+    <form action="https://www.skrill.com/pay" method="post" target="_blank">
+      <input type="hidden" name="pay_to_email" value="nisaraisani@gmail.com">
+      <input type="hidden" name="amount" value="42.00">
+      <input type="hidden" name="currency" value="AED">
+      <input type="hidden" name="detail1_description" value="Doctor Appointment">
+      <input type="hidden" name="detail1_text" value="Neurology Consultation">
+      <button type="submit">Pay 42 AED</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="form-container">
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Dr. Nisa Raisani | All Rights Reserved
+</footer>
+
+</body>
+        </html>
+        
