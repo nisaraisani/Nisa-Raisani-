@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clinical Focus - Dr Nisa Raisani</title>
   <link href="style.css" rel="stylesheet">
+  <style>
+    /* Extra styling for clinical page */
+    .clinical-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px; padding:20px 0;}
+    .clinical-card {background:#fff; border-radius:12px; padding:24px; box-shadow:0 8px 20px rgba(0,0,0,.05);}
+    .clinical-card h4 {margin-bottom:10px; color:var(--primary);}
+    .clinical-card p {font-size:.95rem; color:var(--text);}
+  </style>
 </head>
 <body>
 
@@ -29,19 +36,46 @@
   <div class="hero">
     <div class="container">
       <h2>Clinical Focus</h2>
-      <p>Our clinical expertise spans headache, epilepsy, movement disorders, and cognitive care.</p>
+      <p>Delivering expert, evidence-based neurological and mental health care for patients across Dubai and internationally. Comprehensive services designed for diagnosis, treatment, and management of complex neurological conditions.</p>
     </div>
   </div>
 </header>
 
 <section id="clinical">
   <div class="container">
-    <div class="title"><h3>Clinical Focus</h3></div>
-    <div class="grid">
-      <div class="card">Migraine and Headache Disorders</div>
-      <div class="card">Epilepsy and Seizure Disorders</div>
-      <div class="card">Parkinson’s and Movement Disorders</div>
-      <div class="card">Cognitive and Mental Health</div>
+    <div class="title"><h3>Our Clinical Services</h3></div>
+    <div class="clinical-grid">
+      
+      <div class="clinical-card">
+        <h4>Migraine & Headache Disorders</h4>
+        <p>Comprehensive evaluation and personalized management for migraine, tension-type headaches, cluster headaches, and other chronic headache disorders. Advanced therapies including neuromodulation and preventive medications.</p>
+      </div>
+
+      <div class="clinical-card">
+        <h4>Epilepsy & Seizure Management</h4>
+        <p>Diagnosis, treatment, and long-term care for adults and children with epilepsy. Video-EEG monitoring, medication optimization, and patient counseling for seizure control and quality of life improvement.</p>
+      </div>
+
+      <div class="clinical-card">
+        <h4>Parkinson’s & Movement Disorders</h4>
+        <p>Specialized care for Parkinson’s disease, dystonia, tremors, and other movement disorders. Individualized therapy plans including pharmacological treatment, physiotherapy, and emerging interventions.</p>
+      </div>
+
+      <div class="clinical-card">
+        <h4>Cognitive & Mental Health Evaluation</h4>
+        <p>Assessment and management of cognitive decline, dementia, neuropsychiatric disorders, anxiety, depression, and stress-related neurological conditions. Evidence-based interventions and counseling for patients and families.</p>
+      </div>
+
+      <div class="clinical-card">
+        <h4>Stroke & Neurorehabilitation</h4>
+        <p>Acute stroke care, secondary prevention, and long-term rehabilitation. Multidisciplinary approach including physiotherapy, speech therapy, and occupational therapy to optimize recovery.</p>
+      </div>
+
+      <div class="clinical-card">
+        <h4>Sleep & Neurological Disorders</h4>
+        <p>Evaluation and management of sleep disorders associated with neurological conditions. Sleep studies, CPAP therapy guidance, and personalized sleep hygiene recommendations.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -80,4 +114,5 @@
 </script>
 
 </body>
-</html>
+    </html>
+    
