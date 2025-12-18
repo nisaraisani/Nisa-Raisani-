@@ -134,12 +134,11 @@ nav a.active{
 .card img{
   width:80px;
   margin-bottom:20px;
-}
-
-.card h3{
-  font-family:'Playfair Display',serif;
-  color:#d4af37;
-  margin-bottom:10px;
+  /* REMOVE any filter that darkens */
+  filter: none;
+  /* add subtle glow instead */
+  box-shadow: 0 0 18px rgba(212,175,55,0.35),
+              0 0 30px rgba(212,175,55,0.15);
 }
 
 /* ================= FOOTER FINAL ================= */
