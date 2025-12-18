@@ -211,3 +211,60 @@ nav a.active{
 
 }
 
+/* FOOTER – FINAL SAFE VERSION */
+.footer{
+  background:#020611;
+  padding:60px 8% 25px;
+}
+
+.footer-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+}
+
+.footer-col h3,
+.footer-col h4{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-col p,
+.footer-col a{
+  font-size:14px;
+  color:#fff;
+  opacity:.8;
+  display:block;
+  margin-bottom:8px;
+}
+
+.footer-col a{
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.footer-col a:hover{
+  opacity:1;
+  color:#d4af37;
+}
+
+.footer-bottom{
+  max-width:1200px;
+  margin:40px auto 0;
+  padding-top:15px;
+  text-align:center;
+  font-size:13px;
+  opacity:.6;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+/* MOBILE FOOTER SAFE */
+@media(max-width:768px){
+  .footer{
+    text-align:center;
+  }
+}
