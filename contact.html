@@ -48,18 +48,31 @@
 <section id="contact">
   <div class="container contact-container">
     
-    <!-- Contact Form -->
-    <div class="contact-form">
-      <h4>Send a Message</h4>
-      <form action="https://formspree.io/f/nisaraisani@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="_replyto" placeholder="Your Email" required>
-        <input type="text" name="subject" placeholder="Subject" required>
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-        <input type="hidden" name="_subject" value="New Contact Form Message from Website">
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
+    <section id="contact" style="background:#fff; padding:60px 0;">
+  <div class="container">
+    <div class="title"><h3>Contact Dr. Nisa Raisani</h3></div>
+    <p style="text-align:center; max-width:700px; margin:auto; margin-bottom:30px;">
+      Fill the form below to get in touch. We respond to all inquiries promptly.
+    </p>
+
+    <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" style="max-width:600px; margin:auto; display:flex; flex-direction:column; gap:16px;">
+      <input type="text" name="name" placeholder="Your Name" required style="padding:12px; border-radius:6px; border:1px solid #ccc;">
+      <input type="email" name="email" placeholder="Your Email" required style="padding:12px; border-radius:6px; border:1px solid #ccc;">
+      <input type="tel" name="phone" placeholder="Phone Number" style="padding:12px; border-radius:6px; border:1px solid #ccc;">
+      <input type="text" name="address" placeholder="Address" style="padding:12px; border-radius:6px; border:1px solid #ccc;">
+      <textarea name="message" rows="6" placeholder="Your Message" required style="padding:12px; border-radius:6px; border:1px solid #ccc;"></textarea>
+
+      <!-- Optional hidden fields -->
+      <input type="hidden" name="_subject" value="New Contact Message – Dr Nisa Raisani Website">
+      <input type="hidden" name="_captcha" value="false">
+
+      <button type="submit" style="padding:14px; background:#1e6fd9; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600; transition:0.3s;">
+        Send Message
+      </button>
+    </form>
+  </div>
+    </section>
+    
 
     <!-- Contact Details -->
     <div class="contact-details">
