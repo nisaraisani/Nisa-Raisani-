@@ -136,6 +136,89 @@ footer .copyright {
     }
 
 
+/* ===============================
+   PERFECT FOOTER – FINAL FIX
+================================ */
+
+footer {
+  background: #0b1f36;
+  color: #dbe7ff;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+footer .footer-grid {
+  max-width: 1150px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  padding: 40px 20px;
+}
+
+footer h4 {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+footer p,
+footer a {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #c7d6ff;
+  display: block;
+  word-break: break-word;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Copyright */
+footer .copyright {
+  text-align: center;
+  padding: 14px 12px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  opacity: 0.85;
+}
+
+/* ===== Mobile Footer Fix ===== */
+@media (max-width: 768px) {
+  footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding-bottom: 90px; /* WhatsApp space */
+  }
+
+  footer p,
+  footer a {
+    font-size: 0.88rem;
+  }
+
+  footer h4 {
+    font-size: 0.95rem;
+  }
+}
+
+/* WhatsApp button safe */
+.whatsapp-wrapper {
+  right: 16px;
+  bottom: 20px;
+}
 
 
 
