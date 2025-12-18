@@ -50,7 +50,7 @@ nav a.active{
     ),
     url("images/doctor.jpg") no-repeat;
   background-size:cover;
-  background-position:65% center;
+  background-position:65% bottom;
   position:relative;
   display:flex;
   align-items:center;
@@ -178,7 +178,8 @@ nav a.active{
 
 @media(max-width:768px){
   .hero{
-    background-position:center top;
+    background-position: 65% bottom;
+    
   }
   .hero h1{
     font-size:42px;
