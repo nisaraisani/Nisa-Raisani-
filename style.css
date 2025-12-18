@@ -117,14 +117,11 @@ nav a.active{
 }
 
 .card{
-  background: rgba(15,18,30,0.7);
-  border:1px solid rgba(212,175,55,0.25);
-  border-radius:22px;
-  padding:30px;
-  text-align:center;
-  backdrop-filter: blur(10px);
-  transition:.4s;
+  background: rgba(10,16,28,0.7) !important;
+  border: 1px solid rgba(212,175,55,0.3) !important;
+  backdrop-filter: blur(12px) !important;
 }
+
 
 
 .card:hover{
@@ -133,14 +130,12 @@ nav a.active{
 }
 
 .card img{
-  width:90px;
-  margin-bottom:18px;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-  background:transparent;
-  filter: brightness(1.15) drop-shadow(0 0 12px rgba(212,175,55,0.3));
+  width:90px !important;
+  margin-bottom:18px !important;
+  background: transparent !important;
+  filter: brightness(1.3) drop-shadow(0 0 16px rgba(212,175,55,0.4)) !important;
 }
+
 
 
 /* ================= FOOTER FINAL ================= */
