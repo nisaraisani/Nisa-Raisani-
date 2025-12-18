@@ -220,6 +220,39 @@ footer .copyright {
   bottom: 20px;
 }
 
+/* ===== Footer Fix ===== */
+
+footer {
+  background-color: #0f2b46;
+  color: #ffffff;
+  padding: 40px 20px 20px;
+  width: 100%;
+  position: relative;
+  height: auto;
+  min-height: unset;
+}
+
+/* Footer container */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Footer bottom line */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+}
+
+/* Mobile spacing fix */
+@media (max-width: 768px) {
+  footer {
+    padding-bottom: 90px; /* WhatsApp button space */
+  }
+}
 
 
 
