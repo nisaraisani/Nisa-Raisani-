@@ -142,38 +142,68 @@ nav a.active{
   margin-bottom:10px;
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER FINAL ================= */
+
 footer{
   background:#040912;
-  padding:60px 8% 30px;
   border-top:1px solid rgba(212,175,55,.25);
+  padding:40px 8% 20px;
 }
 
 .footer-inner{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:40px;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px;
 }
 
-footer h4{
+.footer-col h4{
   font-family:'Playfair Display',serif;
   color:#d4af37;
-  margin-bottom:15px;
+  font-size:16px;
+  margin-bottom:12px;
 }
 
-footer a{
+.footer-col p{
+  font-size:13px;
+  line-height:1.6;
+  opacity:.75;
+}
+
+.footer-col a{
   display:block;
-  margin-bottom:10px;
-  opacity:.8;
-  font-size:14px;
+  font-size:13px;
+  margin-bottom:6px;
+  opacity:.75;
+  cursor:pointer;
+}
+
+.footer-col a:hover{
+  opacity:1;
 }
 
 .footer-bottom{
-  margin-top:40px;
+  margin-top:25px;
   text-align:center;
-  font-size:13px;
+  font-size:12px;
   opacity:.6;
 }
+
+/* -------- MOBILE FOOTER -------- */
+@media(max-width:768px){
+  footer{
+    padding:30px 6% 18px;
+  }
+
+  .footer-inner{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .footer-bottom{
+    margin-top:18px;
+  }
+}
+
 
 /* ================= WHATSAPP ================= */
 .whatsapp{
