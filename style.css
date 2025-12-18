@@ -117,14 +117,15 @@ nav a.active{
 }
 
 .card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(212,175,55,.35);
+  background: rgba(15,18,30,0.7);
+  border:1px solid rgba(212,175,55,0.25);
   border-radius:22px;
   padding:30px;
   text-align:center;
-  backdrop-filter:blur(12px);
+  backdrop-filter: blur(10px);
   transition:.4s;
 }
+
 
 .card:hover{
   transform:translateY(-10px);
@@ -132,14 +133,15 @@ nav a.active{
 }
 
 .card img{
-  width:80px;
-  margin-bottom:20px;
-  /* REMOVE any filter that darkens */
-  filter: none;
-  /* add subtle glow instead */
-  box-shadow: 0 0 18px rgba(212,175,55,0.35),
-              0 0 30px rgba(212,175,55,0.15);
+  width:90px;
+  margin-bottom:18px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  background:transparent;
+  filter: brightness(1.15) drop-shadow(0 0 12px rgba(212,175,55,0.3));
 }
+
 
 /* ================= FOOTER FINAL ================= */
 
