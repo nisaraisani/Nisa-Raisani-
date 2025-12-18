@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr Nisa Raisani – Neurologist & PhD Researcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <h1>Dr. Nisa Raisani</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="clinical.html">Clinical Focus</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="research-posts.html">Research Posts</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="container">
+      <h2>Neurologist & PhD Researcher in Mental Health</h2>
+      <p>Advancing neurological and mental health care through evidence-based clinical practice and global research collaborations.</p>
+      <div class="hero-buttons">
+        <a href="contact.html" class="cta-btn">
+          📞 Book Consultation
+        </a>
+        <a href="research.html" class="cta-btn secondary">
+          🔬 Explore Research
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Highlights Section -->
+<section id="highlights">
+  <div class="container">
+    <div class="title">
+      <h3>Areas of Expertise</h3>
+      <p>Providing expert neurological care and research-driven solutions in mental health and cognition.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h4>Clinical Expertise</h4>
+        <p>Headache, epilepsy, movement disorders, cognitive health, and mental well-being interventions.</p>
+      </div>
+      <div class="card">
+        <h4>Research Focus</h4>
+        <p>Neurological disorders, mental health outcomes, translational neuroscience, and public health impact.</p>
+      </div>
+      <div class="card">
+        <h4>Publications</h4>
+        <p>Peer-reviewed articles, conference papers, and clinical research studies.</p>
+      </div>
+      <div class="card">
+        <h4>Professional Collaborations</h4>
+        <p>Global collaborations with academic institutions and clinical research centers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials">
+  <div class="container">
+    <div class="title">
+      <h3>Testimonials</h3>
+      <p>What colleagues and collaborators say about Dr. Nisa Raisani.</p>
+    </div>
+    <div class="grid">
+      <div class="testimonial-card">Dr. Nisa Raisani’s research insights transformed our approach to cognitive health.</div>
+      <div class="testimonial-card">Exceptional clinical expertise combined with impactful research outcomes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects / Research Highlights -->
+<section id="projects">
+  <div class="container">
+    <div class="title">
+      <h3>Featured Projects</h3>
+      <p>Highlighted research initiatives and clinical projects.</p>
+    </div>
+    <div class="grid">
+      <div class="card">Cognitive Decline Study – Interventions in older adults.</div>
+      <div class="card">Neuropsychiatric Research – Global collaboration on mental health outcomes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Dr. Nisa Raisani</h4>
+      <p>Neurologist, Researcher</p>
+    </div>
+    <div>
+      <h4>Academic Profiles</h4>
+      <a href="https://orcid.org/0009-0003-8786-0440">ORCID</a><br>
+      <a href="https://zenodo.org">Zenodo</a><br>
+      <a href="https://www.ncbi.nlm.nih.gov">PubMed</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: contact@drnisaraisani.info</p>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <p>Website for professional and academic purposes.</p>
+    </div>
+  </div>
+  <div class="copyright">© 2025 Dr. Nisa Raisani. All Rights Reserved.</div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="topBtn" title="Go to top">↑</button>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Back to Top Button
+  const topBtn = document.getElementById("topBtn");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+  topBtn.addEventListener("click", function(){
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+</script>
+
+</body>
+        </html>
+        
