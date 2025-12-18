@@ -278,4 +278,11 @@ nav{flex-wrap:wrap;gap:10px;}
   background: transparent !important;
   filter: brightness(1.2) drop-shadow(0 0 14px rgba(212,175,55,0.35)) !important;
 }
- 
+ /* ===== FINAL IMAGE ALIGN FIX (LAST) ===== */
+
+.card img{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
