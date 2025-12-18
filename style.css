@@ -255,4 +255,10 @@ footer{
   .hero h1{
     font-size:42px;
   }
+  .navbar{gap:10px;}
+nav{flex-wrap:wrap;gap:10px;}
+.hero-content{padding:0 20px;}
+.hero h1{font-size:36px;line-height:1.2;}
+.subtitle{font-size:15px;line-height:1.4;}
+
 }
