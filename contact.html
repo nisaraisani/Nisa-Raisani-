@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - Dr Nisa Raisani</title>
-  <link href="style.css" rel="stylesheet">
-  <style>
-    .contact-container {max-width:800px; margin:auto; padding:40px 20px;}
-    .contact-form h4 {font-size:1.5rem; color:var(--primary); margin-bottom:20px; text-align:center;}
-    .contact-form form {display:flex; flex-direction:column; gap:16px;}
-    .contact-form input, .contact-form textarea {padding:12px; border-radius:8px; border:1px solid #ccc; font-size:1rem; width:100%;}
-    .contact-form button {background:var(--secondary); color:#fff; padding:12px; border:none; border-radius:8px; font-size:1rem; cursor:pointer; transition:0.3s;}
-    .contact-form button:hover {background:var(--primary);}
-    .contact-details {margin-top:40px; display:grid; grid-template-columns:1fr; gap:16px; text-align:center;}
-    .contact-details p, .contact-details a {font-size:1rem; color:var(--text);}
-    .contact-details a:hover {color:var(--secondary);}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Dr. Nisa Raisani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -25,109 +15,130 @@
       <h1>Dr. Nisa Raisani</h1>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="clinical.html">Clinical Focus</a></li>
         <li><a href="research.html">Research</a></li>
         <li><a href="publications.html">Publications</a></li>
-        <li><a href="research_posts.html">Research Posts</a></li>
+        <li><a href="research-posts.html">Research Posts</a></li>
         <li><a href="testimonials.html">Testimonials</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
-      <div class="hamburger"><div></div><div></div><div></div></div>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </nav>
   </div>
 
-  <div class="hero">
+  <div class="hero hero-contact">
     <div class="container">
       <h2>Contact Dr. Nisa Raisani</h2>
-      <p>For appointments, inquiries, or collaboration, please fill out the form below or reach us via email or phone. Professional care and prompt responses guaranteed.</p>
+      <p>Professional consultations, research inquiries, or collaborations. Reach out using the form below or via WhatsApp.</p>
     </div>
   </div>
 </header>
 
-    <section id="contact" style="background:#f9faff; padding:70px 0; font-family:'Inter',sans-serif;">
-  <div class="container" style="max-width:700px; margin:auto;">
-    <!-- Title -->
-    <div class="title" style="text-align:center; margin-bottom:30px;">
-      <h3 style="color:#0f2a44; font-size:2rem; font-weight:700;">Contact Dr. Nisa Raisani</h3>
-      <p style="color:#4b5563; font-size:1rem; margin-top:8px;">
-        Please fill the form below to reach out regarding consultations, research inquiries, or professional collaborations.
-      </p>
+<section id="contact-form">
+  <div class="container">
+    <div class="title">
+      <h3>Get in Touch</h3>
+      <p>Fill out the form or use the contact details provided.</p>
     </div>
+    <div class="contact-grid">
+      <!-- Form -->
+      <form action="https://formsubmit.co/nisaraisani@gmail.com" method="POST">
+        <!-- Optional: Redirect after submission -->
+        <input type="hidden" name="_next" value="thankyou.html">
+        <input type="hidden" name="_captcha" value="false">
+        
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+971 50 XXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" placeholder="City, Country">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+        </div>
+        <button type="submit" class="cta-btn">Send Message</button>
+      </form>
 
-    <!-- Form -->
-    <form action="https://formsubmit.co/nisaraisani@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:16px; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.05);">
-      
-      <input type="text" name="name" placeholder="Full Name" required style="padding:14px; border-radius:8px; border:1px solid #cbd5e1; font-size:1rem;">
-      
-      <input type="email" name="email" placeholder="Email Address" required style="padding:14px; border-radius:8px; border:1px solid #cbd5e1; font-size:1rem;">
-      
-      <input type="tel" name="phone" placeholder="Phone Number" style="padding:14px; border-radius:8px; border:1px solid #cbd5e1; font-size:1rem;">
-      
-      <input type="text" name="address" placeholder="Address" style="padding:14px; border-radius:8px; border:1px solid #cbd5e1; font-size:1rem;">
-      
-      <textarea name="message" rows="6" placeholder="Your Message" required style="padding:14px; border-radius:8px; border:1px solid #cbd5e1; font-size:1rem;"></textarea>
-      
-      <!-- Hidden fields -->
-      <input type="hidden" name="_subject" value="New Message – Dr Nisa Raisani Website">
-      <input type="hidden" name="_captcha" value="false">
-
-      <!-- Submit button -->
-      <button type="submit" style="padding:16px; background:#1e6fd9; color:#fff; font-weight:600; border:none; border-radius:8px; cursor:pointer; transition:0.3s; font-size:1rem;">
-        Send Message
-      </button>
-
-      <!-- Info note -->
-      <p style="font-size:0.85rem; color:#6b7280; margin-top:8px; text-align:center;">
-        Your information will remain confidential. We will respond within 24–48 hours.
-      </p>
-    </form>
-  </div>
-    </section>
-  
-
-    <!-- Contact Details -->
-    <div class="contact-details">
-      <p><strong>Email:</strong> <a href="mailto:contact@drnisaraisani.info">contact@drnisaraisani.info</a></p>
-      <p><strong>Phone (Dubai):</strong> <a href="tel:+97150XXXXXXX">+971 50 XXXXXXX</a></p>
-      <p><strong>Office Address:</strong> Dubai Healthcare City, Dubai, UAE</p>
-      <p><strong>ORCID Profile:</strong> <a href="https://orcid.org/0009-0003-8786-0440" target="_blank">View</a></p>
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h4>Contact Details</h4>
+        <p><strong>Email:</strong> nisaraisani@gmail.com</p>
+        <p><strong>Phone:</strong> +971 50 XXXXXXX</p>
+        <p><strong>Address:</strong> Sharjah, UAE</p>
+        <p><strong>Office Hours:</strong> Mon–Fri, 9:00 AM – 5:00 PM</p>
+        <h4>Connect via WhatsApp</h4>
+        <p>Click the WhatsApp button at the bottom-right to start a chat.</p>
+      </div>
     </div>
-
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div><h4>Dr. Nisa Raisani</h4><p>Neurologist, Researcher</p></div>
-      <div><h4>Academic Profiles</h4>
-        <a href="https://orcid.org/0009-0003-8786-0440">ORCID</a><br>
-        <a href="https://zenodo.org">Zenodo</a><br>
-        <a href="https://www.ncbi.nlm.nih.gov">PubMed</a>
-      </div>
-      <div><h4>Contact</h4><p>Email: contact@drnisaraisani.info</p></div>
-      <div><h4>Legal</h4><p>This website is for educational purposes only.</p></div>
+  <div class="footer-grid">
+    <div>
+      <h4>Dr. Nisa Raisani</h4>
+      <p>Neurologist & Researcher</p>
     </div>
-    <div class="copyright">© 2025 Dr. Nisa Raisani. All Rights Reserved.</div>
+    <div>
+      <h4>Academic Profiles</h4>
+      <a href="https://orcid.org/0009-0003-8786-0440">ORCID</a><br>
+      <a href="https://zenodo.org">Zenodo</a><br>
+      <a href="https://www.ncbi.nlm.nih.gov">PubMed</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: nisaraisani@gmail.com</p>
+      <p>Phone: +971 50 XXXXXXX</p>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <p>Website for professional and academic purposes.</p>
+    </div>
   </div>
+  <div class="copyright">© 2025 Dr. Nisa Raisani. All Rights Reserved.</div>
 </footer>
 
+<!-- WhatsApp Button -->
 <div class="whatsapp-wrapper">
   <a href="https://wa.me/97150XXXXXXX" target="_blank" class="whatsapp-button">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M20.52 3.48a11.64 11.64 0 0 0-16.43 0c-4.55 4.55-4.9 11.89-.98 16.72l-1.64 5.99 6.17-1.61a11.63 11.63 0 0 0 11.88-20.1zm-9.52 16.52a9.43 9.43 0 0 1-4.82-1.45l-.34-.21-3.63.95.97-3.54-.23-.36a9.43 9.43 0 1 1 8.05 4.61zm5.1-6.54c-.28-.14-1.65-.82-1.91-.91-.26-.1-.45-.14-.64.14s-.73.91-.9 1.1-.33.21-.61.07a8.29 8.29 0 0 1-2.44-1.5 9.4 9.4 0 0 1-1.75-2.17c-.18-.31 0-.48.13-.62.13-.13.28-.33.42-.49.14-.16.18-.27.28-.45.09-.18.05-.34-.03-.48-.09-.14-.64-1.55-.88-2.12-.23-.56-.46-.48-.64-.49-.16 0-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.95.93-.95 2.28s.97 2.65 1.1 2.83c.14.18 1.9 2.9 4.6 4.06a19.06 19.06 0 0 0 2.32.78c.31.1.56.16.75.25.32.14.98.4 1.12.77.14.37.14.68.1.74-.05.07-.18.12-.36.21-.18.09-1.05.49-1.21.55-.16.07-.31.07-.52.05-.21-.03-.93-.36-1.74-.99z"/>
     </svg>
   </a>
-  <span class="whatsapp-bubble">Chat Now</span>
 </div>
 
+<!-- Back to Top Button -->
+<button id="topBtn" title="Go to top">↑</button>
+
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-  });
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+const topBtn = document.getElementById("topBtn");
+window.onscroll = function() {
+  if(document.body.scrollTop>300 || document.documentElement.scrollTop>300){
+    topBtn.style.display="block";
+  } else { topBtn.style.display="none"; }
+};
+topBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
 </script>
 
 </body>
