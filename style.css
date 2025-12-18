@@ -281,3 +281,28 @@ nav{flex-wrap:wrap;gap:10px;}
   margin-right:auto;
 }
 
+/* ===== HEADER MENU RIGHT FIX ===== */
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.navbar nav{
+  margin-left:auto;
+  display:flex;
+  gap:25px;
+}
+@media(max-width:768px){
+
+  .navbar{
+    align-items:flex-start;
+  }
+
+  .navbar nav{
+    width:100%;
+    margin-left:0;
+    justify-content:space-between;
+  }
+  }
