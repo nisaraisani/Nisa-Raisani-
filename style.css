@@ -263,3 +263,19 @@ nav{flex-wrap:wrap;gap:10px;}
 .subtitle{font-size:15px;line-height:1.4;}
 
 }
+         /* ===== FINAL CARD FIX (DO NOT MOVE) ===== */
+
+.card{
+  background: rgba(15,18,30,0.7) !important;
+  border: 1px solid rgba(212,175,55,0.25) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.card img{
+  width:90px !important;
+  display:block;
+  margin:0 auto 18px !important;
+  background: transparent !important;
+  filter: brightness(1.2) drop-shadow(0 0 14px rgba(212,175,55,0.35)) !important;
+}
+ 
