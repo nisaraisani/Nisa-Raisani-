@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dr. Nisa Raisani | Consultant Neurologist in Sharjah & Dubai</title>
+
+<meta name="description" content="Dr. Nisa Raisani is a Consultant Neurologist and Mental Health Researcher in Sharjah & Dubai, specializing in migraine, epilepsy, Parkinson’s disease, and cognitive disorders.">
+<meta name="keywords" content="Neurologist Sharjah, Neurologist Dubai, Migraine Doctor, Epilepsy Specialist, Parkinson’s Treatment, Mental Health Researcher">
+<meta name="author" content="Dr. Nisa Raisani">
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <nav>
+    <a href="#home" data-en="Home" data-ur="ہوم">Home</a>
+    <a href="#about" data-en="About" data-ur="تعارف">About</a>
+    <a href="#clinical" data-en="Clinical" data-ur="طبی خدمات">Clinical</a>
+    <a href="#appointment" data-en="Appointment" data-ur="اپائنٹمنٹ">Appointment</a>
+    <a href="#contact" data-en="Contact" data-ur="رابطہ">Contact</a>
+  </nav>
+  <button class="lang-btn" onclick="toggleLang()">EN / اردو</button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="overlay"></div>
+  <div class="hero-content fade">
+    <h1 data-en="Dr. Nisa Raisani" data-ur="ڈاکٹر نسا ریسانی">Dr. Nisa Raisani</h1>
+    <h3 data-en="Consultant Neurologist & Mental Health Researcher"
+        data-ur="کنسلٹنٹ نیورولوجسٹ اور ذہنی صحت کی محقق">
+        Consultant Neurologist & Mental Health Researcher
+    </h3>
+    <p data-en="Sharjah & Dubai" data-ur="شارجہ اور دبئی">Sharjah & Dubai</p>
+    <div class="buttons">
+      <a href="#appointment" class="btn gold" data-en="Book Consultation" data-ur="کنسلٹیشن بک کریں">Book Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLINICAL -->
+<section class="clinical fade" id="clinical">
+<h2 data-en="Clinical Focus" data-ur="طبی مہارت">Clinical Focus</h2>
+<div class="grid">
+  <div class="card"><img src="images/migraine.png"><h4 data-en="Migraine & Headache Disorders" data-ur="مائیگرین اور سر درد">Migraine</h4></div>
+  <div class="card"><img src="images/epilepsy.png"><h4 data-en="Epilepsy Management" data-ur="مرگی کا علاج">Epilepsy</h4></div>
+  <div class="card"><img src="images/parkinsons.png"><h4 data-en="Parkinson’s Disease" data-ur="پارکنسن بیماری">Parkinson’s</h4></div>
+  <div class="card"><img src="images/cognitive.png"><h4 data-en="Cognitive & Memory Disorders" data-ur="یادداشت اور ذہنی امراض">Cognitive</h4></div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about fade" id="about">
+<h2 data-en="About the Doctor" data-ur="ڈاکٹر کے بارے میں">About</h2>
+<p data-en="Dr. Nisa Raisani is a Consultant Neurologist with extensive experience in diagnosing and managing neurological and mental health conditions using evidence-based medicine."
+   data-ur="ڈاکٹر نسا ریسانی نیورولوجی اور ذہنی صحت کے امراض کی تشخیص اور علاج میں وسیع تجربہ رکھتی ہیں۔">
+</p>
+</section>
+
+<!-- APPOINTMENT -->
+<section class="appointment fade" id="appointment">
+<h2 data-en="Appointment Request" data-ur="اپائنٹمنٹ کی درخواست">Appointment</h2>
+<form>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="tel" placeholder="Phone">
+<textarea placeholder="Message"></textarea>
+<button class="btn gold">Submit</button>
+</form>
+</section>
+
+<!-- CONTACT -->
+<section class="contact fade" id="contact">
+<h2 data-en="Contact Information" data-ur="رابطہ کی معلومات">Contact</h2>
+<p>📍 Sharjah & Dubai</p>
+<p>📧 info@drnisaraisani.com</p>
+</section>
+
+<!-- PRIVACY -->
+<section class="legal fade">
+<h2>Privacy Policy</h2>
+<p>
+All patient information shared through this website is kept confidential. This website does not collect or store sensitive medical data. Information submitted via contact forms is used solely for communication purposes.
+</p>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="legal fade">
+<h2>Medical Disclaimer</h2>
+<p>
+The information provided on this website is for educational purposes only and does not constitute medical advice. A doctor-patient relationship is not established through this website. In case of a medical emergency, please contact local emergency services immediately.
+</p>
+</section>
+
+<footer>
+<p>© 2025 Dr. Nisa Raisani. All Rights Reserved.</p>
+</footer>
+
+<a href="https://wa.me/971000000000" class="whatsapp">💬</a>
+
+<script>
+let urdu=false;
+function toggleLang(){
+  urdu=!urdu;
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.innerText = urdu ? el.dataset.ur : el.dataset.en;
+  });
+}
+
+const fades=document.querySelectorAllenga=document.querySelectorAll('.fade');
+window.addEventListener('scroll',()=>fades.forEach(f=>{
+  if(f.getBoundingClientRect().top<window.innerHeight-100){f.classList.add('show')}
+}));
+</script>
+
+</body>
+</html>
