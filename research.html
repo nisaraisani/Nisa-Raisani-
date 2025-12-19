@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Research & Publications | Dr. Nisa Raisani</title>
+  <meta name="description" content="Research publications and academic profiles of Dr. Nisa Raisani including NCBI, ORCID, and Zenodo indexed work.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================
+     HEADER
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html" class="active">Research</a>
+    <a href="clinic.html">Clinic</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- =====================
+     RESEARCH INTRO
+===================== -->
+<section class="fade" style="margin-top:80px;">
+  <h2>Research & Publications</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    Dr. Nisa Raisani actively contributes to academic and clinical research
+    in the field of neurology. Her work emphasizes evidence-based medicine,
+    ethical research practices, and the dissemination of medical knowledge
+    through internationally recognized platforms.
+  </p>
+</section>
+
+<!-- =====================
+     RESEARCH CARDS
+===================== -->
+<section class="fade">
+  <div class="grid">
+
+    <div class="card">
+      <h4>NCBI Publications</h4>
+      <p>
+        Peer-reviewed biomedical publications indexed on the
+        National Center for Biotechnology Information (NCBI),
+        supporting transparency and academic credibility.
+      </p>
+      <p>
+        <a href="https://www.ncbi.nlm.nih.gov/myncbi/dr%20nisa.raisani.1/bibliography/public/"
+           target="_blank">
+          View NCBI Profile →
+        </a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>ORCID Research Profile</h4>
+      <p>
+        Verified researcher identity with ORCID, ensuring accurate
+        attribution of scholarly work and international academic recognition.
+      </p>
+      <p>
+        <a href="https://orcid.org/0009-0003-8786-0440" target="_blank">
+          View ORCID Profile →
+        </a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Zenodo Open Access</h4>
+      <p>
+        Open-access research records and scholarly outputs archived
+        on Zenodo, promoting knowledge sharing and global accessibility.
+      </p>
+      <p>
+        <a href="https://zenodo.org/records/17931702" target="_blank">
+          View Zenodo Records →
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================
+     RESEARCH STATEMENT
+===================== -->
+<section class="fade">
+  <h2>Research Philosophy</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    Research activities are conducted in alignment with international
+    ethical standards, patient confidentiality requirements, and academic
+    integrity. Published content is intended for educational and scholarly
+    purposes and does not replace professional medical consultation.
+  </p>
+</section>
+
+<!-- =====================
+     FOOTER
+===================== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>
+    © 2025 Dr. Nisa Raisani. All rights reserved.<br>
+    Research content provided for educational and academic purposes only.
+  </p>
+</footer>
+
+<!-- Scroll Animation -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
+</body>
+</html>
 
