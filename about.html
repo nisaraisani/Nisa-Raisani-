@@ -2,35 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>About Dr. Nisa Raisani | Neurologist & Researcher</title>
+  <meta name="description" content="About Dr. Nisa Raisani – Consultant Neurologist, Researcher, and Clinical Specialist with academic publications and international research profiles.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Nisa Raisani</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  });
-
-  document.querySelectorAll('.fade').forEach(el => {
-    observer.observe(el);
-  });
-</script>
-
-
-<!-- ================= HEADER ================= -->
+<!-- =====================
+     HEADER
+===================== -->
 <header class="navbar">
   <div class="logo">Dr. Nisa Raisani</div>
 
   <nav>
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="about.html" class="active">About</a>
     <a href="clinical.html">Clinical</a>
     <a href="research.html">Research</a>
     <a href="clinic.html">Clinic</a>
@@ -41,38 +34,110 @@
   </nav>
 </header>
 
+<!-- =====================
+     ABOUT SECTION
+===================== -->
+<section class="about fade" style="margin-top:80px;">
+  <h2 data-en="About Dr. Nisa Raisani" data-ur="ڈاکٹر نسا رئیساني کے بارے میں">
+    About Dr. Nisa Raisani
+  </h2>
 
-  
-<!-- ================= MAIN CONTENT ================= -->
-<section class="fade">
-  <h2>About Dr. Nisa Raisani</h2>
-<p>
-Dr. Nisa Raisani is a medical professional with a focused interest in neurology,
-cognitive health, and evidence-based clinical practice.
-</p>
-<p>
-She actively engages in academic research and medical writing,
-with publications indexed on international research platforms.
-</p>
+  <p>
+    Dr. Nisa Raisani is a consultant neurologist and academic researcher with a strong focus on
+    evidence-based neurological care, clinical excellence, and medical education. Her professional
+    work combines patient-centered clinical practice with international research contributions.
+  </p>
 
+  <p>
+    She has clinical expertise in the management of migraine and headache disorders, epilepsy,
+    Parkinson’s disease, and cognitive or memory-related conditions. Dr. Raisani emphasizes ethical
+    medical practice, patient privacy, and informed decision-making.
+  </p>
+
+  <p>
+    In addition to clinical care, Dr. Raisani actively contributes to global medical research.
+    Her scholarly work is indexed across international academic platforms, supporting transparent
+    and open-access medical knowledge.
+  </p>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================
+     PROFESSIONAL HIGHLIGHTS
+===================== -->
+<section class="about fade">
+  <h2 data-en="Professional Highlights" data-ur="پیشہ ورانہ جھلکیاں">
+    Professional Highlights
+  </h2>
+
+  <p>
+    • Consultant Neurologist<br>
+    • Academic & Clinical Researcher<br>
+    • Publications indexed on NCBI, ORCID & Zenodo<br>
+    • Focus on ethical, evidence-based neurology<br>
+    • Commitment to medical education and public awareness
+  </p>
+</section>
+
+<!-- =====================
+     RESEARCH PROFILES
+===================== -->
+<section class="about fade">
+  <h2 data-en="Academic & Research Profiles" data-ur="تحقیقی اور تعلیمی پروفائلز">
+    Academic & Research Profiles
+  </h2>
+
+  <p>
+    <strong>NCBI:</strong><br>
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/dr%20nisa.raisani.1/bibliography/public/" target="_blank">
+      View Publications on NCBI
+    </a>
+  </p>
+
+  <p>
+    <strong>ORCID:</strong><br>
+    <a href="https://orcid.org/0009-0003-8786-0440" target="_blank">
+      ORCID Research Profile
+    </a>
+  </p>
+
+  <p>
+    <strong>Zenodo:</strong><br>
+    <a href="https://zenodo.org/records/17931702" target="_blank">
+      Zenodo Open-Access Records
+    </a>
+  </p>
+</section>
+
+<!-- =====================
+     FOOTER
+===================== -->
 <footer>
   <div class="footer-menu">
     <a href="privacy.html">Privacy Policy</a>
     <a href="disclaimer.html">Medical Disclaimer</a>
-    <a href="terms.html">Terms of Use</a>
-    <a href="https://orcid.org/0009-0003-8786-0440" target="_blank">ORCID</a>
-    <a href="https://www.ncbi.nlm.nih.gov/myncbi/dr%20nisa.raisani.1/bibliography/public/" target="_blank">NCBI</a>
-    <a href="https://zenodo.org/records/17931702" target="_blank">Zenodo</a>
+    <a href="contact.html">Contact</a>
   </div>
 
   <p>
-    © 2025 Dr. Nisa Raisani.  
-    Medical content is for informational and educational purposes only.
+    © 2025 Dr. Nisa Raisani. All rights reserved.<br>
+    Medical information provided for educational purposes only.
   </p>
 </footer>
+
+<!-- Scroll Animation -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
 
 </body>
 </html>
