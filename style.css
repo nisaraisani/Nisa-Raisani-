@@ -65,6 +65,16 @@ body {
   color: #f3d38a;
   cursor: pointer;
 }
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  white-space: nowrap;
+}
+
+.navbar nav a {
+  display: inline-block;
+}
 
 /* =====================
    HERO SECTION
