@@ -471,3 +471,25 @@ section.research .card h4,
   transform: scale(0.98);
 }
 
+/* ===== APPOINTMENT FORM READABILITY FIX ===== */
+
+.appointment label {
+  color: #f3d38a;
+  font-weight: 500;
+}
+
+.appointment input,
+.appointment textarea {
+  background: rgba(255,255,255,0.95);
+  color: #000;
+}
+
+.appointment input::placeholder,
+.appointment textarea::placeholder {
+  color: #666;
+}
+
+.appointment .note {
+  color: #ccc;
+  font-size: 13px;
+}
