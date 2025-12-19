@@ -355,3 +355,21 @@ section.research .card h4,
     padding: 0 10px !important;
   }
 }
+/* ===== FINAL TITLE LOCK (JS SAFE) ===== */
+
+.research .card h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.research .card h4 .title {
+  display: block;
+  font-size: clamp(16px, 4vw, 22px);
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: normal;
+  word-break: keep-all;
+  max-width: 90%;
+  margin: 0 auto 10px;
+}
