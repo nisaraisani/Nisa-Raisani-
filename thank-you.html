@@ -21,7 +21,9 @@
 <header class="navbar">
   <div class="logo">Dr. Nisa Raisani</div>
 
-  <nav>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav-menu">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="clinical.html">Clinical</a>
@@ -85,6 +87,11 @@
   window.addEventListener('scroll', showOnScroll);
   showOnScroll();
 </script>
-
+<script>
+function toggleMenu() {
+  document.getElementById("nav-menu").classList.toggle("active");
+}
+</script>
+  
 </body>
 </html>
