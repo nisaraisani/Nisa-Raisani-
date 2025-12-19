@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medical Disclaimer | Dr. Nisa Raisani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="legal fade" style="margin-top:80px;">
+  <h2>Medical Disclaimer</h2>
+
+  <p>
+    The information provided on this website is intended for general
+    educational and informational purposes only. It does not constitute
+    medical advice, diagnosis, or treatment.
+  </p>
+
+  <p>
+    Content on this site should not be used as a substitute for
+    professional medical consultation, diagnosis, or treatment.
+    Always seek the advice of a qualified healthcare provider
+    regarding any medical condition.
+  </p>
+
+  <p>
+    Submission of forms or communication through this website does
+    not establish a doctor-patient relationship. Appointment requests
+    are subject to clinical review and availability.
+  </p>
+
+  <p>
+    Dr. Nisa Raisani is not responsible for any actions taken based on
+    information presented on this website. Use of this site indicates
+    acceptance of this disclaimer.
+  </p>
+</section>
+
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
+</footer>
+
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
+</body>
+</html>
