@@ -120,50 +120,32 @@
 </p>
 </section>
 
-<section class="appointment fade" id="appointment">
-  <h2>Request an Appointment</h2>
-  <p class="sub">
-    Please submit your details below. Our team will contact you after reviewing your request.
+<!-- APPOINTMENT -->
+<section id="appointment" class="fade">
+  <h2>Appointment Request</h2>
+  <p style="text-align:center;max-width:600px;margin:0 auto 30px;">
+    Please fill the form below to request an appointment.  
+    This form is privacy-safe. No phone number is required.
   </p>
 
-  <form action="https://formsubmit.co/nisaraisani@gmail.com" method="POST" class="appointment-form">
+  <form action="thank-you.html" method="post" style="max-width:500px;margin:auto;">
 
-    <!-- Security -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_subject" value="New Appointment Request">
-    <input type="hidden" name="_next" value="https://drnisaraisani.info/#appointment">
+    <input type="text" name="name" placeholder="Full Name" required>
 
-    <div class="field">
-      <label>Full Name</label>
-      <input type="text" name="Name" required>
-    </div>
+    <input type="email" name="email" placeholder="Email Address" required>
 
-    <div class="field">
-      <label>Email Address</label>
-      <input type="email" name="Email" required>
-    </div>
+    <textarea name="message" placeholder="Brief reason for appointment" rows="4" required></textarea>
 
-    <div class="field">
-      <label>Preferred Appointment Date</label>
-      <input type="date" name="Preferred Date">
-    </div>
+    <button type="submit">Send Request</button>
 
-    <div class="field">
-      <label>Medical Concern / Reason for Consultation</label>
-      <textarea name="Medical Concern" rows="4" required></textarea>
-    </div>
-
-    <button type="submit" class="btn-primary">
-      Submit Appointment Request
-    </button>
-
-    <p class="note">
-      This form is for appointment requests only. It does not replace emergency medical care.
+    <p style="font-size:13px;opacity:.7;margin-top:15px;">
+      This request does not constitute medical advice.  
+      Emergency cases should seek immediate care.
     </p>
 
   </form>
 </section>
+
 
 
 <!-- CONTACT -->
