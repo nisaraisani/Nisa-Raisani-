@@ -446,3 +446,28 @@ section.research .card h4,
     padding: 60px 15px;
   }
 }
+/* ===== GOLDEN APPOINTMENT BUTTON ===== */
+
+#appointment button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#appointment button[type="submit"]:hover {
+  background: linear-gradient(135deg, #e6c85c, #c9a44c);
+  transform: translateY(-2px);
+}
+
+#appointment button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
