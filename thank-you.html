@@ -1,13 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Thank You</title>
+  <meta charset="UTF-8">
+  <title>Request Received | Dr. Nisa Raisani</title>
+  <meta name="description" content="Thank you for your appointment request. Dr. Nisa Raisani’s team will review and respond accordingly.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background:#000;color:#fff;text-align:center;padding:120px;font-family:Arial;">
-  <h1>Thank You</h1>
-  <p>Your appointment request has been received.</p>
-  <p>We will contact you via email shortly.</p>
+<body>
+
+<!-- =====================
+     HEADER
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- =====================
+     THANK YOU CONTENT
+===================== -->
+<section class="fade" style="margin-top:100px; text-align:center;">
+  <h2>Thank You</h2>
+
+  <p style="max-width:700px;margin:20px auto;">
+    Your appointment request has been successfully submitted.
+    Thank you for contacting <strong>Dr. Nisa Raisani</strong>.
+  </p>
+
+  <p style="max-width:700px;margin:auto;">
+    Please note that submission of this form does not confirm an appointment.
+    Requests are reviewed individually, and you will be contacted
+    if further information or confirmation is required.
+  </p>
+
+  <div class="buttons" style="margin-top:40px;">
+    <a href="index.html" class="btn gold">Return to Home</a>
+    <a href="contact.html" class="btn outline">Contact</a>
+  </div>
+</section>
+
+<!-- =====================
+     FOOTER
+===================== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>
+    © 2025 Dr. Nisa Raisani. All rights reserved.<br>
+    This page confirms receipt of your request only.
+  </p>
+</footer>
+
+<!-- Scroll Animation -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
 </body>
 </html>
