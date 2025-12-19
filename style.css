@@ -1,0 +1,51 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins;background:#05070d;color:#fff}
+
+/* NAV */
+.navbar{position:fixed;width:100%;top:0;padding:20px 60px;display:flex;justify-content:space-between;background:rgba(0,0,0,.5);backdrop-filter:blur(10px);z-index:100}
+.navbar a{color:#ddd;margin-left:20px;text-decoration:none}
+.logo{color:#f3d38a;font-family:Playfair Display}
+
+/* HERO */
+.hero{height:100vh;background:url(images/doctor.jpg) center/cover;display:flex;align-items:center;justify-content:center}
+.overlay{position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,0,.3),#05070d)}
+.hero-content{position:relative;text-align:center}
+.hero h1{font-size:56px;font-family:Playfair Display}
+.hero h3{color:#f3d38a;margin:10px 0}
+
+/* BUTTONS */
+.buttons{margin-top:30px}
+.btn{padding:14px 30px;border-radius:30px;text-decoration:none}
+.gold{background:linear-gradient(135deg,#f3d38a,#cfa24a);color:#000}
+.outline{border:1px solid #f3d38a;color:#f3d38a;margin-left:15px}
+
+/* SECTIONS */
+section{padding:100px 60px;text-align:center}
+h2{font-family:Playfair Display;color:#f3d38a;margin-bottom:40px}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
+.card{background:rgba(255,255,255,.05);padding:30px;border-radius:20px;transition:.4s}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 30px rgba(243,211,138,.3)}
+.card img{width:70px;margin-bottom:15px}
+
+/* FORM */
+form{max-width:500px;margin:auto}
+input,textarea{width:100%;margin-bottom:15px;padding:12px;border-radius:10px;border:none}
+
+/* FOOTER */
+footer{padding:40px;text-align:center;background:#02030a}
+.footer-links a{color:#aaa;margin:0 10px;font-size:13px}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;bottom:25px;right:25px;background:#25d366;color:#fff;padding:15px;border-radius:50%;font-size:22px;text-decoration:none}
+
+/* ANIMATION */
+.fade{opacity:0;transform:translateY(40px);transition:1s}
+.show{opacity:1;transform:none}
+
+/* MOBILE */
+@media(max-width:768px){
+.hero h1{font-size:40px}
+.navbar{padding:20px}
+}
