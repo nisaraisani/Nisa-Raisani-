@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Dr. Nisa Raisani</title>
+  <meta name="description" content="Contact information for Dr. Nisa Raisani, Consultant Neurologist. Secure and privacy-focused communication.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================
+     HEADER
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="clinic.html">Clinic</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html" class="active">Contact</a>
+
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- =====================
+     CONTACT INTRO
+===================== -->
+<section class="fade" style="margin-top:80px;">
+  <h2>Contact</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    For professional inquiries, appointment-related communication,
+    or academic correspondence, please use the contact options below.
+    Patient privacy and confidentiality are strictly respected.
+  </p>
+</section>
+
+<!-- =====================
+     CONTACT DETAILS
+===================== -->
+<section class="fade">
+  <div class="grid">
+
+    <div class="card">
+      <h4>Email Communication</h4>
+      <p>
+        For appointments and professional correspondence:<br><br>
+        <strong>Email:</strong><br>
+        nisaraisani@gmail.com
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Appointment Requests</h4>
+      <p>
+        Appointment requests should be submitted through the
+        official appointment form to ensure proper review
+        and timely response.
+      </p>
+      <p>
+        <a href="appointment.html">Request Appointment →</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Clinic Location</h4>
+      <p>
+        Clinic details, address, and consultation timings
+        are available on the clinic information page.
+      </p>
+      <p>
+        <a href="clinic.html">View Clinic Details →</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================
+     CONTACT NOTE
+===================== -->
+<section class="fade">
+  <h2>Communication Policy</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    This contact page is intended for general inquiries and appointment-related
+    communication only. Medical advice is not provided via email. For medical
+    concerns, please request an appointment for proper clinical evaluation.
+  </p>
+</section>
+
+<!-- =====================
+     FOOTER
+===================== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>
+    © 2025 Dr. Nisa Raisani. All rights reserved.<br>
+    All communications are handled in accordance with privacy and ethical standards.
+  </p>
+</footer>
+
+<!-- Scroll Animation -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
+</body>
+</html>
