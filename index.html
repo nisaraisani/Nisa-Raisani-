@@ -122,29 +122,41 @@
 
 <!-- APPOINTMENT -->
 <section id="appointment" class="fade">
+<!-- APPOINTMENT -->
+<section id="appointment" class="fade">
   <h2>Appointment Request</h2>
+
   <p style="text-align:center;max-width:600px;margin:0 auto 30px;">
-    Please fill the form below to request an appointment.  
-    This form is privacy-safe. No phone number is required.
+    Please fill the form below to request an appointment.
+    This request is privacy-safe and submitted securely.
   </p>
 
-  <form action="thank-you.html" method="post" style="max-width:500px;margin:auto;">
+  <form 
+    action="https://formsubmit.co/nisaraisani@gmail.com" 
+    method="POST"
+    style="max-width:500px;margin:auto;"
+  >
 
-    <input type="text" name="name" placeholder="Full Name" required>
+    <!-- FormSubmit settings -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Appointment Request">
+    <input type="hidden" name="_next" value="https://drnisaraisani.info/thank-you.html">
 
-    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="text" name="Full Name" placeholder="Full Name" required>
 
-    <textarea name="message" placeholder="Brief reason for appointment" rows="4" required></textarea>
+    <input type="email" name="Email Address" placeholder="Email Address" required>
 
-    <button type="submit">Send Request</button>
+    <textarea name="Medical Concern" placeholder="Brief reason for appointment" rows="4" required></textarea>
+
+    <button type="submit">Submit Request</button>
 
     <p style="font-size:13px;opacity:.7;margin-top:15px;">
-      This request does not constitute medical advice.  
-      Emergency cases should seek immediate care.
+      This request does not replace emergency medical care.
     </p>
 
   </form>
 </section>
+
 
 
 
