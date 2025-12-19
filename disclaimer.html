@@ -12,13 +12,18 @@
 
 <header class="navbar">
   <div class="logo">Dr. Nisa Raisani</div>
-  <nav>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav-menu">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="clinical.html">Clinical</a>
     <a href="research.html">Research</a>
     <a href="appointment.html">Appointment</a>
     <a href="contact.html">Contact</a>
+
+    <button class="lang-btn">EN / اردو</button>
   </nav>
 </header>
 
@@ -72,6 +77,11 @@
   window.addEventListener('scroll', showOnScroll);
   showOnScroll();
 </script>
-
+<script>
+function toggleMenu() {
+  document.getElementById("nav-menu").classList.toggle("active");
+}
+</script>
+  
 </body>
 </html>
