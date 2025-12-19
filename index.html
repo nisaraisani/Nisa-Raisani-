@@ -105,19 +105,26 @@ The information provided on this website is for educational purposes only and do
 <a href="https://wa.me/971000000000" class="whatsapp">💬</a>
 
 <script>
-let urdu=false;
-function toggleLang(){
-  urdu=!urdu;
-  document.querySelectorAll('[data-en]').forEach(el=>{
+let urdu = false;
+
+function toggleLang() {
+  urdu = !urdu;
+  document.querySelectorAll('[data-en]').forEach(el => {
     el.innerText = urdu ? el.dataset.ur : el.dataset.en;
   });
 }
 
-const fades=document.querySelectorAllenga=document.querySelectorAll('.fade');
-window.addEventListener('scroll',()=>fades.forEach(f=>{
-  if(f.getBoundingClientRect().top<window.innerHeight-100){f.classList.add('show')}
-}));
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  fades.forEach(fade => {
+    if (fade.getBoundingClientRect().top < window.innerHeight - 100) {
+      fade.classList.add('show');
+    }
+  });
+});
 </script>
+
 
 </body>
 </html>
