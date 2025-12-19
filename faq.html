@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FAQs | Dr. Nisa Raisani</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- ===== FAQ SECTION ===== -->
+<section class="faq fade" style="margin-top:100px;">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-box">
+
+    <div class="faq-item">
+      <h4>❓ What conditions do you treat?</h4>
+      <p>I specialize in neurological conditions including migraine, epilepsy, Parkinson’s disease, memory disorders, and other nervous system conditions.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>❓ Do you provide online consultations?</h4>
+      <p>Online consultations may be offered for selected cases. Appointment requests are reviewed before confirmation.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>❓ Is medical advice provided through email?</h4>
+      <p>No. Email communication is limited to appointment coordination only. Medical advice is provided strictly during consultations.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>❓ How can I request an appointment?</h4>
+      <p>You can submit an appointment request through the Appointment page. Confirmation is sent after review.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>❓ Is my information kept confidential?</h4>
+      <p>Yes. All submitted information is handled confidentially and used only for appointment-related purposes.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>❓ Are emergency cases handled here?</h4>
+      <p>No. This platform does not provide emergency services. In case of an emergency, please contact local emergency services immediately.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="faq.html">FAQs</a>
+  </div>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
+</footer>
+
+<script>
+const fades = document.querySelectorAll('.fade');
+window.addEventListener('scroll', () => {
+  fades.forEach(f => {
+    if (f.getBoundingClientRect().top < window.innerHeight - 100) {
+      f.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
