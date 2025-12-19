@@ -120,17 +120,51 @@
 </p>
 </section>
 
-<!-- APPOINTMENT -->
 <section class="appointment fade" id="appointment">
-<h2 data-en="Appointment Request" data-ur="اپائنٹمنٹ کی درخواست">Appointment</h2>
-<form>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="tel" placeholder="Phone">
-<textarea placeholder="Message"></textarea>
-<button class="btn gold">Submit</button>
-</form>
+  <h2>Request an Appointment</h2>
+  <p class="sub">
+    Please submit your details below. Our team will contact you after reviewing your request.
+  </p>
+
+  <form action="https://formsubmit.co/nisaraisani@gmail.com" method="POST" class="appointment-form">
+
+    <!-- Security -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="New Appointment Request">
+    <input type="hidden" name="_next" value="https://drnisaraisani.info/#appointment">
+
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" name="Name" required>
+    </div>
+
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" name="Email" required>
+    </div>
+
+    <div class="field">
+      <label>Preferred Appointment Date</label>
+      <input type="date" name="Preferred Date">
+    </div>
+
+    <div class="field">
+      <label>Medical Concern / Reason for Consultation</label>
+      <textarea name="Medical Concern" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary">
+      Submit Appointment Request
+    </button>
+
+    <p class="note">
+      This form is for appointment requests only. It does not replace emergency medical care.
+    </p>
+
+  </form>
 </section>
+
 
 <!-- CONTACT -->
 <section class="contact fade" id="contact">
