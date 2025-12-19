@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Appointment | Dr. Nisa Raisani</title>
+  <meta name="description" content="Request an appointment with Dr. Nisa Raisani, Consultant Neurologist. Secure and privacy-focused appointment request form.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================
+     HEADER
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="clinic.html">Clinic</a>
+    <a href="appointment.html" class="active">Appointment</a>
+    <a href="contact.html">Contact</a>
+
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- =====================
+     APPOINTMENT SECTION
+===================== -->
+<section class="appointment fade" id="appointment" style="margin-top:80px;">
+  <h2>Request an Appointment</h2>
+
+  <p class="sub">
+    Appointment requests are reviewed personally.  
+    Submission of this form does not confirm an appointment.
+    You will be contacted after review.
+  </p>
+
+  <!-- FORM -->
+  <form
+    action="https://formsubmit.co/nisaraisani@gmail.com"
+    method="POST"
+  >
+
+    <!-- Security -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="New Appointment Request – Dr. Nisa Raisani">
+    <input type="hidden" name="_autoresponse" value="Thank you for contacting Dr. Nisa Raisani. Your appointment request has been received and will be reviewed.">
+    <input type="hidden" name="_next" value="index.html">
+
+    <div class="appointment-form">
+
+      <div class="field">
+        <label>Full Name *</label>
+        <input type="text" name="Name" required>
+      </div>
+
+      <div class="field">
+        <label>Email Address *</label>
+        <input type="email" name="Email" required>
+      </div>
+
+      <div class="field">
+        <label>Contact Number (Optional)</label>
+        <input type="text" name="Phone">
+      </div>
+
+      <div class="field">
+        <label>Reason for Consultation *</label>
+        <textarea name="Message" required></textarea>
+      </div>
+
+      <button type="submit">
+        Send Appointment Request
+      </button>
+
+      <p class="note">
+        Your information is kept confidential and used solely for
+        appointment-related communication.
+      </p>
+
+    </div>
+  </form>
+</section>
+
+<!-- =====================
+     FOOTER
+===================== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>
+    © 2025 Dr. Nisa Raisani. All rights reserved.<br>
+    Appointment requests are subject to availability and clinical discretion.
+  </p>
+</footer>
+
+<!-- Scroll Animation -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
+</body>
+</html>
