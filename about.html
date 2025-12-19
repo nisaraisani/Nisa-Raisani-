@@ -9,6 +9,21 @@
 
 <body>
 
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  document.querySelectorAll('.fade').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+
 <!-- ================= HEADER ================= -->
 <header class="navbar">
   <div class="logo">Dr. Nisa Raisani</div>
@@ -26,6 +41,8 @@
   </nav>
 </header>
 
+
+  
 <!-- ================= MAIN CONTENT ================= -->
 <section class="fade">
   <h2>About Dr. Nisa Raisani</h2>
