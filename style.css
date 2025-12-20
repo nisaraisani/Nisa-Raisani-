@@ -850,3 +850,63 @@ section.research .card h4,
     padding: 80px 20px;
   }
 }
+/* =====================
+   CONTACT CARDS
+===================== */
+
+.contact-cards {
+  padding: 90px 60px;
+  background: #02030a;
+  text-align: center;
+}
+
+.contact-cards h2 {
+  font-family: 'Playfair Display', serif;
+  color: #f3d38a;
+  font-size: 34px;
+  margin-bottom: 40px;
+}
+
+.contact-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(243,211,138,0.3);
+  border-radius: 22px;
+  padding: 30px 40px;
+  min-width: 280px;
+  transition: all 0.35s ease;
+}
+
+.contact-card h4 {
+  font-family: 'Playfair Display', serif;
+  color: #f3d38a;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.contact-card a {
+  color: #ffffff;
+  font-size: 15px;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(243,211,138,0.25);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contact-cards {
+    padding: 70px 20px;
+  }
+   }
