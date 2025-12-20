@@ -910,3 +910,32 @@ section.research .card h4,
     padding: 70px 20px;
   }
    }
+/* =====================
+   PROFESSIONAL AFFILIATION
+===================== */
+
+.affiliation {
+  padding: 70px 20px;
+  background: #05070d;
+  text-align: center;
+}
+
+.affiliation-card {
+  display: inline-block;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(243,211,138,0.35);
+  border-radius: 18px;
+  padding: 26px 34px;
+}
+
+.affiliation-card h4 {
+  font-family: 'Playfair Display', serif;
+  color: #f3d38a;
+  margin-bottom: 10px;
+}
+
+.affiliation-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
