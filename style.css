@@ -529,3 +529,21 @@ section.research .card h4,
     font-size: 16px;
   }
 }
+/* ===== HERO PREMIUM POLISH ===== */
+.hero h1 {
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.hero h3 {
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero p {
+  max-width: 640px;
+  margin: 0 auto 35px;
+  font-size: 16px;
+                     }
