@@ -547,3 +547,19 @@ section.research .card h4,
   margin: 0 auto 35px;
   font-size: 16px;
                      }
+/* ===== HERO MOBILE FIX ===== */
+@media (max-width: 768px) {
+  .hero {
+    background-position: top center;
+    align-items: flex-end;
+    padding-bottom: 60px;
+  }
+
+  .hero-content {
+    padding: 20px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+}
