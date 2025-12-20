@@ -939,3 +939,9 @@ section.research .card h4,
   line-height: 1.6;
   opacity: 0.9;
 }
+.affiliation h2 {
+  font-family: 'Playfair Display', serif;
+  color: #f3d38a;
+  font-size: 34px;
+  margin-bottom: 30px;
+}
