@@ -36,56 +36,47 @@
 </header>
 
 
-<!-- =====================
-     APPOINTMENT SECTION
-===================== -->
+<!-- APPOINTMENT -->
 <section class="appointment fade" id="appointment" style="margin-top:80px;">
+
   <h2>Request an Appointment</h2>
 
   <p class="sub">
-    Appointment requests are reviewed personally.  
+    Appointment requests are reviewed personally.
     Submission of this form does not confirm an appointment.
-    You will be contacted after review.
   </p>
 
-  <!-- FORM -->
-  <form
-    action="https://formsubmit.co/nisaraisani@gmail.com"
-    method="POST"
-  >
+  <form action="https://formsubmit.co/nisaraisani@gmail.com" method="POST">
 
-    <!-- Security -->
+    <!-- FormSubmit settings -->
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_subject" value="New Appointment Request – Dr. Nisa Raisani">
-    <input type="hidden" name="_autoresponse" value="Thank you for contacting Dr. Nisa Raisani. Your appointment request has been received and will be reviewed.">
-    <input type="hidden" name="_next" value="thank-you.html">
+    <input type="hidden" name="_next" value="https://drnisaraisani.info/thank-you.html">
 
     <div class="appointment-form">
 
       <div class="field">
         <label>Full Name *</label>
-        <input type="text" name="Name" required>
+        <input type="text" name="full_name" required>
       </div>
 
       <div class="field">
         <label>Email Address *</label>
-        <input type="email" name="Email" required>
+        <input type="email" name="email" required>
       </div>
 
       <div class="field">
-        <label>Contact Number (Optional)</label>
-        <input type="text" name="Phone">
+        <label>Contact Number</label>
+        <input type="text" name="phone">
       </div>
 
       <div class="field">
         <label>Reason for Consultation *</label>
-        <textarea name="Message" required></textarea>
+        <textarea name="message" required></textarea>
       </div>
 
-      <button type="submit">
-        Send Appointment Request
-      </button>
+      <button type="submit">Send Appointment Request</button>
 
       <p class="note">
         Your information is kept confidential and used solely for
@@ -94,7 +85,9 @@
 
     </div>
   </form>
+
 </section>
+
 
 <!-- =====================
      FOOTER
