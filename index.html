@@ -34,22 +34,34 @@
 </header>
 
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="overlay"></div>
-  <div class="hero-content fade">
-    <h1>Advanced Neurological Care<br>with Academic Integrity</h1>
-    <h3>Consultant Neurologist & Clinical Researcher</h3>
-    <p>
-Evidence based diagnosis and treatment of complex neurological disorders,
-integrating clinical expertise with internationally indexed research.
-</p>
-    <div class="buttons">
-  <a href="appointment.html" class="btn gold">Book an Appointment</a>
-  <a href="research.html" class="btn outline">View Research</a>
-</div>
+<!-- HERO SECTION START -->
+<section class="hero">
+  <div class="hero-slider">
 
+    <div class="slide active" style="background-image:url('assets/images/hero/hero-1-doctor.jpg')"></div>
+    <div class="slide" style="background-image:url('assets/images/hero/hero-2-consultation.jpg')"></div>
+    <div class="slide" style="background-image:url('assets/images/hero/hero-3-technology.jpg')"></div>
+    <div class="slide" style="background-image:url('assets/images/hero/hero-4-team.jpg')"></div>
+
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Expert Neurology Care You Can Trust</h1>
+    <p>
+      Advanced diagnosis, compassionate care, and evidence-based
+      neurological treatment — all under one roof.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="appointment.html" class="btn primary">Book Appointment</a>
+      <a href="about.html" class="btn outline">Meet Our Specialist</a>
+    </div>
+  </div>
 </section>
+<!-- HERO SECTION END -->
+
 
 <!-- CLINICAL -->
 <section class="clinical fade" id="clinical">
@@ -235,6 +247,16 @@ function toggleMenu() {
   document.getElementById("nav-menu").classList.toggle("active");
 }
 </script>
+  <script>
+  const slides = document.querySelectorAll(".slide");
+  let current = 0;
+
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 4000);
+  </script>
   
 </body>
 </html>
