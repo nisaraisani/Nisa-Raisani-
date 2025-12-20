@@ -583,4 +583,63 @@ section.research .card h4,
 
 }
 
+/* ===== HERO TYPOGRAPHY & SPACING POLISH ===== */
+
+.hero-content {
+  max-width: 820px;
+}
+
+/* Main Heading */
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  margin-bottom: 14px;
+}
+
+/* Subtitle (Consultant Neurologist...) */
+.hero h3 {
+  font-size: 14px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+/* Description paragraph */
+.hero p {
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 620px;
+  margin: 0 auto 34px;
+  opacity: 0.9;
+}
+
+/* Buttons spacing */
+.buttons {
+  gap: 16px;
+}
+
+/* ===== MOBILE POLISH ===== */
+@media (max-width: 768px) {
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .hero h3 {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
 }
