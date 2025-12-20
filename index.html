@@ -34,33 +34,33 @@
 </header>
 
 
-<!-- HERO SECTION START -->
+<!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-slider">
 
-    <div class="slide active" style="background-image:url('images/hero/hero-1-doctor.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/hero/hero-2-consultation.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/hero/hero-3-technology.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/images/hero/hero-4-team.jpg')"></div>
+    <div class="slide active" style="background-image:url('images/doctor.jpg')"></div>
+    <div class="slide" style="background-image:url('images/technology.jpg')"></div>
+    <div class="slide" style="background-image:url('images/consultation.jpg')"></div>
+    <div class="slide" style="background-image:url('images/team.jpg')"></div>
 
   </div>
 
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <h1>Expert Neurology Care You Can Trust</h1>
+    <h1>Advanced Neurology Care</h1>
     <p>
-      Advanced diagnosis, compassionate care, and evidence-based
-      neurological treatment  all under one roof.
+      Evidence-based neurological diagnosis, compassionate care,
+      and modern clinical expertise.
     </p>
 
     <div class="hero-buttons">
       <a href="appointment.html" class="btn primary">Book Appointment</a>
-      <a href="about.html" class="btn outline">Meet Our Specialist</a>
+      <a href="about.html" class="btn outline">Meet the Specialist</a>
     </div>
   </div>
 </section>
-<!-- HERO SECTION END -->
+
 
 
 <!-- CLINICAL -->
@@ -256,6 +256,19 @@ function toggleMenu() {
     current = (current + 1) % slides.length;
     slides[current].classList.add("active");
   }, 4000);
+  </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll(".slide");
+  if (!slides.length) return;
+
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 4000);
+});
   </script>
   
 </body>
