@@ -1231,3 +1231,35 @@ section {
     font-size: 15px;
   }
 }
+/* Footer Full Style */
+.site-footer {
+  background: #02030a;
+  padding: 70px 40px 30px;
+  color: #cccccc;
+  font-size: 14px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+/* ... (footer CSS that we shared earlier) ... */
+/* Clinical Discussions Hero */
+.clinical-hero {
+  background: #05070d;
+  padding: 60px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.clinical-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.clinical-hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
