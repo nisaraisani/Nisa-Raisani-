@@ -1069,3 +1069,63 @@ section {
     padding: 80px 20px;
   }
 }
+/* =====================
+   EDUCATION HUB
+===================== */
+.education {
+  padding: 120px 60px;
+  text-align: center;
+}
+
+.education h2 {
+  margin-bottom: 10px;
+}
+
+.edu-sub {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.edu-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(243,211,138,0.35);
+  padding: 32px 26px;
+  border-radius: 22px;
+  backdrop-filter: blur(12px);
+  transition: all 0.35s ease;
+  text-align: left;
+}
+
+.edu-card h4 {
+  font-family: 'Playfair Display', serif;
+  color: #f3d38a;
+  margin-bottom: 12px;
+}
+
+.edu-card p {
+  font-size: 14.5px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.edu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 28px rgba(243,211,138,0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .education {
+    padding: 90px 20px;
+  }
+}
