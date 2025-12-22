@@ -1264,12 +1264,12 @@ section {
   opacity: 0.9;
 }
 /* =========================
-   CONSULTATION PAGE
+   CONSULTATION PAGE (FINAL)
 ========================= */
 
 .page-hero {
   padding: 160px 20px 100px;
-  background: radial-gradient(circle at top, rgba(243,211,138,0.15), #05070d 70%);
+  background: radial-gradient(circle at top, rgba(243,211,138,0.18), #05070d 70%);
   text-align: center;
 }
 
@@ -1281,7 +1281,7 @@ section {
 }
 
 .page-hero p {
-  max-width: 700px;
+  max-width: 720px;
   margin: auto;
   opacity: 0.9;
 }
@@ -1292,16 +1292,6 @@ section {
   margin: auto;
 }
 
-.consultation-content h2 {
-  margin-top: 60px;
-}
-
-.consultation-content p {
-  max-width: 900px;
-  margin: auto;
-  opacity: 0.9;
-}
-
 .consult-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1310,11 +1300,12 @@ section {
 }
 
 .consult-card {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(243,211,138,0.35);
   border-radius: 22px;
-  padding: 30px;
-  transition: all 0.3s ease;
+  padding: 32px;
+  text-align: left;
+  transition: all 0.35s ease;
 }
 
 .consult-card h3 {
@@ -1325,18 +1316,37 @@ section {
 
 .consult-card p {
   font-size: 14px;
+  opacity: 0.9;
 }
 
 .consult-card .fee {
   display: block;
-  margin-top: 15px;
+  margin-top: 14px;
   font-weight: 600;
   color: #f3d38a;
 }
 
+.consult-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #f3d38a, #cfa24a);
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.consult-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 22px rgba(243,211,138,0.45);
+}
+
 .consult-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(243,211,138,0.3);
+  box-shadow: 0 0 35px rgba(243,211,138,0.3);
 }
 
 .disclaimer {
@@ -1350,4 +1360,6 @@ section {
   .page-hero h1 {
     font-size: 32px;
   }
+}
+
      }
