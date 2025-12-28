@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- ========= PAGE SEO (EDIT ONLY THESE) ========= -->
+  <title>PAGE TITLE | Dr. Nisa Raisani</title>
+  <meta name="description" content="PAGE META DESCRIPTION HERE">
+  <!-- ============================================= -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS (DO NOT CHANGE PATH) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================
+     HEADER (LOCKED)
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- =====================
+     PAGE INTRO (EDIT TEXT ONLY)
+===================== -->
+<section class="fade" style="margin-top:80px;">
+  <h2>PAGE HEADING HERE</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    Page introduction text here. Structure must remain unchanged.
+  </p>
+</section>
+
+<!-- =====================
+     CARDS SECTION (DO NOT CHANGE STRUCTURE)
+===================== -->
+<section class="fade">
+  <div class="grid">
+
+    <div class="card">
+      <h4>Card Title 1</h4>
+      <p>
+        Card content text goes here. Only edit text.
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Card Title 2</h4>
+      <p>
+        Card content text goes here. Only edit text.
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Card Title 3</h4>
+      <p>
+        Card content text goes here. Only edit text.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================
+     OPTIONAL EXTRA SECTION
+     (COPY SAME STRUCTURE IF NEEDED)
+===================== -->
+<section class="fade">
+  <h2>Optional Section Heading</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    Optional paragraph text. Safe to edit content only.
+  </p>
+</section>
+
+<!-- =====================
+     FOOTER (LOCKED)
+===================== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p>
+    © 2025 Dr. Nisa Raisani. All rights reserved.
+  </p>
+</footer>
+
+<!-- =====================
+     SCROLL ANIMATION (MANDATORY)
+===================== -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
+<!-- =====================
+     MOBILE MENU (MANDATORY)
+===================== -->
+<script>
+function toggleMenu() {
+  document.getElementById("nav-menu").classList.toggle("active");
+}
+</script>
+
+</body>
+  </html>
+  
