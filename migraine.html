@@ -1,130 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Migraine: Evidence Based Management | Dr. Nisa Raisani</title>
-
-<meta name="description" content="Evidence based clinical article on migraine management by Dr. Nisa Raisani, Consultant Neurologist.">
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Migraine: Evidence Based Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="navbar">
-  <div class="logo">Dr. Nisa Raisani</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <button class="lang-btn" onclick="toggleLang()">EN | اردو</button>
-  </nav>
+<header class="topbar">
+  <div class="container nav">
+    <div class="logo">Dr. Nisa Raisani</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Articles</a>
+      <a href="#">Research</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="lang">EN | اردو</div>
+  </div>
 </header>
 
-<section class="article-layout">
-
-  <article class="article-content">
-
-    <h1 data-en="Migraine: Evidence Based Management"
-        data-ur="مائیگرین: شواہد پر مبنی علاج">
-      Migraine: Evidence Based Management
-    </h1>
-
-    <p class="article-meta">
-      Clinical Review · Dr. Nisa Raisani · 2025
+<section class="hero">
+  <div class="container">
+    <h1>Migraine: Evidence Based Management</h1>
+    <p class="subtitle">Clinical Review Article</p>
+    <p class="meta">
+      By <strong>Dr. Nisa Raisani, MD</strong> – Consultant Neurologist <br>
+      Published: January 2025 · 6 min read
     </p>
-
-    <div class="article-share">
-      <a href="#">LinkedIn</a>
-      <a href="#">X</a>
-      <a href="#">Copy Link</a>
-    </div>
-
-    <h2>Abstract</h2>
-    <p data-en="This article presents an evidence-based overview of migraine diagnosis and management."
-       data-ur="یہ مضمون مائیگرین کی تشخیص اور جدید علاج کا سائنسی جائزہ پیش کرتا ہے۔">
-      This article presents an evidence-based overview of migraine diagnosis and management.
-    </p>
-
-    <p class="keywords">
-      <strong>Keywords:</strong> Migraine, Neurology, Headache Disorders
-    </p>
-
-    <h2 id="intro">Introduction</h2>
-    <p>Migraine is a chronic neurological disorder characterized by recurrent headaches.</p>
-
-    <h2 id="diagnosis">Diagnosis</h2>
-    <p>Diagnosis is primarily clinical and follows international classification guidelines.</p>
-
-    <h2 id="treatment">Management & Treatment</h2>
-    <p>Treatment includes acute therapy, preventive medication, and lifestyle modification.</p>
-
-    <h2 id="references">References</h2>
-    <p>NCBI · PubMed · International Headache Society</p>
-
-    <div class="article-nav">
-      <a href="epilepsy.html">← Previous</a>
-      <a href="index.html">Home</a>
-      <a href="parkinsons.html">Next →</a>
-    </div>
-
-    <div class="author-box">
-      <h3>About the Author</h3>
-      <p>
-        <strong>Dr. Nisa Raisani</strong><br>
-        Consultant Neurologist & Researcher
-      </p>
-      <p>
-        <a href="https://www.ncbi.nlm.nih.gov/" target="_blank">NCBI</a> |
-        <a href="https://orcid.org/" target="_blank">ORCID</a>
-      </p>
-    </div>
-
-  </article>
-
-  <aside class="article-sidebar">
-
-    <div class="sidebar-box">
-      <h4>On This Page</h4>
-      <ul>
-        <li><a href="#intro">Introduction</a></li>
-        <li><a href="#diagnosis">Diagnosis</a></li>
-        <li><a href="#treatment">Treatment</a></li>
-        <li><a href="#references">References</a></li>
-      </ul>
-    </div>
-
-    <div class="sidebar-box">
-      <h4>Related Research</h4>
-      <ul>
-        <li><a href="migraine.html">Migraine</a></li>
-        <li><a href="epilepsy.html">Epilepsy</a></li>
-        <li><a href="parkinsons.html">Parkinson’s</a></li>
-      </ul>
-    </div>
-
-  </aside>
-
+  </div>
 </section>
 
-<footer>
-  <p>© 2025 Dr. Nisa Raisani ·
-    <a href="privacy.html">Privacy</a> ·
-    <a href="disclaimer.html">Disclaimer</a>
-  </p>
-</footer>
+<main class="container content-area">
 
-<script>
-let urdu = false;
-function toggleLang() {
-  urdu = !urdu;
-  document.querySelectorAll('[data-en]').forEach(el => {
-    el.innerText = urdu ? el.dataset.ur : el.dataset.en;
-  });
-}
-</script>
+  <article class="article">
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        An overview of evidence-based diagnosis and management of migraine headaches.
+        Includes clinical guidelines and therapeutic options.
+      </p>
+      <p class="keywords"><strong>Keywords:</strong> Migraine, Neurology, Headache Treatment</p>
+    </section>
 
-</body>
-      </html>
-      
+    <section id="intro">
+      <h2>Introduction</h2>
+      <p>
+        Migraine is a chronic neurological disorder characterized by recurrent headaches,
+        often associated with nausea, photophobia, and phonophobia.
+      </p>
+    </section>
+
+    <section id="diagnosis">
+      <h2>Clinical Diagnosis</h2>
+      <p>
+        Diagnosis is primarily clinical, based on patient history and symptom patterns.
+        International guidelines assist in accurate classification.
+      </p>
+    </section>
+
+    <section id="treatment">
+      <h2>Treatment Strategies</h2>
+      <p>
+        Management includes acute treatment, preventive therapy, and lifestyle modification
+        based on patient-specific factors.
+      </p>
+    </section>
+
+    <section>
+      <h2>Conclusion</h2>
+      <p>
+        Evidence-based migraine management improves patient outcomes and quality of life.
+      </p>
+    </section>
+
+    <div class="nav-buttons">
+      <a class="btn dark">← Previous Article</a>
+      <a class="btn gold">Next Article →</a>
+      <a class="btn dark">Back to Articles</a>
+    </div>
+
+    <section class="author-box">
+      <img src="https://via.placeholder.com/90" alt="Author">
+      <div>
+        <h3>Dr. Nisa Raisani, MD</h3>
+        <p>Consultant Neurologist<br>Fellow, American Academy of Neurology</p>
+        <div class="author-links">
+          <a class="btn small">NCBI Profile</a>
+          <a class="btn small green">ORCID ID</a>
+        </div>
+  </div>
+  
