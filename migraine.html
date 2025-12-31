@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Migraine: Evidence Based Management | Dr. Nisa Raisani</title>
+
+<meta name="description" content="Evidence based clinical article on migraine management by Dr. Nisa Raisani, Consultant Neurologist.">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <button class="lang-btn" onclick="toggleLang()">EN | اردو</button>
+  </nav>
+</header>
+
+<section class="article-layout">
+
+  <article class="article-content">
+
+    <h1 data-en="Migraine: Evidence Based Management"
+        data-ur="مائیگرین: شواہد پر مبنی علاج">
+      Migraine: Evidence Based Management
+    </h1>
+
+    <p class="article-meta">
+      Clinical Review · Dr. Nisa Raisani · 2025
+    </p>
+
+    <div class="article-share">
+      <a href="#">LinkedIn</a>
+      <a href="#">X</a>
+      <a href="#">Copy Link</a>
+    </div>
+
+    <h2>Abstract</h2>
+    <p data-en="This article presents an evidence-based overview of migraine diagnosis and management."
+       data-ur="یہ مضمون مائیگرین کی تشخیص اور جدید علاج کا سائنسی جائزہ پیش کرتا ہے۔">
+      This article presents an evidence-based overview of migraine diagnosis and management.
+    </p>
+
+    <p class="keywords">
+      <strong>Keywords:</strong> Migraine, Neurology, Headache Disorders
+    </p>
+
+    <h2 id="intro">Introduction</h2>
+    <p>Migraine is a chronic neurological disorder characterized by recurrent headaches.</p>
+
+    <h2 id="diagnosis">Diagnosis</h2>
+    <p>Diagnosis is primarily clinical and follows international classification guidelines.</p>
+
+    <h2 id="treatment">Management & Treatment</h2>
+    <p>Treatment includes acute therapy, preventive medication, and lifestyle modification.</p>
+
+    <h2 id="references">References</h2>
+    <p>NCBI · PubMed · International Headache Society</p>
+
+    <div class="article-nav">
+      <a href="epilepsy.html">← Previous</a>
+      <a href="index.html">Home</a>
+      <a href="parkinsons.html">Next →</a>
+    </div>
+
+    <div class="author-box">
+      <h3>About the Author</h3>
+      <p>
+        <strong>Dr. Nisa Raisani</strong><br>
+        Consultant Neurologist & Researcher
+      </p>
+      <p>
+        <a href="https://www.ncbi.nlm.nih.gov/" target="_blank">NCBI</a> |
+        <a href="https://orcid.org/" target="_blank">ORCID</a>
+      </p>
+    </div>
+
+  </article>
+
+  <aside class="article-sidebar">
+
+    <div class="sidebar-box">
+      <h4>On This Page</h4>
+      <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#diagnosis">Diagnosis</a></li>
+        <li><a href="#treatment">Treatment</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Related Research</h4>
+      <ul>
+        <li><a href="migraine.html">Migraine</a></li>
+        <li><a href="epilepsy.html">Epilepsy</a></li>
+        <li><a href="parkinsons.html">Parkinson’s</a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</section>
+
+<footer>
+  <p>© 2025 Dr. Nisa Raisani ·
+    <a href="privacy.html">Privacy</a> ·
+    <a href="disclaimer.html">Disclaimer</a>
+  </p>
+</footer>
+
+<script>
+let urdu = false;
+function toggleLang() {
+  urdu = !urdu;
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerText = urdu ? el.dataset.ur : el.dataset.en;
+  });
+}
+</script>
+
+</body>
+      </html>
+      
