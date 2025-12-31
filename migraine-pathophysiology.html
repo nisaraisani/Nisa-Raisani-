@@ -117,6 +117,20 @@ function toggleMenu() {
   document.getElementById("nav-menu").classList.toggle("active");
 }
 </script>
+<script>
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  fades.forEach(fade => {
+    if (fade.getBoundingClientRect().top < window.innerHeight - 100) {
+      fade.classList.add('show');
+    }
+  });
+});
+
+// Trigger once on load
+window.dispatchEvent(new Event('scroll'));
+</script>
 
 </body>
 </html>
