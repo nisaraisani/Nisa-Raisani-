@@ -1,0 +1,171 @@
+/* =====================================
+   ARTICLE PAGE – SCOPED CSS (FINAL)
+===================================== */
+
+.article-page {
+  background: #f4f4f4;
+  color: #222;
+  font-family: Georgia, serif;
+}
+
+/* ===== HERO ===== */
+.article-page .hero {
+  height: auto;
+  padding: 70px 0 50px;
+  background: linear-gradient(135deg, #1a233a, #0f1627);
+}
+
+.article-page .hero-content {
+  max-width: 900px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.article-page .hero h1 {
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.article-page .subtitle {
+  color: #d6b36a;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.article-page .meta {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* ===== LAYOUT ===== */
+.article-page .content-area {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 30px;
+}
+
+/* ===== ARTICLE ===== */
+.article-page .article {
+  flex: 3;
+  background: #ffffff;
+  padding: 35px;
+}
+
+.article-page .article section {
+  margin-bottom: 35px;
+  padding: 0;
+  text-align: left;
+}
+
+.article-page .article h2 {
+  font-size: 22px;
+  color: #1a233a;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.article-page .article p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.article-page .keywords {
+  font-style: italic;
+  color: #555;
+}
+
+/* ===== SIDEBAR ===== */
+.article-page .sidebar {
+  flex: 1;
+}
+
+.article-page .box {
+  background: #1a233a;
+  color: #ffffff;
+  padding: 22px;
+  margin-bottom: 25px;
+}
+
+.article-page .box h3 {
+  color: #d6b36a;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.article-page .box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.article-page .box li {
+  margin-bottom: 10px;
+}
+
+.article-page .box a {
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.article-page .box a:hover {
+  text-decoration: underline;
+}
+
+/* ===== BUTTONS ===== */
+.article-page .nav-buttons {
+  display: flex;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.article-page .btn {
+  padding: 10px 16px;
+  font-size: 13px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.article-page .btn.dark {
+  background: #1a233a;
+  color: #ffffff;
+}
+
+.article-page .btn.gold {
+  background: #d6b36a;
+  color: #000000;
+}
+
+/* ===== AUTHOR BOX ===== */
+.article-page .author-box {
+  display: flex;
+  gap: 18px;
+  background: #f7f7f7;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.article-page .author-box img {
+  width: 90px;
+  border-radius: 6px;
+}
+
+.article-page .author-box h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .article-page .content-area {
+    flex-direction: column;
+  }
+
+  .article-page .hero h1 {
+    font-size: 32px;
+  }
+    }
