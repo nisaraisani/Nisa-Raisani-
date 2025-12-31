@@ -114,6 +114,13 @@ function toggleMenu() {
   document.getElementById("nav-menu").classList.toggle("active");
 }
 </script>
-
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".fade").forEach(el => {
+    el.classList.add("show");
+  });
+});
+</script>
+  
 </body>
 </html>
