@@ -3,99 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neurology Smart OPD System</title>
+<title>Neurology Smart OPD</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Segoe UI,Arial;
-  background:#f3f6fb;
-  color:#1f2937;
-}
-.hero{
-  background:linear-gradient(120deg,#0f172a,#1e40af);
-  color:#fff;
-  padding:60px 20px;
-}
-.hero-grid{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-.hero img{
-  width:100%;
-  border-radius:18px;
-  box-shadow:0 30px 60px rgba(0,0,0,.4);
-}
-h1{font-size:42px;margin:0}
-p{font-size:18px;opacity:.95}
-
-.container{
-  max-width:900px;
-  margin:-40px auto 60px;
-  background:#fff;
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 20px 40px rgba(0,0,0,.1);
-}
+body{margin:0;font-family:Segoe UI,Arial;background:#f3f6fb}
+.hero{background:linear-gradient(120deg,#0f172a,#1e40af);color:#fff;padding:60px 20px}
+.hero-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero img{width:100%;border-radius:18px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.container{max-width:900px;margin:-40px auto 60px;background:#fff;padding:30px;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.1)}
 label{display:block;margin-top:14px;font-weight:600}
-input,select{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  border-radius:8px;
-  border:1px solid #cbd5e1;
-}
-.card{
-  margin-top:20px;
-  padding:20px;
-  border-radius:14px;
-  background:#f8fafc;
-  border-left:6px solid #2563eb;
-}
+input,select{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #cbd5e1}
+.card{margin-top:20px;padding:20px;border-radius:14px;background:#f8fafc;border-left:6px solid #2563eb}
 .hidden{display:none}
-
-.status{
-  margin-top:20px;
-  padding:15px;
-  border-radius:14px;
-  font-weight:bold;
-}
-.red{background:#fee2e2;border-left:6px solid #dc2626;color:#7f1d1d}
-.yellow{background:#fef9c3;border-left:6px solid #ca8a04;color:#713f12}
-.green{background:#dcfce7;border-left:6px solid #16a34a;color:#14532d}
-
-.summary,.dx{
-  margin-top:25px;
-  padding:20px;
-  border-radius:14px;
-}
+.status{margin-top:20px;padding:15px;border-radius:14px;font-weight:bold}
+.red{background:#fee2e2;border-left:6px solid #dc2626}
+.yellow{background:#fef9c3;border-left:6px solid #ca8a04}
+.green{background:#dcfce7;border-left:6px solid #16a34a}
+.summary,.dx{margin-top:25px;padding:20px;border-radius:14px}
 .summary{background:#ecfeff;border-left:6px solid #0891b2}
 .dx{background:#f5f3ff;border-left:6px solid #7c3aed}
-
-button{
-  margin-top:20px;
-  padding:12px 18px;
-  border:none;
-  border-radius:10px;
-  background:#1e40af;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
-.lang{
-  float:right;
-  font-size:14px;
-  cursor:pointer;
-}
-
-@media(max-width:768px){
-.hero-grid{grid-template-columns:1fr;text-align:center}
-h1{font-size:32px}
-}
+button{margin-top:20px;padding:12px 18px;border:none;border-radius:10px;background:#1e40af;color:#fff;font-size:16px}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr;text-align:center}}
 </style>
 </head>
 
@@ -104,9 +32,8 @@ h1{font-size:32px}
 <section class="hero">
 <div class="hero-grid">
 <div>
-<span class="lang" onclick="toggleLang()">اردو</span>
-<h1 id="title">Neurology Smart OPD System</h1>
-<p id="subtitle">Clinical pre-consultation, triage & decision support for neurologists</p>
+<h1>Neurology Smart OPD System</h1>
+<p>Live clinical triage & decision support</p>
 </div>
 <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=900&q=80">
 </div>
@@ -114,26 +41,23 @@ h1{font-size:32px}
 
 <div class="container">
 
-<h2 id="pi">Patient Information</h2>
+<h2>Patient Information</h2>
 
-<label id="l_age">Age</label>
-<input type="number" id="age">
+<label>Age</label>
+<input type="number" id="age" oninput="analyze()">
 
-<label id="l_gender">Gender</label>
-<select id="gender">
+<label>Gender</label>
+<select id="gender" onchange="analyze()">
 <option></option><option>Male</option><option>Female</option>
 </select>
 
-<label id="l_cc">Chief Neurological Complaint</label>
+<label>Chief Neurological Complaint</label>
 <select id="complaint" onchange="loadSection()">
 <option value="">Select</option>
-<option value="stroke">Sudden Weakness / Stroke</option>
-<option value="seizure">Seizure / Epilepsy</option>
-<option value="headache">Headache / Migraine</option>
-<option value="weakness">Progressive Weakness</option>
-<option value="vertigo">Vertigo / Imbalance</option>
+<option value="stroke">Stroke / Sudden Weakness</option>
+<option value="seizure">Seizure</option>
+<option value="headache">Headache</option>
 <option value="memory">Memory Loss</option>
-<option value="tremor">Tremor / Parkinsonism</option>
 </select>
 
 <!-- STROKE -->
@@ -143,44 +67,30 @@ h1{font-size:32px}
 <select id="s1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
 <label>Speech affected?</label>
 <select id="s2" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
-<label>Time since onset (hours)</label>
-<input type="number" id="s3" onchange="analyze()">
+<label>Onset within 4.5 hours?</label>
+<select id="s3" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
 </div>
 
-<!-- SEIZURE -->
-<div class="card hidden" id="seizure">
-<h3>Seizure Details</h3>
-<label>First seizure?</label>
-<select id="q1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
-<label>Duration (minutes)</label>
-<input type="number">
-</div>
-
-<!-- HEADACHE -->
-<div class="card hidden" id="headache">
-<h3>Headache Assessment</h3>
-<label>Morning worsening?</label>
-<select id="h1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
-<label>Vomiting?</label>
-<select id="h2" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
-</div>
-
-<!-- WEAKNESS -->
-<div class="card hidden" id="weakness">
-<h3>Weakness</h3>
-<label>Bladder / bowel involvement?</label>
-<select id="w1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<!-- MEMORY -->
+<div class="card hidden" id="memory">
+<h3>Memory Assessment</h3>
+<label>Gradual progression?</label>
+<select id="m1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<label>Behavioral change?</label>
+<select id="m2" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<label>Activities of daily living affected?</label>
+<select id="m3" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
 </div>
 
 <div id="status" class="status hidden"></div>
 
 <div class="summary">
 <h3>Clinical Summary</h3>
-<p id="sum">—</p>
+<p id="summaryText">—</p>
 </div>
 
 <div class="dx">
-<h3>Probable Differential Diagnosis (Doctor View)</h3>
+<h3>Probable Differential Diagnosis</h3>
 <ul id="dxlist"></ul>
 </div>
 
@@ -189,15 +99,13 @@ h1{font-size:32px}
 </div>
 
 <script>
-let urdu=false;
-
 function hideAll(){
 document.querySelectorAll('.card').forEach(x=>x.classList.add('hidden'));
 }
 
 function loadSection(){
 hideAll();
-const c=complaint.value;
+let c=complaint.value;
 if(c) document.getElementById(c).classList.remove('hidden');
 analyze();
 }
@@ -209,24 +117,15 @@ let dx=[];
 if(complaint.value==="stroke"){
 if(s1.value==="Yes") score+=2;
 if(s2.value==="Yes") score+=2;
-if(s3.value && s3.value<=4.5) score+=3;
-dx.push("Acute Ischemic Stroke","TIA","Intracerebral Hemorrhage");
+if(s3.value==="Yes") score+=3;
+dx=["Acute Ischemic Stroke","TIA","ICH"];
 }
 
-if(complaint.value==="seizure"){
-if(q1.value==="Yes") score+=3;
-dx.push("New onset seizure","Structural brain lesion","Metabolic cause");
-}
-
-if(complaint.value==="headache"){
-if(h1.value==="Yes") score+=2;
-if(h2.value==="Yes") score+=2;
-dx.push("Raised ICP","Migraine","Intracranial mass");
-}
-
-if(complaint.value==="weakness"){
-if(w1.value==="Yes") score+=3;
-dx.push("Spinal cord compression","Myelitis","GBS");
+if(complaint.value==="memory"){
+if(m1.value==="Yes") score+=1;
+if(m2.value==="Yes") score+=2;
+if(m3.value==="Yes") score+=2;
+dx=["Alzheimer disease","Vascular dementia","Frontotemporal dementia"];
 }
 
 renderStatus(score);
@@ -235,19 +134,19 @@ renderDX(dx);
 }
 
 function renderStatus(score){
-const s=document.getElementById("status");
+let s=document.getElementById("status");
 s.className="status";
-if(score>=5){s.classList.add("red");s.innerText="🔴 EMERGENCY – Immediate Evaluation";}
-else if(score>=3){s.classList.add("yellow");s.innerText="🟡 URGENT – Early Review";}
-else{s.classList.add("green");s.innerText="🟢 STABLE – Routine OPD";}
+if(score>=5){s.classList.add("red");s.innerText="🔴 HIGH RISK – Urgent Neurology Review";}
+else if(score>=3){s.classList.add("yellow");s.innerText="🟡 MODERATE – Early Appointment";}
+else{s.classList.add("green");s.innerText="🟢 LOW RISK – Routine Follow-up";}
 s.classList.remove("hidden");
 }
 
 function renderSummary(score){
-sum.innerText=
+summaryText.innerText=
 `Age: ${age.value || "?"}, Gender: ${gender.value || "?"}
-Chief complaint: ${complaint.options[complaint.selectedIndex]?.text}
-Clinical urgency score: ${score}`;
+Complaint: ${complaint.options[complaint.selectedIndex]?.text}
+Clinical Risk Score: ${score}`;
 }
 
 function renderDX(list){
@@ -257,16 +156,6 @@ let li=document.createElement("li");
 li.innerText=d;
 dxlist.appendChild(li);
 });
-}
-
-function toggleLang(){
-urdu=!urdu;
-document.getElementById("title").innerText=urdu?"نیورولوجی اسمارٹ او پی ڈی سسٹم":"Neurology Smart OPD System";
-document.getElementById("subtitle").innerText=urdu?"نیورولوجسٹ کے لیے جدید کلینیکل سسٹم":"Clinical pre-consultation & decision support";
-document.getElementById("pi").innerText=urdu?"مریض کی معلومات":"Patient Information";
-document.getElementById("l_age").innerText=urdu?"عمر":"Age";
-document.getElementById("l_gender").innerText=urdu?"جنس":"Gender";
-document.getElementById("l_cc").innerText=urdu?"بنیادی شکایت":"Chief Complaint";
 }
 </script>
 
