@@ -2,128 +2,271 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pre-Consult Smart History | Dr Nisa Raisani</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurology Smart OPD System</title>
 
 <style>
-body{margin:0;font-family:Arial,Segoe UI;background:#f5f7fb;color:#1f2937}
-.hero{background:linear-gradient(120deg,#0f172a,#1e3a8a);color:#fff;padding:60px 20px}
-.hero h1{font-size:34px}
-.container{max-width:900px;margin:40px auto;background:#fff;padding:35px;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.08)}
-label{display:block;margin-top:20px;font-weight:600}
-select,input{width:100%;padding:12px;margin-top:6px;border-radius:10px;border:1px solid #cbd5e1}
+body{
+  margin:0;
+  font-family:Segoe UI,Arial;
+  background:#f3f6fb;
+  color:#1f2937;
+}
+.hero{
+  background:linear-gradient(120deg,#0f172a,#1e40af);
+  color:#fff;
+  padding:60px 20px;
+}
+.hero-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.hero img{
+  width:100%;
+  border-radius:18px;
+  box-shadow:0 30px 60px rgba(0,0,0,.4);
+}
+h1{font-size:42px;margin:0}
+p{font-size:18px;opacity:.95}
+
+.container{
+  max-width:900px;
+  margin:-40px auto 60px;
+  background:#fff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+label{display:block;margin-top:14px;font-weight:600}
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #cbd5e1;
+}
+.card{
+  margin-top:20px;
+  padding:20px;
+  border-radius:14px;
+  background:#f8fafc;
+  border-left:6px solid #2563eb;
+}
 .hidden{display:none}
-button{margin-top:30px;padding:14px 26px;background:#1e3a8a;color:#fff;border:none;border-radius:12px;font-size:16px}
-#alert{margin-top:20px;padding:15px;border-radius:10px;background:#fee2e2;color:#7f1d1d;display:none}
-#summary{margin-top:30px;padding:20px;border-left:6px solid #1e3a8a;background:#f8fafc;border-radius:12px;display:none}
+
+.status{
+  margin-top:20px;
+  padding:15px;
+  border-radius:14px;
+  font-weight:bold;
+}
+.red{background:#fee2e2;border-left:6px solid #dc2626;color:#7f1d1d}
+.yellow{background:#fef9c3;border-left:6px solid #ca8a04;color:#713f12}
+.green{background:#dcfce7;border-left:6px solid #16a34a;color:#14532d}
+
+.summary,.dx{
+  margin-top:25px;
+  padding:20px;
+  border-radius:14px;
+}
+.summary{background:#ecfeff;border-left:6px solid #0891b2}
+.dx{background:#f5f3ff;border-left:6px solid #7c3aed}
+
+button{
+  margin-top:20px;
+  padding:12px 18px;
+  border:none;
+  border-radius:10px;
+  background:#1e40af;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+.lang{
+  float:right;
+  font-size:14px;
+  cursor:pointer;
+}
+
+@media(max-width:768px){
+.hero-grid{grid-template-columns:1fr;text-align:center}
+h1{font-size:32px}
+}
 </style>
 </head>
 
 <body>
 
 <section class="hero">
-  <h1>Pre-Consult Smart History System</h1>
-  <p>Dynamic, clinician-designed pre-consult history tool</p>
+<div class="hero-grid">
+<div>
+<span class="lang" onclick="toggleLang()">اردو</span>
+<h1 id="title">Neurology Smart OPD System</h1>
+<p id="subtitle">Clinical pre-consultation, triage & decision support for neurologists</p>
+</div>
+<img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=900&q=80">
+</div>
 </section>
 
 <div class="container">
 
-<label>Age</label>
+<h2 id="pi">Patient Information</h2>
+
+<label id="l_age">Age</label>
 <input type="number" id="age">
 
-<label>Gender</label>
+<label id="l_gender">Gender</label>
 <select id="gender">
-  <option value="">Select</option>
-  <option>Male</option>
-  <option>Female</option>
+<option></option><option>Male</option><option>Female</option>
 </select>
 
-<label>Main Complaint</label>
-<select id="complaint" onchange="handleComplaint()">
-  <option value="">Select</option>
-  <option value="headache">Headache</option>
-  <option value="seizure">Seizures</option>
+<label id="l_cc">Chief Neurological Complaint</label>
+<select id="complaint" onchange="loadSection()">
+<option value="">Select</option>
+<option value="stroke">Sudden Weakness / Stroke</option>
+<option value="seizure">Seizure / Epilepsy</option>
+<option value="headache">Headache / Migraine</option>
+<option value="weakness">Progressive Weakness</option>
+<option value="vertigo">Vertigo / Imbalance</option>
+<option value="memory">Memory Loss</option>
+<option value="tremor">Tremor / Parkinsonism</option>
 </select>
 
-<!-- HEADACHE AUTO SECTION -->
-<div id="headacheSection" class="hidden">
-  <label>Is headache worse in the morning?</label>
-  <select id="morningHeadache" onchange="checkRedFlags()">
-    <option value="">Select</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
-
-  <label>Associated vomiting?</label>
-  <select id="vomiting" onchange="checkRedFlags()">
-    <option value="">Select</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
+<!-- STROKE -->
+<div class="card hidden" id="stroke">
+<h3>Stroke Assessment</h3>
+<label>Sudden onset?</label>
+<select id="s1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<label>Speech affected?</label>
+<select id="s2" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<label>Time since onset (hours)</label>
+<input type="number" id="s3" onchange="analyze()">
 </div>
 
-<!-- SEIZURE AUTO SECTION -->
-<div id="seizureSection" class="hidden">
-  <label>Is this the first seizure?</label>
-  <select id="firstSeizure" onchange="checkRedFlags()">
-    <option value="">Select</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
-
-  <label>Loss of consciousness?</label>
-  <select id="loc" onchange="checkRedFlags()">
-    <option value="">Select</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
+<!-- SEIZURE -->
+<div class="card hidden" id="seizure">
+<h3>Seizure Details</h3>
+<label>First seizure?</label>
+<select id="q1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<label>Duration (minutes)</label>
+<input type="number">
 </div>
 
-<div id="alert"></div>
+<!-- HEADACHE -->
+<div class="card hidden" id="headache">
+<h3>Headache Assessment</h3>
+<label>Morning worsening?</label>
+<select id="h1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+<label>Vomiting?</label>
+<select id="h2" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+</div>
 
-<button onclick="generateSummary()">Generate Doctor Summary</button>
+<!-- WEAKNESS -->
+<div class="card hidden" id="weakness">
+<h3>Weakness</h3>
+<label>Bladder / bowel involvement?</label>
+<select id="w1" onchange="analyze()"><option></option><option>Yes</option><option>No</option></select>
+</div>
 
-<div id="summary"></div>
+<div id="status" class="status hidden"></div>
+
+<div class="summary">
+<h3>Clinical Summary</h3>
+<p id="sum">—</p>
+</div>
+
+<div class="dx">
+<h3>Probable Differential Diagnosis (Doctor View)</h3>
+<ul id="dxlist"></ul>
+</div>
+
+<button onclick="window.print()">🖨️ Print OPD Sheet</button>
 
 </div>
 
 <script>
-function handleComplaint(){
-  document.getElementById("headacheSection").classList.add("hidden");
-  document.getElementById("seizureSection").classList.add("hidden");
-  document.getElementById("alert").style.display="none";
+let urdu=false;
 
-  const c=document.getElementById("complaint").value;
-  if(c==="headache") document.getElementById("headacheSection").classList.remove("hidden");
-  if(c==="seizure") document.getElementById("seizureSection").classList.remove("hidden");
+function hideAll(){
+document.querySelectorAll('.card').forEach(x=>x.classList.add('hidden'));
 }
 
-function checkRedFlags(){
-  let alertBox=document.getElementById("alert");
-  alertBox.style.display="none";
-
-  if(
-    document.getElementById("morningHeadache")?.value==="Yes" &&
-    document.getElementById("vomiting")?.value==="Yes"
-  ){
-    alertBox.innerText="⚠ Red Flag: Possible raised intracranial pressure. Urgent evaluation advised.";
-    alertBox.style.display="block";
-  }
-
-  if(document.getElementById("firstSeizure")?.value==="Yes"){
-    alertBox.innerText="⚠ Red Flag: First-time seizure. Immediate neurological assessment required.";
-    alertBox.style.display="block";
-  }
+function loadSection(){
+hideAll();
+const c=complaint.value;
+if(c) document.getElementById(c).classList.remove('hidden');
+analyze();
 }
 
-function generateSummary(){
-  document.getElementById("summary").style.display="block";
-  document.getElementById("summary").innerHTML=`
-    <h3>Doctor Summary</h3>
-    <p><b>Age:</b> ${age.value}</p>
-    <p><b>Gender:</b> ${gender.value}</p>
-    <p><b>Complaint:</b> ${complaint.value}</p>
-  `;
+function analyze(){
+let score=0;
+let dx=[];
+
+if(complaint.value==="stroke"){
+if(s1.value==="Yes") score+=2;
+if(s2.value==="Yes") score+=2;
+if(s3.value && s3.value<=4.5) score+=3;
+dx.push("Acute Ischemic Stroke","TIA","Intracerebral Hemorrhage");
+}
+
+if(complaint.value==="seizure"){
+if(q1.value==="Yes") score+=3;
+dx.push("New onset seizure","Structural brain lesion","Metabolic cause");
+}
+
+if(complaint.value==="headache"){
+if(h1.value==="Yes") score+=2;
+if(h2.value==="Yes") score+=2;
+dx.push("Raised ICP","Migraine","Intracranial mass");
+}
+
+if(complaint.value==="weakness"){
+if(w1.value==="Yes") score+=3;
+dx.push("Spinal cord compression","Myelitis","GBS");
+}
+
+renderStatus(score);
+renderSummary(score);
+renderDX(dx);
+}
+
+function renderStatus(score){
+const s=document.getElementById("status");
+s.className="status";
+if(score>=5){s.classList.add("red");s.innerText="🔴 EMERGENCY – Immediate Evaluation";}
+else if(score>=3){s.classList.add("yellow");s.innerText="🟡 URGENT – Early Review";}
+else{s.classList.add("green");s.innerText="🟢 STABLE – Routine OPD";}
+s.classList.remove("hidden");
+}
+
+function renderSummary(score){
+sum.innerText=
+`Age: ${age.value || "?"}, Gender: ${gender.value || "?"}
+Chief complaint: ${complaint.options[complaint.selectedIndex]?.text}
+Clinical urgency score: ${score}`;
+}
+
+function renderDX(list){
+dxlist.innerHTML="";
+list.forEach(d=>{
+let li=document.createElement("li");
+li.innerText=d;
+dxlist.appendChild(li);
+});
+}
+
+function toggleLang(){
+urdu=!urdu;
+document.getElementById("title").innerText=urdu?"نیورولوجی اسمارٹ او پی ڈی سسٹم":"Neurology Smart OPD System";
+document.getElementById("subtitle").innerText=urdu?"نیورولوجسٹ کے لیے جدید کلینیکل سسٹم":"Clinical pre-consultation & decision support";
+document.getElementById("pi").innerText=urdu?"مریض کی معلومات":"Patient Information";
+document.getElementById("l_age").innerText=urdu?"عمر":"Age";
+document.getElementById("l_gender").innerText=urdu?"جنس":"Gender";
+document.getElementById("l_cc").innerText=urdu?"بنیادی شکایت":"Chief Complaint";
 }
 </script>
 
