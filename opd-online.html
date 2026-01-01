@@ -85,6 +85,15 @@ button{
 .low{background:#e7f7ec;color:#0a7a3d}
 .mod{background:#fff3cd;color:#856404}
 .high{background:#fdecea;color:#a71d2a}
+.alert{
+  background:#fdecea;
+  border-left:6px solid #d32f2f;
+  padding:15px;
+  border-radius:10px;
+  color:#a71d2a;
+  display:none;
+  margin-bottom:20px;
+}
 .warning{
   background:#fff6e5;
   border-left:6px solid #ffb300;
@@ -92,22 +101,7 @@ button{
   border-radius:10px;
   font-size:14px;
 }
-.alert{
-  background:#fdecea;
-  border-left:6px solid #d32f2f;
-  padding:15px;
-  border-radius:10px;
-  font-size:15px;
-  color:#a71d2a;
-  display:none;
-}
 .small{font-size:13px;opacity:.7}
-.toggle{
-  margin-top:10px;
-  cursor:pointer;
-  color:#0b1f3a;
-  font-weight:600;
-}
 </style>
 </head>
 
@@ -117,8 +111,7 @@ button{
   <div class="hero-inner">
     <div>
       <h1>Neurology Smart Public-Health OPD</h1>
-      <p>Clinical triage, emergency alert, risk stratification & public screening system</p>
-      <p>✔ Doctor Mode ✔ Public Mode ✔ Emergency Safety</p>
+      <p>Risk stratification • Emergency alerts • Clinical decision support</p>
     </div>
     <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54">
   </div>
@@ -126,18 +119,8 @@ button{
 
 <div class="container">
 
-<!-- MODE -->
-<div class="card">
-<h2>Mode Selection</h2>
-<button onclick="setMode('doctor')">Doctor OPD Mode</button>
-<button onclick="setMode('public')">Free Public Screening</button>
-<p class="small">Public mode uses simplified logic & awareness-based output</p>
-</div>
-
-<!-- ALERT -->
 <div id="alertBox" class="alert"></div>
 
-<!-- FORM -->
 <div class="card">
 <h2>Patient Information</h2>
 
@@ -165,109 +148,88 @@ button{
 <option value="years">Years</option>
 </select>
 
-<button onclick="runSystem()">Run Assessment</button>
+<button onclick="runAssessment()">Run Assessment</button>
 </div>
 
-<!-- SUMMARY -->
 <div class="card">
-<h2>Clinical / Screening Summary</h2>
+<h2>Summary</h2>
 <div id="summary">—</div>
 </div>
 
-<!-- RISK -->
 <div class="card">
 <h2>Risk Level</h2>
 <div id="risk">—</div>
 </div>
 
-<!-- DIAGNOSIS -->
-<div class="card" id="dxCard">
+<div class="card">
 <h2>Probable Differential Diagnosis</h2>
 <div id="diagnosis">—</div>
 </div>
 
-<!-- BRAIN AGE -->
-<div class="card">
-<h2>Brain Age Estimation (Awareness)</h2>
-<div id="brainAge">—</div>
-</div>
-
-<!-- APPOINTMENT -->
-<div class="card">
-<h2>Online Appointment Request</h2>
-<label>Email</label>
-<input type="email">
-<label>Preferred Date</label>
-<input type="date">
-<button onclick="alert('Appointment request submitted')">Submit</button>
-</div>
-
-<!-- DISCLAIMER -->
 <div class="warning">
 <strong>Medical Disclaimer:</strong><br>
-This system is designed for awareness, triage and structured neurological history only.
-It does not replace physical examination, investigations or emergency care.
-In red-flag symptoms, immediate hospital referral is mandatory.
+This tool assists in neurological triage and awareness only.
+It does not replace physical examination or emergency care.
 </div>
 
-<p class="small">© Neurology Smart Public-Health OPD — Clinical & Awareness System</p>
+<p class="small">© Neurology Smart Public-Health OPD</p>
 
 </div>
 
 <script>
-let MODE="doctor";
+function runAssessment(){
 
-function setMode(m){
-  MODE=m;
-  dxCard.style.display = m==="public" ? "none" : "block";
-}
+  const ageVal = parseInt(document.getElementById("age").value) || 0;
+  const complaintVal = document.getElementById("complaint").value;
+  const durationVal = document.getElementById("duration").value;
 
-function runSystem(){
-  const age=parseInt(ageInput=age.value||0);
-  const c=complaint.value;
-  const d=duration.value;
+  let riskText = "Low Risk";
+  let riskClass = "low";
+  let alertText = "";
+  let dxList = [];
 
-  let risk="Low Risk", rClass="low";
-  let alertMsg="";
-  let dx=[];
-
-  if(c==="stroke"||c==="seizure"||c==="loc"){
-    risk="High Risk – Possible neurological emergency";
-    rClass="high";
-    alertMsg="🚨 RED FLAG: Symptoms suggest possible neurological emergency. Please go to nearest emergency department immediately.";
+  if(complaintVal==="stroke" || complaintVal==="seizure" || complaintVal==="loc"){
+    riskText = "High Risk – Possible neurological emergency";
+    riskClass = "high";
+    alertText = "🚨 RED FLAG: Symptoms suggest a neurological emergency. Please go to the nearest emergency department immediately.";
   }
-  else if(d==="acute"){
-    risk="Moderate Risk – Needs urgent evaluation";
-    rClass="mod";
+  else if(durationVal==="acute"){
+    riskText = "Moderate Risk – Needs urgent neurological evaluation";
+    riskClass = "mod";
+  }
+  else if(complaintVal==="memory" && ageVal>60){
+    riskText = "Moderate Risk – Possible neurocognitive disorder";
+    riskClass = "mod";
   }
 
-  const dxMap={
+  const dxMap = {
     stroke:["Ischemic stroke","Hemorrhagic stroke","TIA"],
-    seizure:["Epileptic seizure","Metabolic seizure"],
+    seizure:["Focal epilepsy","Generalized epilepsy","Metabolic seizure"],
     headache:["Migraine","Secondary headache"],
     memory:["Alzheimer disease","Vascular dementia"],
     vertigo:["BPPV","Central vertigo"],
-    loc:["Syncope","Seizure"],
+    loc:["Syncope","Seizure disorder"],
     parkinson:["Parkinson disease"],
     neuropathy:["Peripheral neuropathy"]
   };
 
-  dx=dxMap[c]||[];
+  dxList = dxMap[complaintVal] || ["Clinical correlation required"];
 
-  summary.innerHTML=
-  `<strong>Age:</strong> ${age}<br>
-   <strong>Complaint:</strong> ${complaint.options[complaint.selectedIndex].text}<br>
-   <strong>Duration:</strong> ${d}`;
+  document.getElementById("summary").innerHTML =
+    `<strong>Age:</strong> ${ageVal}<br>
+     <strong>Complaint:</strong> ${document.getElementById("complaint").selectedOptions[0].text}<br>
+     <strong>Duration:</strong> ${durationVal}`;
 
-  risk.innerHTML=`<span class="badge ${rClass}">${risk}</span>`;
-  diagnosis.innerHTML=dx.map(x=>`<span class="badge">${x}</span>`).join("");
+  document.getElementById("risk").innerHTML =
+    `<span class="badge ${riskClass}">${riskText}</span>`;
 
-  brainAge.innerHTML =
-    age>0 ? `<strong>Estimated Brain Age:</strong> ${age + (risk==="High Risk – Possible neurological emergency"?10:5)} years` : "—";
+  document.getElementById("diagnosis").innerHTML =
+    dxList.map(d=>`<span class="badge">${d}</span>`).join("");
 
-  if(alertMsg){
+  const alertBox = document.getElementById("alertBox");
+  if(alertText){
     alertBox.style.display="block";
-    alertBox.innerText=alertMsg;
+    alertBox.innerText=alertText;
   }else{
     alertBox.style.display="none";
   }
@@ -275,5 +237,4 @@ function runSystem(){
 </script>
 
 </body>
-  </html>
-  
+</html>
