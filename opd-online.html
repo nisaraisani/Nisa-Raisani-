@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Neurology Online OPD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --dark:#0b1f3a;
+  --blue:#1ccad8;
+  --bg:#f4f7fb;
+  --card:#fff;
+}
+body{
+  margin:0;
+  font-family:Segoe UI,Arial,sans-serif;
+  background:var(--bg);
+}
+.hero{
+  background:linear-gradient(135deg,#0b1f3a,#173e73);
+  color:#fff;
+  padding:50px 20px;
+}
+.hero-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:30px;
+  flex-wrap:wrap;
+}
+.hero img{
+  max-width:260px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px;
+}
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  margin-bottom:25px;
+}
+h2{
+  margin-top:0;
+  border-left:6px solid var(--blue);
+  padding-left:12px;
+}
+label{
+  font-weight:600;
+  display:block;
+  margin-top:14px;
+}
+input,select{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+button{
+  background:var(--dark);
+  color:#fff;
+  padding:14px 22px;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:20px;
+}
+button:hover{background:#071429}
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  margin:5px;
+  font-size:14px;
+}
+.low{background:#e7f7ec;color:#0a7a3d}
+.mod{background:#fff3cd;color:#856404}
+.high{background:#fdecea;color:#a71d2a}
+.warning{
+  background:#fff6e5;
+  border-left:6px solid #ffb300;
+  padding:15px;
+  border-radius:10px;
+  font-size:14px;
+}
+.small{font-size:13px;opacity:.75}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Advanced Neurology Smart OPD</h1>
+      <p>Clinical triage, risk stratification & decision-support system for neurologists</p>
+      <p>✔ Auto Risk ✔ Smart Diagnosis ✔ Online OPD</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54">
+  </div>
+</section>
+
+<div class="container">
+
+<!-- FORM -->
+<div class="card">
+<h2>Patient Information</h2>
+
+<label>Age</label>
+<input id="age" type="number">
+
+<label>Gender</label>
+<select id="gender">
+  <option>Male</option>
+  <option>Female</option>
+</select>
+
+<label>Chief Neurological Complaint</label>
+<select id="complaint" onchange="runEngine()">
+  <option value="">Select</option>
+  <option>Headache / Migraine</option>
+  <option>Seizures / Epilepsy</option>
+  <option>Memory Loss / Dementia</option>
+  <option>Stroke / TIA</option>
+  <option>Parkinsonism</option>
+  <option>Peripheral Neuropathy</option>
+  <option>Multiple Sclerosis</option>
+  <option>Movement Disorder</option>
+  <option>Vertigo / Dizziness</option>
+  <option>Loss of Consciousness</option>
+  <option>Sleep Disorder</option>
+</select>
+
+<label>Duration</label>
+<select id="duration">
+  <option>Acute</option>
+  <option>Weeks</option>
+  <option>Months</option>
+  <option>Years</option>
+</select>
+
+<button onclick="generateSummary()">Generate Doctor Summary</button>
+</div>
+
+<!-- SUMMARY -->
+<div class="card">
+<h2>Clinical Summary (Doctor View)</h2>
+<div id="summary">—</div>
+</div>
+
+<!-- RISK -->
+<div class="card">
+<h2>Risk Stratification</h2>
+<div id="risk">—</div>
+</div>
+
+<!-- DIAGNOSIS -->
+<div class="card">
+<h2>Probable Differential Diagnosis</h2>
+<div id="diagnosis">—</div>
+</div>
+
+<!-- APPOINTMENT -->
+<div class="card">
+<h2>Online Appointment Request</h2>
+<label>Email</label>
+<input type="email">
+<label>Preferred Date</label>
+<input type="date">
+<button onclick="alert('Appointment request submitted')">Submit Request</button>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="warning">
+<strong>Medical Disclaimer:</strong><br>
+This system assists in structured neurological history, triage and risk assessment only.
+Final diagnosis, investigations and management decisions remain the responsibility of the consulting neurologist.
+In case of emergency, immediate hospital care is advised.
+</div>
+
+<p class="small">© Advanced Neurology Online OPD — Clinical Support System</p>
+
+</div>
+
+<script>
+function runEngine(){
+  const c=complaint.value;
+  let dx=[],risk="",rClass="low";
+
+  if(c.includes("Memory")){
+    dx=["Alzheimer disease","Vascular dementia","Frontotemporal dementia"];
+    risk="Moderate to High Risk – cognitive decline";
+    rClass="mod";
+  }
+  else if(c.includes("Seizure")){
+    dx=["Focal epilepsy","Generalized epilepsy","Metabolic seizures"];
+    risk="High Risk – requires urgent evaluation";
+    rClass="high";
+  }
+  else if(c.includes("Stroke")){
+    dx=["Ischemic stroke","Hemorrhagic stroke","TIA"];
+    risk="High Risk – neurological emergency";
+    rClass="high";
+  }
+  else if(c.includes("Headache")){
+    dx=["Migraine","Tension headache","Secondary headache"];
+    risk="Low to Moderate Risk";
+    rClass="low";
+  }
+  else{
+    dx=["Clinical correlation required"];
+    risk="Low Risk";
+    rClass="low";
+  }
+
+  diagnosis.innerHTML=dx.map(d=>`<span class="badge">${d}</span>`).join("");
+  risk.innerHTML=`<span class="badge ${rClass}">${risk}</span>`;
+}
+
+function generateSummary(){
+  summary.innerHTML=`
+  <strong>Age:</strong> ${age.value} |
+  <strong>Gender:</strong> ${gender.value}<br>
+  <strong>Chief Complaint:</strong> ${complaint.value}<br>
+  <strong>Duration:</strong> ${duration.value}
+  `;
+}
+</script>
+
+</body>
+</html>
