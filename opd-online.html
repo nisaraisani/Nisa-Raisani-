@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Neurology Smart OPD – Public Health System</title>
+<title>Neurology Public Safety & Smart OPD System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -12,102 +12,26 @@
   --bg:#f4f7fb;
   --card:#ffffff;
 }
-body{
-  margin:0;
-  font-family:Segoe UI,Arial,sans-serif;
-  background:var(--bg);
-  color:#222;
-}
-.hero{
-  background:linear-gradient(135deg,#0b1f3a,#173e73);
-  color:#fff;
-  padding:50px 20px;
-}
-.hero-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  gap:30px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-.hero img{
-  max-width:260px;
-  border-radius:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:30px 20px;
-}
-.card{
-  background:var(--card);
-  border-radius:14px;
-  padding:25px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  margin-bottom:25px;
-}
-h2{
-  margin-top:0;
-  border-left:6px solid var(--accent);
-  padding-left:12px;
-}
-label{
-  display:block;
-  margin-top:14px;
-  font-weight:600;
-}
-input,select{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  margin-top:6px;
-}
-button{
-  background:var(--dark);
-  color:#fff;
-  border:none;
-  padding:14px 22px;
-  border-radius:12px;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:15px;
-}
-.badge{
-  display:inline-block;
-  padding:6px 14px;
-  border-radius:20px;
-  margin:5px;
-  font-size:14px;
-}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:#222}
+.hero{background:linear-gradient(135deg,#0b1f3a,#173e73);color:#fff;padding:50px 20px}
+.hero-inner{max-width:1100px;margin:auto;display:flex;gap:30px;flex-wrap:wrap;align-items:center}
+.hero img{max-width:250px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.container{max-width:1100px;margin:auto;padding:30px 20px}
+.card{background:var(--card);border-radius:14px;padding:25px;box-shadow:0 10px 25px rgba(0,0,0,.08);margin-bottom:25px}
+h2{margin-top:0;border-left:6px solid var(--accent);padding-left:12px}
+label{display:block;margin-top:14px;font-weight:600}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;margin-top:6px}
+button{background:var(--dark);color:#fff;border:none;padding:14px 22px;border-radius:12px;font-size:16px;cursor:pointer;margin-top:15px}
+.badge{display:inline-block;padding:6px 14px;border-radius:20px;margin:5px;font-size:14px}
 .low{background:#e7f7ec;color:#0a7a3d}
 .mod{background:#fff3cd;color:#856404}
 .high{background:#fdecea;color:#a71d2a}
-.alert{
-  background:#fdecea;
-  border-left:6px solid #d32f2f;
-  padding:15px;
-  border-radius:10px;
-  color:#a71d2a;
-  display:none;
-  margin-bottom:20px;
-}
-.warning{
-  background:#fff6e5;
-  border-left:6px solid #ffb300;
-  padding:15px;
-  border-radius:10px;
-  font-size:14px;
-}
+.alert{background:#fdecea;border-left:6px solid #d32f2f;padding:15px;border-radius:10px;color:#a71d2a;display:none;margin-bottom:20px}
+.green{color:#0a7a3d;font-weight:700}
+.yellow{color:#856404;font-weight:700}
+.red{color:#a71d2a;font-weight:700}
+.warning{background:#fff6e5;border-left:6px solid #ffb300;padding:15px;border-radius:10px;font-size:14px}
 .small{font-size:13px;opacity:.7}
-.modeBtn{
-  background:#fff;
-  color:#0b1f3a;
-  border:2px solid #0b1f3a;
-  margin-right:10px;
-}
 </style>
 </head>
 
@@ -116,8 +40,8 @@ button{
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <h1>Neurology Smart OPD & Public-Health System</h1>
-      <p>Doctor OPD • Public Screening • Emergency Red-Flags</p>
+      <h1>Neurology Public Safety & Smart OPD</h1>
+      <p>Brain Emergency Detection • Risk Stratification • Public Health Innovation</p>
     </div>
     <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54">
   </div>
@@ -125,128 +49,86 @@ button{
 
 <div class="container">
 
-<!-- MODE -->
-<div class="card">
-<h2>System Mode</h2>
-<button class="modeBtn" onclick="setMode('doctor')">Doctor OPD Mode</button>
-<button class="modeBtn" onclick="setMode('public')">Free Public Screening</button>
-<p class="small">Public mode hides diagnosis & shows awareness output</p>
-</div>
-
 <div id="alertBox" class="alert"></div>
 
 <div class="card">
-<h2>Patient Information</h2>
+<h2>Neurology Assessment</h2>
 
 <label>Age</label>
 <input type="number" id="age">
 
-<label>Chief Neurological Complaint</label>
+<label>Main Symptom</label>
 <select id="complaint">
 <option value="">Select</option>
-<option value="stroke">Sudden weakness / Speech difficulty</option>
-<option value="seizure">Seizure / Fits</option>
-<option value="headache">Severe headache</option>
+<option value="stroke">Sudden weakness / speech problem</option>
+<option value="seizure">Seizure / fits</option>
+<option value="headache">Worst headache of life</option>
 <option value="memory">Memory loss</option>
-<option value="vertigo">Vertigo / Dizziness</option>
+<option value="vertigo">Severe dizziness</option>
 <option value="loc">Loss of consciousness</option>
-<option value="parkinson">Tremor / Parkinsonism</option>
-<option value="neuropathy">Numbness / Neuropathy</option>
 </select>
 
-<label>Duration</label>
+<label>Onset</label>
 <select id="duration">
-<option value="acute">Sudden / Acute</option>
+<option value="acute">Sudden</option>
 <option value="weeks">Weeks</option>
 <option value="months">Months</option>
-<option value="years">Years</option>
 </select>
 
-<button onclick="runAssessment()">Run Assessment</button>
+<button onclick="runAssessment()">Run Safety Assessment</button>
 </div>
 
 <div class="card">
-<h2>Summary</h2>
-<div id="summary">—</div>
+<h2>Safety Result (Traffic Light)</h2>
+<div id="traffic">—</div>
 </div>
 
 <div class="card">
-<h2>Risk Level</h2>
-<div id="risk">—</div>
-</div>
-
-<div class="card" id="dxCard">
-<h2>Probable Differential Diagnosis</h2>
-<div id="diagnosis">—</div>
+<h2>Family Guidance</h2>
+<div id="family">—</div>
 </div>
 
 <div class="card">
-<h2>Brain Age (Awareness Tool)</h2>
-<div id="brainAge">—</div>
+<h2>Brain Literacy Score</h2>
+<div id="literacy">—</div>
 </div>
 
 <div class="warning">
-<strong>Medical Disclaimer:</strong><br>
-This system is for awareness, triage and public-health screening only.
-It does not replace physical examination or emergency care.
+<strong>Ethical Commitment:</strong><br>
+This system does not prescribe medicines, does not confirm diagnosis,
+and exists solely to prevent dangerous delays in neurological emergencies.
 </div>
 
-<p class="small">© Neurology Smart OPD & Public-Health System</p>
+<p class="small">© Neurology Public Safety System — Designed by a Neurologist for the Public</p>
 
 </div>
 
 <script>
-let MODE="doctor";
-
-function setMode(m){
-  MODE=m;
-  document.getElementById("dxCard").style.display =
-    m==="public" ? "none" : "block";
-}
-
 function runAssessment(){
-  const age = parseInt(document.getElementById("age").value)||0;
-  const c = document.getElementById("complaint").value;
-  const d = document.getElementById("duration").value;
+  const age=parseInt(document.getElementById("age").value)||0;
+  const c=document.getElementById("complaint").value;
+  const d=document.getElementById("duration").value;
 
-  let risk="Low Risk", rClass="low", alertText="";
+  let traffic="🟢 <span class='green'>LOW RISK</span> – Home care & awareness";
+  let familyMsg="Family can monitor at home.";
+  let literacy="Good brain health awareness.";
+  let alertText="";
+
   if(c==="stroke"||c==="seizure"||c==="loc"){
-    risk="High Risk – Possible neurological emergency";
-    rClass="high";
-    alertText="🚨 RED FLAG: Immediate hospital evaluation required.";
-  }else if(d==="acute"){
-    risk="Moderate Risk – Needs early evaluation";
-    rClass="mod";
-  }else if(c==="memory" && age>60){
-    risk="Moderate Risk – Possible cognitive disorder";
-    rClass="mod";
+    traffic="🔴 <span class='red'>RED – BRAIN EMERGENCY</span>";
+    familyMsg="⚠️ Do NOT leave patient alone. Take to nearest hospital immediately.";
+    literacy="Poor – Emergency awareness required.";
+    alertText="🚨 POSSIBLE BRAIN EMERGENCY. DELAY CAN BE LIFE-THREATENING.";
+  }
+  else if(d==="acute"){
+    traffic="🟡 <span class='yellow'>YELLOW – URGENT</span>";
+    familyMsg="Patient should be seen by doctor within 24–48 hours.";
+    literacy="Fair – Needs better awareness.";
   }
 
-  const dxMap={
-    stroke:["Ischemic stroke","Hemorrhagic stroke","TIA"],
-    seizure:["Focal epilepsy","Generalized epilepsy"],
-    headache:["Migraine","Secondary headache"],
-    memory:["Alzheimer disease","Vascular dementia"],
-    vertigo:["BPPV","Central vertigo"],
-    loc:["Syncope","Seizure disorder"],
-    parkinson:["Parkinson disease"],
-    neuropathy:["Peripheral neuropathy"]
-  };
-
-  document.getElementById("summary").innerHTML=
-    `<strong>Age:</strong> ${age}<br>
-     <strong>Complaint:</strong> ${complaint.selectedOptions[0].text}<br>
-     <strong>Duration:</strong> ${d}`;
-
-  document.getElementById("risk").innerHTML=
-    `<span class="badge ${rClass}">${risk}</span>`;
-
-  document.getElementById("diagnosis").innerHTML=
-    (dxMap[c]||["Clinical correlation required"])
-    .map(x=>`<span class="badge">${x}</span>`).join("");
-
-  document.getElementById("brainAge").innerHTML=
-    age>0 ? `Estimated Brain Age: <strong>${age + (rClass==="high"?10:5)}</strong> years` : "—";
+  document.getElementById("traffic").innerHTML=traffic;
+  document.getElementById("family").innerHTML=familyMsg;
+  document.getElementById("literacy").innerHTML=literacy;
 
   const alertBox=document.getElementById("alertBox");
   if(alertText){
