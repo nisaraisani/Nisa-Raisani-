@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pre-Consult Smart History | Dr Nisa Raisani</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f6f8fb;
+  color: #1f2937;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(120deg, #0f172a, #1e3a8a);
+  color: #fff;
+  padding: 80px 20px;
+}
+.hero-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: 42px;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+.hero ul {
+  margin-top: 20px;
+}
+.hero ul li {
+  margin-bottom: 10px;
+}
+.hero img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+/* ===== FORM ===== */
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+h2 {
+  margin-bottom: 10px;
+}
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 600;
+}
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+button {
+  margin-top: 30px;
+  padding: 14px 24px;
+  background: #1e3a8a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0f172a;
+}
+
+/* ===== SUMMARY ===== */
+#summary {
+  display: none;
+  margin-top: 40px;
+  padding: 25px;
+  border-left: 5px solid #1e3a8a;
+  background: #f8fafc;
+}
+.red {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.footer-note {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #475569;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div>
+      <h1>Pre-Consult Smart History System</h1>
+      <p>
+        A structured, clinician-designed system to capture patient history
+        before consultation — saving time and improving clinical focus.
+      </p>
+      <ul>
+        <li>✔ Neurology-focused questions</li>
+        <li>✔ Automatic red-flag detection</li>
+        <li>✔ One-page doctor summary</li>
+      </ul>
+    </div>
+    <img src="https://images.unsplash.com/photo-1580281657521-31f6e1e73f1a" alt="Doctor reviewing patient data">
+  </div>
+</section>
+
+<!-- FORM -->
+<div class="container">
+  <h2>Patient Pre-Consult Form</h2>
+  <p>Please complete this form before your consultation.</p>
+
+  <label>Age</label>
+  <input type="number" id="age">
+
+  <label>Gender</label>
+  <select id="gender">
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <label>Main Complaint</label>
+  <select id="complaint">
+    <option value="">Select</option>
+    <option>Headache</option>
+    <option>Seizures</option>
+    <option>Weakness</option>
+  </select>
+
+  <label>Duration</label>
+  <select id="duration">
+    <option value="">Select</option>
+    <option>Sudden</option>
+    <option>Days</option>
+    <option>Weeks</option>
+    <option>Months</option>
+  </select>
+
+  <label>Associated Symptoms</label>
+  <select id="assoc">
+    <option value="">Select</option>
+    <option>Vomiting</option>
+    <option>Vision Problems</option>
+    <option>Loss of Consciousness</option>
+    <option>None</option>
+  </select>
+
+  <button onclick="generateSummary()">Generate Doctor Summary</button>
+
+  <!-- SUMMARY -->
+  <div id="summary"></div>
+
+  <div class="footer-note">
+    ⚠️ This system assists history taking only.  
+    Final diagnosis and decisions remain with the consulting physician.
+  </div>
+</div>
+
+<script>
+function generateSummary() {
+  const age = ageInput = document.getElementById("age").value;
+  const gender = document.getElementById("gender").value;
+  const complaint = document.getElementById("complaint").value;
+  const duration = document.getElementById("duration").value;
+  const assoc = document.getElementById("assoc").value;
+
+  let redFlag = "";
+
+  if (complaint === "Headache" && assoc === "Vomiting") {
+    redFlag = "⚠ Possible raised intracranial pressure";
+  }
+  if (complaint === "Seizures" && duration === "Sudden") {
+    redFlag = "⚠ First-time seizure – urgent evaluation needed";
+  }
+
+  document.getElementById("summary").style.display = "block";
+  document.getElementById("summary").innerHTML = `
+    <h3>Doctor Summary</h3>
+    <p><b>Age:</b> ${age} | <b>Gender:</b> ${gender}</p>
+    <p><b>Chief Complaint:</b> ${complaint}</p>
+    <p><b>Duration:</b> ${duration}</p>
+    <p><b>Associated:</b> ${assoc}</p>
+    <p class="red">${redFlag}</p>
+  `;
+}
+</script>
+
+</body>
+</html>
