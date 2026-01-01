@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neurology Smart Online OPD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --primary:#0b1f3a;
+  --accent:#1ccad8;
+  --card:#ffffff;
+  --bg:#f4f7fb;
+}
+
+body{
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background:var(--bg);
+  color:#222;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#0b1f3a,#163b6c);
+  color:#fff;
+  padding:50px 20px;
+}
+.hero-wrap{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  gap:30px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.hero h1{font-size:36px;margin-bottom:10px}
+.hero p{opacity:.9}
+.hero img{
+  max-width:280px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+/* CARD */
+.container{max-width:1100px;margin:auto;padding:30px 20px}
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  margin-bottom:25px;
+}
+
+label{font-weight:600;margin-top:12px;display:block}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-top:6px;
+}
+textarea{resize:none}
+
+button{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:14px 22px;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{background:#08162b}
+
+.badge{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:20px;
+  background:#e9f8fb;
+  color:#046c78;
+  margin:4px;
+  font-size:14px;
+}
+
+.section-title{
+  font-size:20px;
+  margin-bottom:10px;
+  border-left:5px solid var(--accent);
+  padding-left:10px;
+}
+
+.warning{
+  background:#fff6e5;
+  border-left:5px solid #ffb300;
+  padding:15px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+.footer-note{
+  font-size:13px;
+  opacity:.7;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-wrap">
+    <div>
+      <h1>Neurology Smart Online OPD</h1>
+      <p>Advanced pre-consultation, triage & decision-support system for neurologists</p>
+      <p>✔ Smart complaints ✔ Auto differential ✔ Online appointment</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54" alt="Doctor">
+  </div>
+</section>
+
+<div class="container">
+
+<!-- PATIENT FORM -->
+<div class="card">
+  <div class="section-title">Patient Information</div>
+
+  <label>Age</label>
+  <input id="age" type="number">
+
+  <label>Gender</label>
+  <select id="gender">
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <label>Chief Neurological Complaint</label>
+  <select id="complaint" onchange="updateDiagnosis()">
+    <option value="">Select complaint</option>
+    <option>Headache / Migraine</option>
+    <option>Seizures / Epilepsy</option>
+    <option>Memory Loss / Dementia</option>
+    <option>Stroke / TIA</option>
+    <option>Parkinsonism</option>
+    <option>Peripheral Neuropathy</option>
+    <option>Multiple Sclerosis</option>
+    <option>Movement Disorder</option>
+    <option>Sleep Disorder</option>
+    <option>Vertigo / Dizziness</option>
+    <option>Loss of Consciousness</option>
+  </select>
+
+  <label>Duration</label>
+  <select id="duration">
+    <option>Acute</option>
+    <option>Weeks</option>
+    <option>Months</option>
+    <option>Years</option>
+  </select>
+
+  <br><br>
+  <button onclick="generateSummary()">Generate Clinical Summary</button>
+</div>
+
+<!-- SUMMARY -->
+<div class="card">
+  <div class="section-title">Clinical Summary (Doctor View)</div>
+  <div id="summary">—</div>
+</div>
+
+<!-- DIFFERENTIAL -->
+<div class="card">
+  <div class="section-title">Probable Differential Diagnosis</div>
+  <div id="diagnosis">—</div>
+</div>
+
+<!-- APPOINTMENT -->
+<div class="card">
+  <div class="section-title">Online Appointment Request</div>
+  <label>Email</label>
+  <input type="email" placeholder="patient@email.com">
+  <label>Preferred Date</label>
+  <input type="date">
+  <br><br>
+  <button onclick="alert('Appointment request submitted')">Request Appointment</button>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="warning">
+⚠️ <strong>Medical Disclaimer:</strong><br>
+This online OPD system assists in structured history taking and triage only.
+Final diagnosis, investigations and treatment decisions remain the responsibility of the consulting neurologist.
+In emergencies, patients must seek immediate hospital care.
+</div>
+
+<div class="footer-note">
+© Neurology Smart OPD System — Educational & clinical support tool
+</div>
+
+</div>
+
+<script>
+function updateDiagnosis(){
+  const c=document.getElementById("complaint").value;
+  let d=[];
+  if(c.includes("Memory")) d=["Alzheimer disease","Vascular dementia","Frontotemporal dementia"];
+  else if(c.includes("Seizure")) d=["Focal epilepsy","Generalized epilepsy","Metabolic seizures"];
+  else if(c.includes("Headache")) d=["Migraine","Tension headache","Secondary headache"];
+  else if(c.includes("Stroke")) d=["Ischemic stroke","Hemorrhagic stroke","TIA"];
+  else if(c.includes("Parkinson")) d=["Parkinson disease","Atypical parkinsonism"];
+  else d=["Clinical correlation required"];
+
+  document.getElementById("diagnosis").innerHTML =
+    d.map(x=>`<span class="badge">${x}</span>`).join("");
+}
+
+function generateSummary(){
+  summary.innerHTML=`
+  <strong>Age:</strong> ${age.value} |
+  <strong>Gender:</strong> ${gender.value}<br>
+  <strong>Complaint:</strong> ${complaint.value}<br>
+  <strong>Duration:</strong> ${duration.value}
+  `;
+}
+</script>
+
+</body>
+</html>
