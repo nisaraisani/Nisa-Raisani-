@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neurology OPD – Clinical Assessment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  color:#222;
+}
+header{
+  background:#0b1f3a;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+.container{
+  max-width:900px;
+  margin:30px auto;
+  padding:0 15px;
+}
+.card{
+  background:#fff;
+  border-radius:10px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+h2{
+  margin-top:0;
+  border-left:5px solid #1ccad8;
+  padding-left:10px;
+}
+label{
+  font-weight:600;
+  display:block;
+  margin-top:12px;
+}
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+button{
+  margin-top:18px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:#0b1f3a;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:700;
+  margin-top:10px;
+}
+.low{background:#e7f7ec;color:#0a7a3d}
+.mod{background:#fff3cd;color:#856404}
+.high{background:#fdecea;color:#a71d2a}
+.alert{
+  background:#fdecea;
+  border-left:6px solid #d32f2f;
+  padding:15px;
+  border-radius:8px;
+  color:#a71d2a;
+  margin-bottom:20px;
+}
+.small{
+  font-size:13px;
+  opacity:.7;
+}
+ul{padding-left:20px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Neurology OPD – Clinical Triage System</h1>
+  <p>For professional neurological assessment support</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Patient Information</h2>
+
+<label>Age</label>
+<input type="number" id="age">
+
+<label>Chief Neurological Complaint</label>
+<select id="complaint">
+  <option value="">Select</option>
+  <option value="stroke">Sudden weakness / speech difficulty</option>
+  <option value="seizure">Seizure / fits</option>
+  <option value="headache">Severe or worst headache</option>
+  <option value="memory">Memory loss / dementia</option>
+  <option value="vertigo">Vertigo / imbalance</option>
+  <option value="parkinson">Tremor / Parkinsonian symptoms</option>
+  <option value="neuropathy">Numbness / neuropathy</option>
+  <option value="loc">Loss of consciousness</option>
+</select>
+
+<label>Symptom Duration</label>
+<select id="duration">
+  <option value="acute">Sudden / hours–days</option>
+  <option value="subacute">Days–weeks</option>
+  <option value="chronic">Months–years</option>
+</select>
+
+<button onclick="runAssessment()">Run Assessment</button>
+</div>
+
+<div id="alertBox" class="alert" style="display:none"></div>
+
+<div class="card">
+<h2>Risk Level</h2>
+<div id="riskResult">—</div>
+</div>
+
+<div class="card">
+<h2>Probable Differential Diagnosis</h2>
+<div id="diagnosis">—</div>
+</div>
+
+<div class="card">
+<h2>Clinical Advice</h2>
+<div id="advice">—</div>
+</div>
+
+<div class="card small">
+<strong>Medical Disclaimer:</strong><br>
+This tool assists neurological triage only.  
+It does not replace clinical judgment, examination, imaging, or emergency care.
+</div>
+
+</div>
+
+<script>
+function runAssessment(){
+
+  const age = parseInt(document.getElementById("age").value) || 0;
+  const c = document.getElementById("complaint").value;
+  const d = document.getElementById("duration").value;
+
+  let riskHTML = "<span class='badge low'>LOW RISK</span>";
+  let dx = [];
+  let advice = "Outpatient neurological evaluation recommended.";
+  let alert = "";
+
+  if(c === "stroke" || c === "seizure" || c === "loc"){
+    riskHTML = "<span class='badge high'>HIGH RISK</span>";
+    alert = "⚠️ Possible neurological emergency. Immediate hospital referral advised.";
+    advice = "Urgent emergency referral. Do not delay imaging and acute management.";
+  }
+  else if(d === "acute"){
+    riskHTML = "<span class='badge mod'>MODERATE RISK</span>";
+    advice = "Early neurology consultation advised.";
+  }
+
+  switch(c){
+    case "stroke":
+      dx = ["Ischemic stroke","Intracerebral hemorrhage","TIA"];
+      break;
+    case "seizure":
+      dx = ["Epilepsy","Metabolic seizure","Structural brain lesion"];
+      break;
+    case "headache":
+      dx = ["Migraine","Subarachnoid hemorrhage","Tension headache"];
+      break;
+    case "memory":
+      dx = ["Alzheimer disease","Vascular dementia","Frontotemporal dementia"];
+      break;
+    case "vertigo":
+      dx = ["BPPV","Vestibular neuritis","Cerebellar stroke"];
+      break;
+    case "parkinson":
+      dx = ["Parkinson disease","Drug-induced parkinsonism","Atypical parkinsonism"];
+      break;
+    case "neuropathy":
+      dx = ["Diabetic neuropathy","Vitamin B12 deficiency","CIDP"];
+      break;
+    case "loc":
+      dx = ["Syncope","Seizure","Raised intracranial pressure"];
+      break;
+    default:
+      dx = [];
+  }
+
+  document.getElementById("riskResult").innerHTML = riskHTML;
+  document.getElementById("diagnosis").innerHTML =
+    dx.length ? "<ul><li>" + dx.join("</li><li>") + "</li></ul>" : "—";
+  document.getElementById("advice").innerHTML = advice;
+
+  const alertBox = document.getElementById("alertBox");
+  if(alert){
+    alertBox.style.display = "block";
+    alertBox.innerText = alert;
+  }else{
+    alertBox.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
