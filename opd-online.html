@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Advanced Neurology Online OPD</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurology Advanced Online OPD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 :root{
   --dark:#0b1f3a;
-  --blue:#1ccad8;
+  --accent:#1ccad8;
   --bg:#f4f7fb;
-  --card:#fff;
+  --card:#ffffff;
 }
 body{
   margin:0;
   font-family:Segoe UI,Arial,sans-serif;
   background:var(--bg);
+  color:#222;
 }
 .hero{
   background:linear-gradient(135deg,#0b1f3a,#173e73);
@@ -26,9 +27,9 @@ body{
   max-width:1100px;
   margin:auto;
   display:flex;
-  align-items:center;
   gap:30px;
   flex-wrap:wrap;
+  align-items:center;
 }
 .hero img{
   max-width:260px;
@@ -49,32 +50,31 @@ body{
 }
 h2{
   margin-top:0;
-  border-left:6px solid var(--blue);
+  border-left:6px solid var(--accent);
   padding-left:12px;
 }
 label{
-  font-weight:600;
   display:block;
   margin-top:14px;
+  font-weight:600;
 }
 input,select{
   width:100%;
   padding:12px;
-  margin-top:6px;
   border-radius:10px;
   border:1px solid #ccc;
+  margin-top:6px;
 }
 button{
   background:var(--dark);
   color:#fff;
-  padding:14px 22px;
   border:none;
+  padding:14px 22px;
   border-radius:12px;
   font-size:16px;
   cursor:pointer;
   margin-top:20px;
 }
-button:hover{background:#071429}
 .badge{
   display:inline-block;
   padding:6px 14px;
@@ -92,19 +92,18 @@ button:hover{background:#071429}
   border-radius:10px;
   font-size:14px;
 }
-.small{font-size:13px;opacity:.75}
+.small{font-size:13px;opacity:.7}
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <h1>Advanced Neurology Smart OPD</h1>
-      <p>Clinical triage, risk stratification & decision-support system for neurologists</p>
-      <p>✔ Auto Risk ✔ Smart Diagnosis ✔ Online OPD</p>
+      <h1>Advanced Neurology Online OPD</h1>
+      <p>Clinical risk stratification & differential diagnosis support system</p>
+      <p>✔ Real logic ✔ Risk engine ✔ Doctor-grade</p>
     </div>
     <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54">
   </div>
@@ -112,128 +111,130 @@ button:hover{background:#071429}
 
 <div class="container">
 
-<!-- FORM -->
 <div class="card">
 <h2>Patient Information</h2>
 
 <label>Age</label>
-<input id="age" type="number">
+<input type="number" id="age">
 
 <label>Gender</label>
 <select id="gender">
-  <option>Male</option>
-  <option>Female</option>
+<option>Male</option>
+<option>Female</option>
 </select>
 
 <label>Chief Neurological Complaint</label>
-<select id="complaint" onchange="runEngine()">
-  <option value="">Select</option>
-  <option>Headache / Migraine</option>
-  <option>Seizures / Epilepsy</option>
-  <option>Memory Loss / Dementia</option>
-  <option>Stroke / TIA</option>
-  <option>Parkinsonism</option>
-  <option>Peripheral Neuropathy</option>
-  <option>Multiple Sclerosis</option>
-  <option>Movement Disorder</option>
-  <option>Vertigo / Dizziness</option>
-  <option>Loss of Consciousness</option>
-  <option>Sleep Disorder</option>
+<select id="complaint">
+<option value="">Select</option>
+<option value="headache">Headache / Migraine</option>
+<option value="seizure">Seizures / Epilepsy</option>
+<option value="memory">Memory Loss / Dementia</option>
+<option value="stroke">Stroke / TIA</option>
+<option value="parkinson">Parkinsonism</option>
+<option value="neuropathy">Peripheral Neuropathy</option>
+<option value="ms">Multiple Sclerosis</option>
+<option value="movement">Movement Disorder</option>
+<option value="vertigo">Vertigo / Dizziness</option>
+<option value="loc">Loss of Consciousness</option>
+<option value="sleep">Sleep Disorder</option>
 </select>
 
 <label>Duration</label>
 <select id="duration">
-  <option>Acute</option>
-  <option>Weeks</option>
-  <option>Months</option>
-  <option>Years</option>
+<option value="acute">Acute</option>
+<option value="weeks">Weeks</option>
+<option value="months">Months</option>
+<option value="years">Years</option>
 </select>
 
-<button onclick="generateSummary()">Generate Doctor Summary</button>
+<button onclick="runSystem()">Run Clinical Engine</button>
 </div>
 
-<!-- SUMMARY -->
 <div class="card">
-<h2>Clinical Summary (Doctor View)</h2>
+<h2>Clinical Summary</h2>
 <div id="summary">—</div>
 </div>
 
-<!-- RISK -->
 <div class="card">
 <h2>Risk Stratification</h2>
 <div id="risk">—</div>
 </div>
 
-<!-- DIAGNOSIS -->
 <div class="card">
 <h2>Probable Differential Diagnosis</h2>
 <div id="diagnosis">—</div>
 </div>
 
-<!-- APPOINTMENT -->
 <div class="card">
 <h2>Online Appointment Request</h2>
 <label>Email</label>
 <input type="email">
 <label>Preferred Date</label>
 <input type="date">
-<button onclick="alert('Appointment request submitted')">Submit Request</button>
+<button onclick="alert('Appointment request submitted')">Submit</button>
 </div>
 
-<!-- DISCLAIMER -->
 <div class="warning">
 <strong>Medical Disclaimer:</strong><br>
-This system assists in structured neurological history, triage and risk assessment only.
-Final diagnosis, investigations and management decisions remain the responsibility of the consulting neurologist.
-In case of emergency, immediate hospital care is advised.
+This system assists in structured neurological assessment and triage only.
+Final diagnosis and treatment decisions remain the responsibility of the consulting neurologist.
+Emergency cases must seek immediate hospital care.
 </div>
 
-<p class="small">© Advanced Neurology Online OPD — Clinical Support System</p>
+<p class="small">© Neurology Advanced OPD – Clinical Support System</p>
 
 </div>
 
 <script>
-function runEngine(){
-  const c=complaint.value;
-  let dx=[],risk="",rClass="low";
+function runSystem(){
+  const age = parseInt(document.getElementById("age").value || 0);
+  const c = document.getElementById("complaint").value;
+  const d = document.getElementById("duration").value;
 
-  if(c.includes("Memory")){
-    dx=["Alzheimer disease","Vascular dementia","Frontotemporal dementia"];
-    risk="Moderate to High Risk – cognitive decline";
+  let dx=[], risk="Low Risk", rClass="low";
+
+  if(c==="stroke" || c==="seizure" || c==="loc"){
+    risk="High Risk – urgent neurological evaluation";
+    rClass="high";
+  }
+
+  if(c==="memory" && age>60){
+    risk="Moderate to High Risk – neurocognitive disorder";
     rClass="mod";
   }
-  else if(c.includes("Seizure")){
-    dx=["Focal epilepsy","Generalized epilepsy","Metabolic seizures"];
-    risk="High Risk – requires urgent evaluation";
-    rClass="high";
-  }
-  else if(c.includes("Stroke")){
-    dx=["Ischemic stroke","Hemorrhagic stroke","TIA"];
-    risk="High Risk – neurological emergency";
-    rClass="high";
-  }
-  else if(c.includes("Headache")){
-    dx=["Migraine","Tension headache","Secondary headache"];
-    risk="Low to Moderate Risk";
-    rClass="low";
-  }
-  else{
-    dx=["Clinical correlation required"];
-    risk="Low Risk";
-    rClass="low";
+
+  if(d==="acute" && (c==="headache" || c==="vertigo")){
+    risk="Moderate Risk – rule out secondary cause";
+    rClass="mod";
   }
 
-  diagnosis.innerHTML=dx.map(d=>`<span class="badge">${d}</span>`).join("");
-  risk.innerHTML=`<span class="badge ${rClass}">${risk}</span>`;
-}
+  const dxMap={
+    headache:["Migraine","Tension headache","Secondary headache"],
+    seizure:["Focal epilepsy","Generalized epilepsy","Metabolic seizure"],
+    memory:["Alzheimer disease","Vascular dementia","Frontotemporal dementia"],
+    stroke:["Ischemic stroke","Hemorrhagic stroke","TIA"],
+    parkinson:["Parkinson disease","Atypical parkinsonism"],
+    neuropathy:["Diabetic neuropathy","CIDP","Toxic neuropathy"],
+    ms:["Relapsing MS","Progressive MS"],
+    movement:["Essential tremor","Dystonia","Chorea"],
+    vertigo:["BPPV","Vestibular neuritis","Central vertigo"],
+    loc:["Syncope","Seizure","Cardiac cause"],
+    sleep:["Insomnia","Sleep apnea","Parasomnia"]
+  };
 
-function generateSummary(){
-  summary.innerHTML=`
-  <strong>Age:</strong> ${age.value} |
-  <strong>Gender:</strong> ${gender.value}<br>
-  <strong>Chief Complaint:</strong> ${complaint.value}<br>
-  <strong>Duration:</strong> ${duration.value}
-  `;
+  dx = dxMap[c] || ["Clinical correlation required"];
+
+  document.getElementById("summary").innerHTML=
+    `<strong>Age:</strong> ${age} |
+     <strong>Gender:</strong> ${gender.value}<br>
+     <strong>Complaint:</strong> ${complaint.options[complaint.selectedIndex].text}<br>
+     <strong>Duration:</strong> ${d}`;
+
+  document.getElementById("risk").innerHTML=
+    `<span class="badge ${rClass}">${risk}</span>`;
+
+  document.getElementById("diagnosis").innerHTML=
+    dx.map(x=>`<span class="badge">${x}</span>`).join("");
 }
 </script>
 
