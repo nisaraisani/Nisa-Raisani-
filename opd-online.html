@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Neurology Advanced Online OPD</title>
+<title>Neurology Smart Public Health OPD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -92,7 +92,22 @@ button{
   border-radius:10px;
   font-size:14px;
 }
+.alert{
+  background:#fdecea;
+  border-left:6px solid #d32f2f;
+  padding:15px;
+  border-radius:10px;
+  font-size:15px;
+  color:#a71d2a;
+  display:none;
+}
 .small{font-size:13px;opacity:.7}
+.toggle{
+  margin-top:10px;
+  cursor:pointer;
+  color:#0b1f3a;
+  font-weight:600;
+}
 </style>
 </head>
 
@@ -101,9 +116,9 @@ button{
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <h1>Advanced Neurology Online OPD</h1>
-      <p>Clinical risk stratification & differential diagnosis support system</p>
-      <p>✔ Real logic ✔ Risk engine ✔ Doctor-grade</p>
+      <h1>Neurology Smart Public-Health OPD</h1>
+      <p>Clinical triage, emergency alert, risk stratification & public screening system</p>
+      <p>✔ Doctor Mode ✔ Public Mode ✔ Emergency Safety</p>
     </div>
     <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54">
   </div>
@@ -111,60 +126,73 @@ button{
 
 <div class="container">
 
+<!-- MODE -->
+<div class="card">
+<h2>Mode Selection</h2>
+<button onclick="setMode('doctor')">Doctor OPD Mode</button>
+<button onclick="setMode('public')">Free Public Screening</button>
+<p class="small">Public mode uses simplified logic & awareness-based output</p>
+</div>
+
+<!-- ALERT -->
+<div id="alertBox" class="alert"></div>
+
+<!-- FORM -->
 <div class="card">
 <h2>Patient Information</h2>
 
 <label>Age</label>
 <input type="number" id="age">
 
-<label>Gender</label>
-<select id="gender">
-<option>Male</option>
-<option>Female</option>
-</select>
-
 <label>Chief Neurological Complaint</label>
 <select id="complaint">
 <option value="">Select</option>
-<option value="headache">Headache / Migraine</option>
-<option value="seizure">Seizures / Epilepsy</option>
-<option value="memory">Memory Loss / Dementia</option>
-<option value="stroke">Stroke / TIA</option>
-<option value="parkinson">Parkinsonism</option>
-<option value="neuropathy">Peripheral Neuropathy</option>
-<option value="ms">Multiple Sclerosis</option>
-<option value="movement">Movement Disorder</option>
+<option value="stroke">Sudden weakness / Speech difficulty</option>
+<option value="seizure">Seizure / Fits</option>
+<option value="headache">Severe headache</option>
+<option value="memory">Memory loss</option>
 <option value="vertigo">Vertigo / Dizziness</option>
-<option value="loc">Loss of Consciousness</option>
-<option value="sleep">Sleep Disorder</option>
+<option value="loc">Loss of consciousness</option>
+<option value="parkinson">Tremor / Parkinsonism</option>
+<option value="neuropathy">Numbness / Neuropathy</option>
 </select>
 
 <label>Duration</label>
 <select id="duration">
-<option value="acute">Acute</option>
+<option value="acute">Sudden / Acute</option>
 <option value="weeks">Weeks</option>
 <option value="months">Months</option>
 <option value="years">Years</option>
 </select>
 
-<button onclick="runSystem()">Run Clinical Engine</button>
+<button onclick="runSystem()">Run Assessment</button>
 </div>
 
+<!-- SUMMARY -->
 <div class="card">
-<h2>Clinical Summary</h2>
+<h2>Clinical / Screening Summary</h2>
 <div id="summary">—</div>
 </div>
 
+<!-- RISK -->
 <div class="card">
-<h2>Risk Stratification</h2>
+<h2>Risk Level</h2>
 <div id="risk">—</div>
 </div>
 
-<div class="card">
+<!-- DIAGNOSIS -->
+<div class="card" id="dxCard">
 <h2>Probable Differential Diagnosis</h2>
 <div id="diagnosis">—</div>
 </div>
 
+<!-- BRAIN AGE -->
+<div class="card">
+<h2>Brain Age Estimation (Awareness)</h2>
+<div id="brainAge">—</div>
+</div>
+
+<!-- APPOINTMENT -->
 <div class="card">
 <h2>Online Appointment Request</h2>
 <label>Email</label>
@@ -174,69 +202,78 @@ button{
 <button onclick="alert('Appointment request submitted')">Submit</button>
 </div>
 
+<!-- DISCLAIMER -->
 <div class="warning">
 <strong>Medical Disclaimer:</strong><br>
-This system assists in structured neurological assessment and triage only.
-Final diagnosis and treatment decisions remain the responsibility of the consulting neurologist.
-Emergency cases must seek immediate hospital care.
+This system is designed for awareness, triage and structured neurological history only.
+It does not replace physical examination, investigations or emergency care.
+In red-flag symptoms, immediate hospital referral is mandatory.
 </div>
 
-<p class="small">© Neurology Advanced OPD – Clinical Support System</p>
+<p class="small">© Neurology Smart Public-Health OPD — Clinical & Awareness System</p>
 
 </div>
 
 <script>
+let MODE="doctor";
+
+function setMode(m){
+  MODE=m;
+  dxCard.style.display = m==="public" ? "none" : "block";
+}
+
 function runSystem(){
-  const age = parseInt(document.getElementById("age").value || 0);
-  const c = document.getElementById("complaint").value;
-  const d = document.getElementById("duration").value;
+  const age=parseInt(ageInput=age.value||0);
+  const c=complaint.value;
+  const d=duration.value;
 
-  let dx=[], risk="Low Risk", rClass="low";
+  let risk="Low Risk", rClass="low";
+  let alertMsg="";
+  let dx=[];
 
-  if(c==="stroke" || c==="seizure" || c==="loc"){
-    risk="High Risk – urgent neurological evaluation";
+  if(c==="stroke"||c==="seizure"||c==="loc"){
+    risk="High Risk – Possible neurological emergency";
     rClass="high";
+    alertMsg="🚨 RED FLAG: Symptoms suggest possible neurological emergency. Please go to nearest emergency department immediately.";
   }
-
-  if(c==="memory" && age>60){
-    risk="Moderate to High Risk – neurocognitive disorder";
-    rClass="mod";
-  }
-
-  if(d==="acute" && (c==="headache" || c==="vertigo")){
-    risk="Moderate Risk – rule out secondary cause";
+  else if(d==="acute"){
+    risk="Moderate Risk – Needs urgent evaluation";
     rClass="mod";
   }
 
   const dxMap={
-    headache:["Migraine","Tension headache","Secondary headache"],
-    seizure:["Focal epilepsy","Generalized epilepsy","Metabolic seizure"],
-    memory:["Alzheimer disease","Vascular dementia","Frontotemporal dementia"],
     stroke:["Ischemic stroke","Hemorrhagic stroke","TIA"],
-    parkinson:["Parkinson disease","Atypical parkinsonism"],
-    neuropathy:["Diabetic neuropathy","CIDP","Toxic neuropathy"],
-    ms:["Relapsing MS","Progressive MS"],
-    movement:["Essential tremor","Dystonia","Chorea"],
-    vertigo:["BPPV","Vestibular neuritis","Central vertigo"],
-    loc:["Syncope","Seizure","Cardiac cause"],
-    sleep:["Insomnia","Sleep apnea","Parasomnia"]
+    seizure:["Epileptic seizure","Metabolic seizure"],
+    headache:["Migraine","Secondary headache"],
+    memory:["Alzheimer disease","Vascular dementia"],
+    vertigo:["BPPV","Central vertigo"],
+    loc:["Syncope","Seizure"],
+    parkinson:["Parkinson disease"],
+    neuropathy:["Peripheral neuropathy"]
   };
 
-  dx = dxMap[c] || ["Clinical correlation required"];
+  dx=dxMap[c]||[];
 
-  document.getElementById("summary").innerHTML=
-    `<strong>Age:</strong> ${age} |
-     <strong>Gender:</strong> ${gender.value}<br>
-     <strong>Complaint:</strong> ${complaint.options[complaint.selectedIndex].text}<br>
-     <strong>Duration:</strong> ${d}`;
+  summary.innerHTML=
+  `<strong>Age:</strong> ${age}<br>
+   <strong>Complaint:</strong> ${complaint.options[complaint.selectedIndex].text}<br>
+   <strong>Duration:</strong> ${d}`;
 
-  document.getElementById("risk").innerHTML=
-    `<span class="badge ${rClass}">${risk}</span>`;
+  risk.innerHTML=`<span class="badge ${rClass}">${risk}</span>`;
+  diagnosis.innerHTML=dx.map(x=>`<span class="badge">${x}</span>`).join("");
 
-  document.getElementById("diagnosis").innerHTML=
-    dx.map(x=>`<span class="badge">${x}</span>`).join("");
+  brainAge.innerHTML =
+    age>0 ? `<strong>Estimated Brain Age:</strong> ${age + (risk==="High Risk – Possible neurological emergency"?10:5)} years` : "—";
+
+  if(alertMsg){
+    alertBox.style.display="block";
+    alertBox.innerText=alertMsg;
+  }else{
+    alertBox.style.display="none";
+  }
 }
 </script>
 
 </body>
-</html>
+  </html>
+  
