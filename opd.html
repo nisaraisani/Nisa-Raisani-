@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Neurology OPD Clinical Assessment</title>
+<title>Virtual Neurology OPD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -10,12 +10,11 @@ body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:#f4f7fb;
-  color:#222;
 }
 header{
   background:#0b1f3a;
   color:#fff;
-  padding:20px;
+  padding:18px;
   text-align:center;
 }
 .container{
@@ -25,7 +24,7 @@ header{
 }
 .card{
   background:#fff;
-  border-radius:10px;
+  border-radius:12px;
   padding:20px;
   margin-bottom:20px;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
@@ -35,9 +34,28 @@ h2{
   border-left:5px solid #1ccad8;
   padding-left:10px;
 }
+.flow{
+  background:#eef3fb;
+  border-left:6px solid #1ccad8;
+  padding:18px;
+  border-radius:10px;
+  font-size:16px;
+}
+.flow strong{color:#0b1f3a}
+.hidden{display:none}
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:#0b1f3a;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:15px;
+}
 label{
-  font-weight:600;
   display:block;
+  font-weight:600;
   margin-top:12px;
 }
 input,select{
@@ -47,22 +65,11 @@ input,select{
   border-radius:8px;
   border:1px solid #ccc;
 }
-button{
-  margin-top:18px;
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:#0b1f3a;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
 .badge{
   display:inline-block;
   padding:8px 14px;
   border-radius:20px;
   font-weight:700;
-  margin-top:10px;
 }
 .low{background:#e7f7ec;color:#0a7a3d}
 .mod{background:#fff3cd;color:#856404}
@@ -72,42 +79,42 @@ button{
   border-left:6px solid #d32f2f;
   padding:15px;
   border-radius:8px;
+  margin-bottom:15px;
   color:#a71d2a;
-  margin-bottom:20px;
 }
-.small{
-  font-size:13px;
-  opacity:.7;
-}
-ul{padding-left:20px}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Neurology OPD  Clinical Triage System</h1>
-  <p>For professional neurological assessment support</p>
+<h1>Virtual Neurology OPD</h1>
+<p>Online consultation experience</p>
 </header>
 
 <div class="container">
 
+<!-- VIRTUAL FLOW -->
+<div id="flowBox" class="card flow">
+<strong>👨‍⚕️ Doctor:</strong>
+<span id="flowText">Please tell me your main neurological problem.</span>
+</div>
+
+<!-- OPD FORM (UNCHANGED CORE) -->
 <div class="card">
 <h2>Patient Information</h2>
 
 <label>Age</label>
 <input type="number" id="age">
 
-<label>Chief Neurological Complaint</label>
-<select id="complaint">
+<label>Main Neurological Complaint</label>
+<select id="complaint" onchange="doctorFollowUp()">
   <option value="">Select</option>
-  <option value="stroke">Sudden weakness / speech difficulty</option>
+  <option value="stroke">Sudden weakness / speech problem</option>
   <option value="seizure">Seizure / fits</option>
-  <option value="headache">Severe or worst headache</option>
-  <option value="memory">Memory loss / dementia</option>
+  <option value="headache">Severe headache</option>
+  <option value="memory">Memory loss</option>
   <option value="vertigo">Vertigo / imbalance</option>
-  <option value="parkinson">Tremor / Parkinsonian symptoms</option>
-  <option value="neuropathy">Numbness / neuropathy</option>
   <option value="loc">Loss of consciousness</option>
 </select>
 
@@ -121,96 +128,88 @@ ul{padding-left:20px}
 <button onclick="runAssessment()">Run Assessment</button>
 </div>
 
-<div id="alertBox" class="alert" style="display:none"></div>
+<div id="alertBox" class="alert hidden"></div>
 
 <div class="card">
-<h2>Risk Level</h2>
+<h2>Doctor Assessment</h2>
 <div id="riskResult">—</div>
 </div>
 
 <div class="card">
-<h2>Probable Differential Diagnosis</h2>
-<div id="diagnosis">—</div>
+<h2>Doctor’s Explanation</h2>
+<div id="doctorTalk">—</div>
 </div>
 
 <div class="card">
-<h2>Clinical Advice</h2>
+<h2>Next Step Advice</h2>
 <div id="advice">—</div>
-</div>
-
-<div class="card small">
-<strong>Medical Disclaimer:</strong><br>
-This tool assists neurological triage only.  
-It does not replace clinical judgment, examination, imaging, or emergency care.
 </div>
 
 </div>
 
 <script>
-function runAssessment(){
+function doctorFollowUp(){
+  const c=document.getElementById("complaint").value;
+  const text=document.getElementById("flowText");
 
-  const age = parseInt(document.getElementById("age").value) || 0;
-  const c = document.getElementById("complaint").value;
-  const d = document.getElementById("duration").value;
-
-  let riskHTML = "<span class='badge low'>LOW RISK</span>";
-  let dx = [];
-  let advice = "Outpatient neurological evaluation recommended.";
-  let alert = "";
-
-  if(c === "stroke" || c === "seizure" || c === "loc"){
-    riskHTML = "<span class='badge high'>HIGH RISK</span>";
-    alert = "⚠️ Possible neurological emergency. Immediate hospital referral advised.";
-    advice = "Urgent emergency referral. Do not delay imaging and acute management.";
-  }
-  else if(d === "acute"){
-    riskHTML = "<span class='badge mod'>MODERATE RISK</span>";
-    advice = "Early neurology consultation advised.";
-  }
-
-  switch(c){
-    case "stroke":
-      dx = ["Ischemic stroke","Intracerebral hemorrhage","TIA"];
-      break;
-    case "seizure":
-      dx = ["Epilepsy","Metabolic seizure","Structural brain lesion"];
-      break;
-    case "headache":
-      dx = ["Migraine","Subarachnoid hemorrhage","Tension headache"];
-      break;
-    case "memory":
-      dx = ["Alzheimer disease","Vascular dementia","Frontotemporal dementia"];
-      break;
-    case "vertigo":
-      dx = ["BPPV","Vestibular neuritis","Cerebellar stroke"];
-      break;
-    case "parkinson":
-      dx = ["Parkinson disease","Drug-induced parkinsonism","Atypical parkinsonism"];
-      break;
-    case "neuropathy":
-      dx = ["Diabetic neuropathy","Vitamin B12 deficiency","CIDP"];
-      break;
-    case "loc":
-      dx = ["Syncope","Seizure","Raised intracranial pressure"];
-      break;
-    default:
-      dx = [];
-  }
-
-  document.getElementById("riskResult").innerHTML = riskHTML;
-  document.getElementById("diagnosis").innerHTML =
-    dx.length ? "<ul><li>" + dx.join("</li><li>") + "</li></ul>" : "—";
-  document.getElementById("advice").innerHTML = advice;
-
-  const alertBox = document.getElementById("alertBox");
-  if(alert){
-    alertBox.style.display = "block";
-    alertBox.innerText = alert;
+  if(c==="stroke"){
+    text.innerText="You mentioned sudden weakness. Did this start suddenly?";
+  }else if(c==="seizure"){
+    text.innerText="Was there loss of consciousness or body jerking?";
+  }else if(c==="headache"){
+    text.innerText="Is this the worst headache you have ever experienced?";
+  }else if(c==="memory"){
+    text.innerText="Is the memory problem gradually worsening?";
+  }else if(c==="vertigo"){
+    text.innerText="Does the room feel like it is spinning?";
+  }else if(c==="loc"){
+    text.innerText="Did the patient completely black out?";
   }else{
-    alertBox.style.display = "none";
+    text.innerText="Please tell me your main neurological problem.";
   }
+}
+
+function runAssessment(){
+  const c=document.getElementById("complaint").value;
+  const d=document.getElementById("duration").value;
+
+  let risk="<span class='badge low'>LOW RISK</span>";
+  let talk="At this stage, the problem does not look dangerous.";
+  let advice="OPD follow-up is appropriate.";
+  let alert="";
+
+  document.getElementById("flowText").innerText="🧠 Neurologist is analyzing your condition...";
+
+  setTimeout(()=>{
+    if(c==="stroke"||c==="seizure"||c==="loc"){
+      risk="<span class='badge high'>HIGH RISK</span>";
+      talk="Based on what you told me, this condition cannot be ignored.";
+      advice="Immediate hospital evaluation is advised.";
+      alert="⚠️ Possible neurological emergency. Do not delay.";
+    }
+    else if(d==="acute"){
+      risk="<span class='badge mod'>MODERATE RISK</span>";
+      talk="This problem needs early medical review.";
+      advice="Neurology consultation within few days.";
+    }
+
+    document.getElementById("riskResult").innerHTML=risk;
+    document.getElementById("doctorTalk").innerHTML=talk;
+    document.getElementById("advice").innerHTML=advice;
+
+    const alertBox=document.getElementById("alertBox");
+    if(alert){
+      alertBox.classList.remove("hidden");
+      alertBox.innerText=alert;
+    }else{
+      alertBox.classList.add("hidden");
+    }
+
+    document.getElementById("flowText").innerText="👨‍⚕️ Doctor: I have explained my assessment above.";
+  },1500);
 }
 </script>
 
 </body>
-</html>
+  </html>
+  
