@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- Page SEO -->
+  <!-- ========= PAGE SEO ========= -->
   <title>Why This Happens | Brain Insights – Dr. Nisa Raisani</title>
   <meta name="description" content="Understand why your brain feels tired, distracted, or overactive. Clear explanations and insights for daily mental patterns.">
 
@@ -12,151 +12,31 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Inline CSS for simplicity -->
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* Body & Fonts */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      line-height: 1.6;
-      color: #222;
-      background: #f5f5f5;
-    }
-
-    /* Header */
-    .navbar {
-      background: #4caf50;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .navbar .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .navbar nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    nav.active {
-      display: block;
-    }
-
-    /* Sections */
-    section {
-      padding: 60px 20px;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    p {
-      max-width: 800px;
-      margin: 0 auto 15px;
-    }
-
-    /* Cards */
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 25px 20px;
-      margin: 20px auto;
-      max-width: 700px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-    }
-
-    .card h4 {
-      font-family: 'Playfair Display', serif;
-      margin-top: 0;
-      color: #4caf50;
-    }
-
-    /* Read More buttons */
-    .read-more {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: #4caf50;
-      color: #fff;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .read-more:hover {
-      background: #43a047;
-    }
-
-    /* Reveal text */
-    .reveal-text {
-      display: none;
-      margin-top: 12px;
-      line-height: 1.5;
-      color: #555;
-    }
-
-    /* Scroll animation */
-    .fade {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-    .fade.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Footer */
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 25px 20px;
-    }
-    footer a {
-      color: #4caf50;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .menu-toggle { display: block; }
-      .navbar nav { display: none; flex-direction: column; }
-      .navbar nav a { margin: 12px 0; }
-    }
+    /* Template-based styling, keep structure */
+    body {font-family:'Poppins',sans-serif; margin:0; color:#222; line-height:1.6;}
+    h2 {font-family:'Playfair Display', serif; color:#333; margin-bottom:15px; text-align:center;}
+    p {max-width:850px; margin:10px auto;}
+    .grid {display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
+    .card {background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.05); max-width:300px; transition:all 0.3s ease;}
+    .card h4 {font-family:'Playfair Display', serif; margin-top:0; color:#4caf50;}
+    .card:hover {transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    .read-more {color:#4caf50; cursor:pointer; text-decoration:underline;}
+    .reveal-text {display:none; margin-top:10px; color:#555; line-height:1.5;}
+    .fade {opacity:0; transform:translateY(20px); transition:all 0.8s ease;}
+    .fade.show {opacity:1; transform:translateY(0);}
+    footer {text-align:center; padding:25px 10px; background:#f1f1f1;}
+    footer a {margin:0 10px; text-decoration:none; color:#4caf50;}
+    .navbar {display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#4caf50; color:#fff; position:sticky; top:0; z-index:999;}
+    .navbar .logo {font-family:'Playfair Display', serif; font-weight:600;}
+    .menu-toggle {display:none; font-size:1.5rem; cursor:pointer;}
+    nav a {color:#fff; margin-left:20px; text-decoration:none; font-weight:500;}
+    nav.active {display:block;}
+    @media (max-width:768px){.menu-toggle{display:block;} nav{display:none; flex-direction:column;} nav a{margin:12px 0;}}
   </style>
 </head>
-
 <body>
 
 <!-- HEADER -->
@@ -170,43 +50,47 @@
     <a href="research.html">Research</a>
     <a href="appointment.html">Appointment</a>
     <a href="contact.html">Contact</a>
-    <a class="lang-btn">EN / اردو</a>
+    <button class="lang-btn">EN / اردو</button>
   </nav>
 </header>
 
 <!-- PAGE INTRO -->
-<section class="fade">
+<section class="fade" style="margin-top:80px;">
   <h2>Why Your Brain Feels the Way It Does</h2>
   <p>
-    Your brain is constantly working, reacting, and adapting. Sometimes you feel tired, distracted, or overwhelmed — even when everything seems normal. Here we explain why this happens and what it means for your daily life.
+    Your brain is constantly working, adapting, and managing daily life. Sometimes you may feel tired, distracted, or overwhelmed. These experiences are natural and often reflect the way your brain balances focus, rest, and cognitive load.
   </p>
 </section>
 
-<!-- INSIGHT CARDS -->
+<!-- CARDS SECTION -->
 <section class="fade">
-  <div class="card">
-    <h4>Distraction Happens Naturally</h4>
-    <p>
-      Your brain shifts focus to balance multiple tasks and protect itself from overload. Occasional distraction is a sign it is actively managing priorities.
-    </p>
-  </div>
+  <div class="grid">
 
-  <div class="card">
-    <h4>Fatigue Isn’t Always Sleep-Related</h4>
-    <p>
-      Mental tiredness can appear even after a full night’s rest. Stress, continuous decision-making, and cognitive load all contribute to feeling drained.
-    </p>
-  </div>
+    <div class="card">
+      <h4>Distraction Happens Naturally</h4>
+      <p>
+        Your brain shifts attention to balance multiple tasks and protect itself from overload.
+      </p>
+    </div>
 
-  <div class="card">
-    <h4>Overthinking Is a Common Pattern</h4>
-    <p>
-      Reflecting repeatedly on events or tasks is a normal cognitive activity. Overthinking often signals problem-solving and organization, not failure.
-    </p>
+    <div class="card">
+      <h4>Fatigue Isn’t Always Sleep-Related</h4>
+      <p>
+        Feeling tired does not always mean lack of sleep. Mental fatigue can come from stress, decision-making, and prolonged focus.
+      </p>
+    </div>
+
+    <div class="card">
+      <h4>Overthinking Is a Normal Pattern</h4>
+      <p>
+        Repeated reflection is a common cognitive pattern. Overthinking often helps organize thoughts rather than hinder them.
+      </p>
+    </div>
+
   </div>
 </section>
 
-<!-- CLICK TO LEARN MORE -->
+<!-- OPTIONAL INTERACTIVE CARDS -->
 <section class="fade">
   <h2>Learn More About Your Brain</h2>
 
@@ -215,7 +99,7 @@
       <span class="read-more" onclick="toggleText('text1')">Why stress affects focus</span>
     </p>
     <p id="text1" class="reveal-text">
-      Stress triggers hormones that alter attention and memory circuits. Your brain prioritizes urgent tasks over less important ones as a protective mechanism.
+      Stress triggers chemical changes that alter attention and memory circuits. Your brain prioritizes urgent tasks over less important ones.
     </p>
   </div>
 
@@ -224,7 +108,7 @@
       <span class="read-more" onclick="toggleText('text2')">Why decision-making feels tiring</span>
     </p>
     <p id="text2" class="reveal-text">
-      Each choice consumes mental energy. Your brain signals fatigue to encourage breaks and improve future decisions.
+      Every choice, even small, consumes mental energy. Fatigue signals encourage breaks and better future decisions.
     </p>
   </div>
 
@@ -233,14 +117,15 @@
       <span class="read-more" onclick="toggleText('text3')">Why thoughts race at night</span>
     </p>
     <p id="text3" class="reveal-text">
-      Nighttime quiet allows your mind to reflect freely. Racing thoughts are normal and help organize information.
+      Nighttime quiet allows the mind to reflect freely. Racing thoughts are normal and often help organize information.
     </p>
   </div>
+
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>
+  <div class="footer-menu">
     <a href="privacy.html">Privacy Policy</a>
     <a href="disclaimer.html">Medical Disclaimer</a>
     <a href="contact.html">Contact</a>
@@ -248,30 +133,31 @@
   <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
 </footer>
 
-<!-- SCRIPTS -->
+<!-- SCROLL ANIMATION -->
 <script>
-  // Scroll animation
   const fades = document.querySelectorAll('.fade');
   const showOnScroll = () => {
     fades.forEach(el => {
       const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight - 100) el.classList.add('show');
+      if(top < window.innerHeight - 100) el.classList.add('show');
     });
   };
   window.addEventListener('scroll', showOnScroll);
   showOnScroll();
+</script>
 
-  // Mobile menu toggle
+<!-- MOBILE MENU -->
+<script>
   function toggleMenu() {
     document.getElementById("nav-menu").classList.toggle("active");
   }
 
-  // Click to reveal text
-  function toggleText(id) {
+  function toggleText(id){
     const el = document.getElementById(id);
-    el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+    el.style.display = (el.style.display==='none' || el.style.display==='') ? 'block' : 'none';
   }
 </script>
 
 </body>
-</html>
+  </html>
+  
