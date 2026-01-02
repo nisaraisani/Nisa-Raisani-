@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Neurology OPD Initiative</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA Ready -->
+<meta name="theme-color" content="#0056b3">
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#eef2f6;
+  padding:15px;
+}
+.container{
+  max-width:800px;
+  margin:auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+h2,h3{text-align:center}
+label{display:block;margin-top:10px;font-weight:bold}
+select,input,button{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+}
+button{
+  background:#0056b3;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
+}
+button:hover{background:#003f88}
+.result{
+  margin-top:20px;
+  padding:15px;
+  border-radius:8px;
+}
+.high{background:#ffd6d6}
+.moderate{background:#fff3cd}
+.low{background:#d4edda}
+.mode, .box{
+  background:#f2f2f2;
+  padding:10px;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+small{color:#555}
+canvas{
+  max-width:100%;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🧠 Virtual Neurology OPD</h2>
+<p style="text-align:center">
+<b>Educational & Clinical Triage Demo</b><br>
+Founder: <b>Dr Nisa Rasani</b>
+</p>
+
+<div class="mode">
+<label>Mode</label>
+<select id="mode">
+  <option>DEMO</option>
+  <option>NGO</option>
+  <option>GOVERNMENT</option>
+</select>
+</div>
+
+<div class="box">
+<b>Patient ID:</b> <span id="pid"></span>
+</div>
+
+<label>Age</label>
+<input type="number" id="age">
+
+<label>Complaint</label>
+<select id="complaint">
+  <option value="">Select</option>
+  <option>Sudden Weakness</option>
+  <option>Speech Difficulty</option>
+  <option>Seizure</option>
+  <option>Chronic Headache</option>
+  <option>Numbness</option>
+</select>
+
+<label>Duration</label>
+<select id="duration">
+  <option value="">Select</option>
+  <option>Hours</option>
+  <option>Days</option>
+  <option>Weeks</option>
+</select>
+
+<label>Language</label>
+<select id="lang">
+  <option value="ur">Urdu</option>
+  <option value="en">English</option>
+</select>
+
+<button onclick="runAssessment()">Run Assessment</button>
+<button onclick="printReferral()">Print Referral</button>
+<button onclick="exportCSV()">Export Research CSV</button>
+
+<div id="output"></div>
+
+<h3>📊 Neurology Dashboard</h3>
+<canvas id="chart" height="120"></canvas>
+
+<small>
+⚠️ Not a replacement for physical examination or emergency care
+</small>
+
+</div>
+
+<script>
+// ==========================
+// PATIENT ID SYSTEM
+// ==========================
+function generatePID(){
+  return "VNOPD-" + Date.now().toString().slice(-6);
+}
+document.getElementById("pid").innerText = generatePID();
+
+// ==========================
+// LANGUAGE TEXT
+// ==========================
+const TEXT={
+  ur:{
+    high:"فوراً ایمرجنسی میں جائیں",
+    moderate:"نیورولوجی OPD سے رجوع کریں",
+    low:"فی الحال خطرہ کم لگتا ہے"
+  },
+  en:{
+    high:"Go to emergency immediately",
+    moderate:"Neurology OPD consultation advised",
+    low:"Currently low risk"
+  }
+};
+
+// ==========================
+// RISK ENGINE
+// ==========================
+function assessRisk(c,d){
+  if(c==="Sudden Weakness"||c==="Speech Difficulty"||c==="Seizure")
+    return {level:"HIGH RISK",css:"high"};
+  if(c==="Chronic Headache"||c==="Numbness"||d==="Weeks")
+    return {level:"MODERATE RISK",css:"moderate"};
+  return {level:"LOW RISK",css:"low"};
+}
+
+// ==========================
+// CONDITION MAP
+// ==========================
+function detectCondition(c){
+  const map={
+    "Sudden Weakness":"Stroke",
+    "Speech Difficulty":"Stroke",
+    "Seizure":"Epilepsy",
+    "Chronic Headache":"Migraine",
+    "Numbness":"Neuropathy"
+  };
+  return map[c]||"General Neurology";
+}
+
+// ==========================
+// RESEARCH STORAGE
+// ==========================
+let research=[];
+let stats={HIGH:0,MODERATE:0,LOW:0};
+
+// ==========================
+// DASHBOARD CHART
+// ==========================
+function drawChart(){
+  const c=document.getElementById("chart");
+  const ctx=c.getContext("2d");
+  ctx.clearRect(0,0,c.width,c.height);
+
+  const values=[stats.HIGH,stats.MODERATE,stats.LOW];
+  const labels=["High","Moderate","Low"];
+  const colors=["#ff6b6b","#f1c40f","#2ecc71"];
+
+  let x=30;
+  values.forEach((v,i)=>{
+    ctx.fillStyle=colors[i];
+    ctx.fillRect(x,100-v*10,40,v*10);
+    ctx.fillStyle="#000";
+    ctx.fillText(labels[i],x,115);
+    ctx.fillText(v,x+10,90-v*10);
+    x+=80;
+  });
+}
+
+// ==========================
+// MAIN FUNCTION
+// ==========================
+function runAssessment(){
+  let age=ageInput.value;
+  let c=complaintInput.value;
+  let d=durationInput.value;
+  let lang=langInput.value;
+  let mode=modeInput.value;
+
+  if(!age||!c||!d){
+    alert("Complete all fields");
+    return;
+  }
+
+  let risk=assessRisk(c,d);
+  let condition=detectCondition(c);
+
+  stats[risk.level.split(" ")[0]]++;
+  drawChart();
+
+  research.push({
+    pid:document.getElementById("pid").innerText,
+    age,c,d,
+    risk:risk.level,
+    condition,
+    mode,
+    date:new Date().toISOString()
+  });
+
+  window.lastResult={age,c,condition,risk:risk.level};
+
+  output.innerHTML=`
+  <div class="result ${risk.css}">
+    <b>Risk:</b> ${risk.level}<br>
+    <b>Condition:</b> ${condition}<br><br>
+    <b>Advice:</b> ${TEXT[lang][risk.level.split(" ")[0].toLowerCase()]}
+  </div>`;
+
+  if(risk.level==="HIGH RISK"){
+    alert("🚨 Emergency – Immediate Action Required");
+  }
+}
+
+// ==========================
+// EXPORT CSV
+// ==========================
+function exportCSV(){
+  let csv="PID,Age,Complaint,Duration,Risk,Condition,Mode,Date\n";
+  research.forEach(r=>{
+    csv+=`${r.pid},${r.age},${r.c},${r.d},${r.risk},${r.condition},${r.mode},${r.date}\n`;
+  });
+  let b=new Blob([csv],{type:"text/csv"});
+  let a=document.createElement("a");
+  a.href=URL.createObjectURL(b);
+  a.download="VNOPD_Research_Data.csv";
+  a.click();
+}
+
+// ==========================
+// PRINT REFERRAL
+// ==========================
+function printReferral(){
+  if(!window.lastResult){
+    alert("Run assessment first");
+    return;
+  }
+  let w=window.open("");
+  w.document.write(`<pre>
+Referral Slip
+-------------------------
+Patient ID: ${document.getElementById("pid").innerText}
+Age: ${lastResult.age}
+Complaint: ${lastResult.c}
+Condition: ${lastResult.condition}
+Risk: ${lastResult.risk}
+
+Recommendation:
+Neurology OPD / Emergency
+
+Virtual Neurology OPD Initiative
+Dr Nisa Rasani
+-------------------------
+</pre>`);
+  w.print();
+}
+
+// shortcuts
+const ageInput=document.getElementById("age");
+const complaintInput=document.getElementById("complaint");
+const durationInput=document.getElementById("duration");
+const langInput=document.getElementById("lang");
+const modeInput=document.getElementById("mode");
+const output=document.getElementById("output");
+</script>
+
+</body>
+</html>
