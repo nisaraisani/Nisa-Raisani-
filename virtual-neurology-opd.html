@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{font-family:Arial,sans-serif;background:#f4f6f8;padding:15px}
-.container{max-width:900px;margin:auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+body{font-family:Arial;background:#f4f6f8;padding:15px}
+.container{max-width:950px;margin:auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
 h2,h3{text-align:center;color:#003366}
 label{display:block;margin-top:12px;font-weight:bold}
 input,select,button{width:100%;padding:10px;margin-top:6px}
@@ -20,7 +20,10 @@ button:hover{background:#002244}
 .box{background:#f2f2f2;padding:10px;border-radius:6px;margin-top:10px}
 canvas{margin-top:20px;width:100%;border:1px solid #ddd}
 small{color:#555}
-.lang{margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{border:1px solid #ccc;padding:8px;font-size:14px;text-align:center}
+th{background:#003366;color:#fff}
+.search{margin-top:15px}
 </style>
 </head>
 
@@ -29,7 +32,7 @@ small{color:#555}
 <div class="container">
 
 <h2 id="title">Virtual Neurology OPD</h2>
-<p style="text-align:center" id="subtitle">
+<p style="text-align:center">
 <b>Dr Nisa Rasani</b><br>Neurologist
 </p>
 
@@ -37,33 +40,31 @@ small{color:#555}
 <b>Patient ID:</b> <span id="pid"></span>
 </div>
 
-<div class="lang">
 <label>Language / زبان</label>
 <select id="language" onchange="setLanguage()">
-  <option value="en">English</option>
-  <option value="ur">اردو</option>
+<option value="en">English</option>
+<option value="ur">اردو</option>
 </select>
-</div>
 
 <label id="ageLabel">Age</label>
 <input type="number" id="age">
 
 <label id="complaintLabel">Main Symptom</label>
 <select id="complaint">
-  <option value="">Select</option>
-  <option>Chronic Headache</option>
-  <option>Sudden Weakness</option>
-  <option>Speech Difficulty</option>
-  <option>Seizure</option>
-  <option>Numbness / Tingling</option>
+<option value="">Select</option>
+<option>Chronic Headache</option>
+<option>Sudden Weakness</option>
+<option>Speech Difficulty</option>
+<option>Seizure</option>
+<option>Numbness / Tingling</option>
 </select>
 
 <label id="durationLabel">Duration</label>
 <select id="duration">
-  <option value="">Select</option>
-  <option>Few Hours</option>
-  <option>Few Days</option>
-  <option>Several Weeks</option>
+<option value="">Select</option>
+<option>Few Hours</option>
+<option>Few Days</option>
+<option>Several Weeks</option>
 </select>
 
 <button onclick="runAssessment()" id="assessBtn">Run Assessment</button>
@@ -73,6 +74,29 @@ small{color:#555}
 
 <h3 id="dashTitle">Patient Dashboard</h3>
 <canvas id="chart" width="500" height="150"></canvas>
+
+<!-- ================= NEXT STEP ================= -->
+<h3>Saved Patient Records</h3>
+
+<div class="search">
+<input type="text" id="searchId" placeholder="Search by Patient ID">
+<button onclick="searchPatient()">Search</button>
+<button onclick="loadHistory()">Show All</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Patient ID</th>
+<th>Age</th>
+<th>Complaint</th>
+<th>Condition</th>
+<th>Risk</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody id="history"></tbody>
+</table>
 
 <small id="disclaimer">
 This tool provides clinical guidance only and does not replace physical examination or emergency care.
@@ -84,42 +108,27 @@ This tool provides clinical guidance only and does not replace physical examinat
 // ================= PATIENT ID =================
 pid.innerText="VNOPD-"+Math.floor(Math.random()*900000+100000);
 
-// ================= LANGUAGE TEXT =================
+// ================= LANGUAGE =================
 const TEXT={
-en:{
- title:"Virtual Neurology OPD",
- subtitle:"Neurologist",
- age:"Age",
- complaint:"Main Symptom",
- duration:"Duration",
- assess:"Run Assessment",
- referral:"Print Referral Slip",
- dashboard:"Patient Dashboard",
- disclaimer:"This tool provides clinical guidance only and does not replace physical examination or emergency care.",
- high:"Please seek emergency medical care immediately.",
- moderate:"Neurology OPD consultation is recommended.",
- low:"Monitor symptoms and seek care if they worsen."
-},
-ur:{
- title:"ورچوئل نیورولوجی او پی ڈی",
- subtitle:"نیورولوجسٹ",
- age:"عمر",
- complaint:"بنیادی علامت",
- duration:"دورانیہ",
- assess:"جائزہ کریں",
- referral:"ریفرل سلپ پرنٹ کریں",
- dashboard:"مریض ڈیش بورڈ",
- disclaimer:"یہ سہولت صرف رہنمائی کے لیے ہے اور ایمرجنسی یا فزیکل معائنے کا متبادل نہیں۔",
- high:"فوراً قریبی ایمرجنسی میں جائیں۔",
- moderate:"نیورولوجی او پی ڈی سے رجوع کریں۔",
- low:"علامات پر نظر رکھیں، بڑھیں تو ڈاکٹر سے رجوع کریں۔"
-}
+en:{title:"Virtual Neurology OPD",age:"Age",complaint:"Main Symptom",duration:"Duration",
+assess:"Run Assessment",referral:"Print Referral Slip",
+dashboard:"Patient Dashboard",
+disclaimer:"This tool provides clinical guidance only and does not replace physical examination or emergency care.",
+high:"Immediate emergency evaluation is strongly advised.",
+moderate:"Neurology OPD consultation is recommended.",
+low:"Monitor symptoms and seek care if they worsen."},
+ur:{title:"ورچوئل نیورولوجی او پی ڈی",age:"عمر",complaint:"بنیادی علامت",duration:"دورانیہ",
+assess:"جائزہ کریں",referral:"ریفرل سلپ پرنٹ کریں",
+dashboard:"مریض ڈیش بورڈ",
+disclaimer:"یہ سہولت صرف رہنمائی کے لیے ہے اور ایمرجنسی کا متبادل نہیں۔",
+high:"فوراً قریبی ایمرجنسی میں جائیں۔",
+moderate:"نیورولوجی او پی ڈی سے رجوع کریں۔",
+low:"علامات پر نظر رکھیں۔"}
 };
 
 function setLanguage(){
  let l=language.value;
  title.innerText=TEXT[l].title;
- subtitle.innerHTML="<b>Dr Nisa Rasani</b><br>"+TEXT[l].subtitle;
  ageLabel.innerText=TEXT[l].age;
  complaintLabel.innerText=TEXT[l].complaint;
  durationLabel.innerText=TEXT[l].duration;
@@ -129,66 +138,73 @@ function setLanguage(){
  disclaimer.innerText=TEXT[l].disclaimer;
 }
 
-// ================= RISK ENGINE =================
+// ================= LOGIC =================
 function assessRisk(c,d){
  if(c==="Sudden Weakness"||c==="Speech Difficulty"||c==="Seizure")
-   return{level:"HIGH",css:"high"};
+  return{level:"HIGH",css:"high"};
  if(c==="Chronic Headache"||c==="Numbness / Tingling"||d==="Several Weeks")
-   return{level:"MODERATE",css:"moderate"};
+  return{level:"MODERATE",css:"moderate"};
  return{level:"LOW",css:"low"};
 }
-
-// ================= CONDITION =================
 function detectCondition(c){
- const map={
-  "Chronic Headache":"Migraine",
-  "Sudden Weakness":"Possible Stroke",
-  "Speech Difficulty":"Possible Stroke",
-  "Seizure":"Seizure Disorder",
-  "Numbness / Tingling":"Peripheral Neuropathy"
- };
- return map[c]||"Neurological Condition";
+ return{
+ "Chronic Headache":"Migraine",
+ "Sudden Weakness":"Possible Stroke",
+ "Speech Difficulty":"Possible Stroke",
+ "Seizure":"Seizure Disorder",
+ "Numbness / Tingling":"Peripheral Neuropathy"
+ }[c]||"Neurological Condition";
 }
 
 // ================= DASHBOARD =================
 let stats={HIGH:0,MODERATE:0,LOW:0};
-
 function drawChart(){
- const ctx=chart.getContext("2d");
+ let ctx=chart.getContext("2d");
  ctx.clearRect(0,0,chart.width,chart.height);
- const data=[stats.HIGH,stats.MODERATE,stats.LOW];
- const colors=["#ff6b6b","#f1c40f","#2ecc71"];
- const labels=["High","Moderate","Low"];
- let x=50;
- data.forEach((v,i)=>{
-  ctx.fillStyle=colors[i];
-  ctx.fillRect(x,120-v*15,50,v*15);
-  ctx.fillStyle="#000";
-  ctx.fillText(labels[i],x,140);
-  ctx.fillText(v,x+20,110-v*15);
+ let d=[stats.HIGH,stats.MODERATE,stats.LOW],x=50;
+ ["High","Moderate","Low"].forEach((l,i)=>{
+  ctx.fillStyle=["#ff6b6b","#f1c40f","#2ecc71"][i];
+  ctx.fillRect(x,120-d[i]*15,50,d[i]*15);
+  ctx.fillStyle="#000";ctx.fillText(l,x,140);ctx.fillText(d[i],x+20,110-d[i]*15);
   x+=140;
  });
+}
+
+// ================= STORAGE =================
+function saveRecord(r){
+ let data=JSON.parse(localStorage.getItem("VNOPD_RECORDS"))||[];
+ data.push(r);
+ localStorage.setItem("VNOPD_RECORDS",JSON.stringify(data));
+ loadHistory();
+}
+function loadHistory(){
+ let data=JSON.parse(localStorage.getItem("VNOPD_RECORDS"))||[];
+ history.innerHTML="";
+ data.forEach(r=>{
+  history.innerHTML+=`<tr>
+  <td>${r.patient_id}</td><td>${r.age}</td><td>${r.complaint}</td>
+  <td>${r.condition}</td><td>${r.risk}</td><td>${r.date}</td></tr>`;
+ });
+}
+function searchPatient(){
+ let id=searchId.value.trim();
+ let data=JSON.parse(localStorage.getItem("VNOPD_RECORDS"))||[];
+ let r=data.find(x=>x.patient_id===id);
+ history.innerHTML=r?`<tr>
+ <td>${r.patient_id}</td><td>${r.age}</td><td>${r.complaint}</td>
+ <td>${r.condition}</td><td>${r.risk}</td><td>${r.date}</td></tr>`:"";
 }
 
 // ================= MAIN =================
 function runAssessment(){
  let a=age.value,c=complaint.value,d=duration.value,l=language.value;
  if(!a||!c||!d){alert("Complete all fields");return;}
-
- let r=assessRisk(c,d);
- let cond=detectCondition(c);
- stats[r.level]++; drawChart();
-
+ let r=assessRisk(c,d),cond=detectCondition(c);
+ stats[r.level]++;drawChart();
+ output.innerHTML=`<div class="result ${r.css}">
+ <b>Risk Level:</b> ${r.level}<br><b>Condition:</b> ${cond}<br><br>${TEXT[l][r.level.toLowerCase()]}</div>`;
+ saveRecord({patient_id:pid.innerText,age:a,complaint:c,condition:cond,risk:r.level,date:new Date().toLocaleString()});
  window.lastResult={a,c,cond,r};
-
- output.innerHTML=`
- <div class="result ${r.css}">
- <b>Risk Level:</b> ${r.level}<br><br>
- <b>Possible Condition:</b> ${cond}<br><br>
- <b>Clinical Advice:</b><br>${TEXT[l][r.level.toLowerCase()]}
- </div>`;
-
- if(r.level==="HIGH") alert(TEXT[l].high);
 }
 
 // ================= REFERRAL =================
@@ -203,9 +219,10 @@ Age: ${lastResult.a}
 Complaint: ${lastResult.c}
 Condition: ${lastResult.cond}
 Risk: ${lastResult.r.level}
+Date: ${new Date().toLocaleString()}
 
 Recommendation:
-Neurology OPD consultation advised
+Immediate medical evaluation advised
 
 Virtual Neurology OPD
 Dr Nisa Rasani
@@ -215,9 +232,8 @@ Dr Nisa Rasani
 }
 
 // init
-setLanguage();
+setLanguage();loadHistory();
 </script>
 
 </body>
-  </html>
-  
+</html>
