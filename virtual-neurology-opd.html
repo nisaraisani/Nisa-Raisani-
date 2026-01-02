@@ -7,7 +7,7 @@
 
 <style>
 body{font-family:Arial,sans-serif;background:#f4f6f8;padding:15px}
-.container{max-width:820px;margin:auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.container{max-width:900px;margin:auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
 h2,h3{text-align:center;color:#003366}
 label{display:block;margin-top:12px;font-weight:bold}
 input,select,button{width:100%;padding:10px;margin-top:6px}
@@ -18,8 +18,9 @@ button:hover{background:#002244}
 .moderate{background:#fff3cd}
 .low{background:#e6f4ea}
 .box{background:#f2f2f2;padding:10px;border-radius:6px;margin-top:10px}
-canvas{margin-top:20px;width:100%}
+canvas{margin-top:20px;width:100%;border:1px solid #ddd}
 small{color:#555}
+.lang{margin-top:10px}
 </style>
 </head>
 
@@ -27,20 +28,27 @@ small{color:#555}
 
 <div class="container">
 
-<h2>Virtual Neurology OPD</h2>
-<p style="text-align:center">
-<b>Dr Nisa Rasani</b><br>
-Neurologist
+<h2 id="title">Virtual Neurology OPD</h2>
+<p style="text-align:center" id="subtitle">
+<b>Dr Nisa Rasani</b><br>Neurologist
 </p>
 
 <div class="box">
 <b>Patient ID:</b> <span id="pid"></span>
 </div>
 
-<label>Age</label>
+<div class="lang">
+<label>Language / زبان</label>
+<select id="language" onchange="setLanguage()">
+  <option value="en">English</option>
+  <option value="ur">اردو</option>
+</select>
+</div>
+
+<label id="ageLabel">Age</label>
 <input type="number" id="age">
 
-<label>Main Symptom</label>
+<label id="complaintLabel">Main Symptom</label>
 <select id="complaint">
   <option value="">Select</option>
   <option>Chronic Headache</option>
@@ -50,7 +58,7 @@ Neurologist
   <option>Numbness / Tingling</option>
 </select>
 
-<label>Duration</label>
+<label id="durationLabel">Duration</label>
 <select id="duration">
   <option value="">Select</option>
   <option>Few Hours</option>
@@ -58,110 +66,158 @@ Neurologist
   <option>Several Weeks</option>
 </select>
 
-<button onclick="runAssessment()">Run Assessment</button>
-<button onclick="printReferral()">Print Referral Slip</button>
+<button onclick="runAssessment()" id="assessBtn">Run Assessment</button>
+<button onclick="printReferral()" id="refBtn">Print Referral Slip</button>
 
 <div id="output"></div>
 
-<h3>Patient Assessment Dashboard</h3>
-<canvas id="chart" height="120"></canvas>
+<h3 id="dashTitle">Patient Dashboard</h3>
+<canvas id="chart" width="500" height="150"></canvas>
 
-<small>
-⚠️ This tool provides clinical guidance only and does not replace physical examination or emergency care.
+<small id="disclaimer">
+This tool provides clinical guidance only and does not replace physical examination or emergency care.
 </small>
 
 </div>
 
 <script>
 // ================= PATIENT ID =================
-document.getElementById("pid").innerText =
-  "VNOPD-" + Math.floor(Math.random()*900000+100000);
+pid.innerText="VNOPD-"+Math.floor(Math.random()*900000+100000);
+
+// ================= LANGUAGE TEXT =================
+const TEXT={
+en:{
+ title:"Virtual Neurology OPD",
+ subtitle:"Neurologist",
+ age:"Age",
+ complaint:"Main Symptom",
+ duration:"Duration",
+ assess:"Run Assessment",
+ referral:"Print Referral Slip",
+ dashboard:"Patient Dashboard",
+ disclaimer:"This tool provides clinical guidance only and does not replace physical examination or emergency care.",
+ high:"Please seek emergency medical care immediately.",
+ moderate:"Neurology OPD consultation is recommended.",
+ low:"Monitor symptoms and seek care if they worsen."
+},
+ur:{
+ title:"ورچوئل نیورولوجی او پی ڈی",
+ subtitle:"نیورولوجسٹ",
+ age:"عمر",
+ complaint:"بنیادی علامت",
+ duration:"دورانیہ",
+ assess:"جائزہ کریں",
+ referral:"ریفرل سلپ پرنٹ کریں",
+ dashboard:"مریض ڈیش بورڈ",
+ disclaimer:"یہ سہولت صرف رہنمائی کے لیے ہے اور ایمرجنسی یا فزیکل معائنے کا متبادل نہیں۔",
+ high:"فوراً قریبی ایمرجنسی میں جائیں۔",
+ moderate:"نیورولوجی او پی ڈی سے رجوع کریں۔",
+ low:"علامات پر نظر رکھیں، بڑھیں تو ڈاکٹر سے رجوع کریں۔"
+}
+};
+
+function setLanguage(){
+ let l=language.value;
+ title.innerText=TEXT[l].title;
+ subtitle.innerHTML="<b>Dr Nisa Rasani</b><br>"+TEXT[l].subtitle;
+ ageLabel.innerText=TEXT[l].age;
+ complaintLabel.innerText=TEXT[l].complaint;
+ durationLabel.innerText=TEXT[l].duration;
+ assessBtn.innerText=TEXT[l].assess;
+ refBtn.innerText=TEXT[l].referral;
+ dashTitle.innerText=TEXT[l].dashboard;
+ disclaimer.innerText=TEXT[l].disclaimer;
+}
 
 // ================= RISK ENGINE =================
 function assessRisk(c,d){
-  if(c==="Sudden Weakness"||c==="Speech Difficulty"||c==="Seizure")
-    return {level:"HIGH RISK",css:"high"};
-  if(c==="Chronic Headache"||c==="Numbness / Tingling"||d==="Several Weeks")
-    return {level:"MODERATE RISK",css:"moderate"};
-  return {level:"LOW RISK",css:"low"};
+ if(c==="Sudden Weakness"||c==="Speech Difficulty"||c==="Seizure")
+   return{level:"HIGH",css:"high"};
+ if(c==="Chronic Headache"||c==="Numbness / Tingling"||d==="Several Weeks")
+   return{level:"MODERATE",css:"moderate"};
+ return{level:"LOW",css:"low"};
 }
 
-// ================= CONDITION MAP =================
+// ================= CONDITION =================
 function detectCondition(c){
-  const map={
-    "Chronic Headache":"Migraine",
-    "Sudden Weakness":"Possible Stroke",
-    "Speech Difficulty":"Possible Stroke",
-    "Seizure":"Seizure Disorder",
-    "Numbness / Tingling":"Peripheral Neuropathy"
-  };
-  return map[c]||"Neurological Condition";
+ const map={
+  "Chronic Headache":"Migraine",
+  "Sudden Weakness":"Possible Stroke",
+  "Speech Difficulty":"Possible Stroke",
+  "Seizure":"Seizure Disorder",
+  "Numbness / Tingling":"Peripheral Neuropathy"
+ };
+ return map[c]||"Neurological Condition";
 }
 
 // ================= DASHBOARD =================
 let stats={HIGH:0,MODERATE:0,LOW:0};
 
 function drawChart(){
-  const ctx=chart.getContext("2d");
-  ctx.clearRect(0,0,chart.width,chart.height);
-  const data=[stats.HIGH,stats.MODERATE,stats.LOW];
-  const labels=["High","Moderate","Low"];
-  const colors=["#ff6b6b","#f1c40f","#2ecc71"];
-  let x=40;
-  data.forEach((v,i)=>{
-    ctx.fillStyle=colors[i];
-    ctx.fillRect(x,100-v*10,40,v*10);
-    ctx.fillStyle="#000";
-    ctx.fillText(labels[i],x,115);
-    ctx.fillText(v,x+12,90-v*10);
-    x+=100;
-  });
+ const ctx=chart.getContext("2d");
+ ctx.clearRect(0,0,chart.width,chart.height);
+ const data=[stats.HIGH,stats.MODERATE,stats.LOW];
+ const colors=["#ff6b6b","#f1c40f","#2ecc71"];
+ const labels=["High","Moderate","Low"];
+ let x=50;
+ data.forEach((v,i)=>{
+  ctx.fillStyle=colors[i];
+  ctx.fillRect(x,120-v*15,50,v*15);
+  ctx.fillStyle="#000";
+  ctx.fillText(labels[i],x,140);
+  ctx.fillText(v,x+20,110-v*15);
+  x+=140;
+ });
 }
 
 // ================= MAIN =================
 function runAssessment(){
-  let age=ageInput.value;
-  let c=complaintInput.value;
-  let d=durationInput.value;
+ let a=age.value,c=complaint.value,d=duration.value,l=language.value;
+ if(!a||!c||!d){alert("Complete all fields");return;}
 
-  if(!age||!c||!d){
-    alert("Please complete all fields");
-    return;
-  }
+ let r=assessRisk(c,d);
+ let cond=detectCondition(c);
+ stats[r.level]++; drawChart();
 
-  let risk=assessRisk(c,d);
-  let condition=detectCondition(c);
+ window.lastResult={a,c,cond,r};
 
-  stats[risk.level.split(" ")[0]]++;
-  drawChart();
+ output.innerHTML=`
+ <div class="result ${r.css}">
+ <b>Risk Level:</b> ${r.level}<br><br>
+ <b>Possible Condition:</b> ${cond}<br><br>
+ <b>Clinical Advice:</b><br>${TEXT[l][r.level.toLowerCase()]}
+ </div>`;
 
-  window.lastResult={age,c,condition,risk:risk.level};
-
-  output.innerHTML=`
-  <div class="result ${risk.css}">
-    <b>Risk Level:</b> ${risk.level}<br><br>
-    <b>Possible Condition:</b> ${condition}<br><br>
-    <b>Clinical Advice:</b><br>
-    ${risk.level==="HIGH RISK"
-      ?"Please seek emergency medical care immediately."
-      :risk.level==="MODERATE RISK"
-      ?"Neurology OPD consultation is recommended."
-      :"Monitor symptoms and seek care if they worsen."}
-  </div>`;
+ if(r.level==="HIGH") alert(TEXT[l].high);
 }
 
-// ================= REFERRAL SLIP =================
+// ================= REFERRAL =================
 function printReferral(){
-  if(!window.lastResult){
-    alert("Please run assessment first");
-    return;
-  }
-  let w=window.open("");
-  w.document.write(`<pre>
+ if(!window.lastResult){alert("Run assessment first");return;}
+ let w=window.open("");
+ w.document.write(`<pre>
 Referral Slip
 -------------------------
 Patient ID: ${pid.innerText}
-Age: ${lastResult.age}
+Age: ${lastResult.a}
 Complaint: ${lastResult.c}
-Condition: ${lastResult.condition}
-Risk:
+Condition: ${lastResult.cond}
+Risk: ${lastResult.r.level}
+
+Recommendation:
+Neurology OPD consultation advised
+
+Virtual Neurology OPD
+Dr Nisa Rasani
+-------------------------
+</pre>`);
+ w.print();
+}
+
+// init
+setLanguage();
+</script>
+
+</body>
+  </html>
+  
