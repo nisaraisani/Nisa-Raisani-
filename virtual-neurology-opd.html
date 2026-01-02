@@ -5,98 +5,31 @@
 <title>Virtual Neurology OPD | Dr Nisa Raisani</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  padding: 15px;
-  margin: 0;
-}
-.container {
-  max-width: 1000px;
-  margin: auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.1);
-}
-h2, h3 {
-  text-align: center;
-  color: #003366;
-}
-label {
-  display: block;
-  margin-top: 12px;
-  font-weight: bold;
-}
-input, select, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  box-sizing: border-box;
-}
-button {
-  background: #003366;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 12px;
-}
-button:hover {
-  background: #002244;
-}
-.result {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: 10px;
-}
+body { font-family: Arial, sans-serif; background: #f4f6f8; padding: 15px; margin: 0; }
+.container { max-width: 1000px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,.1); }
+h2,h3 { text-align: center; color: #003366; }
+label { display: block; margin-top: 12px; font-weight: bold; }
+input, select, button { width: 100%; padding: 10px; margin-top: 6px; box-sizing: border-box; }
+button { background: #003366; color: #fff; border: none; border-radius: 6px; cursor: pointer; margin-top: 12px; }
+button:hover { background: #002244; }
+.result { margin-top: 20px; padding: 18px; border-radius: 10px; }
 .high { background: #ffe0e0; }
 .moderate { background: #fff3cd; }
 .low { background: #e6f4ea; }
-.box {
-  background: #f2f2f2;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 10px;
-}
-canvas {
-  margin-top: 20px;
-  width: 100%;
-  height: 200px;
-  border: 1px solid #ddd;
-}
-small {
-  color: #555;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-th, td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  font-size: 14px;
-  text-align: center;
-}
+.box { background: #f2f2f2; padding: 10px; border-radius: 6px; margin-top: 10px; }
+canvas { margin-top: 20px; width: 100%; height: 200px; border: 1px solid #ddd; }
+small { color: #555; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { border: 1px solid #ccc; padding: 8px; font-size: 14px; text-align: center; }
 th { background: #003366; color: #fff; }
 .search { margin-top: 15px; }
-.note {
-  background:#fff3cd;
-  color:#856404;
-  border-left:5px solid #ffc107;
-  padding:15px;
-  margin-top:20px;
-  border-radius:8px;
-  font-size:14px;
-  line-height:1.5;
-}
-@media(max-width:600px){
-  canvas { height: 150px; }
-}
+.note { background:#fff3cd; color:#856404; border-left:5px solid #ffc107; padding:15px; margin-top:20px; border-radius:8px; font-size:14px; line-height:1.5; }
+.contact-btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:15px; }
+.contact-btns a { flex:1; text-align:center; background:#25D366; color:#fff; padding:12px; border-radius:6px; text-decoration:none; font-weight:bold; }
+.contact-btns a.appoint { background:#003366; }
+@media(max-width:600px){ canvas { height: 150px; } .contact-btns{flex-direction:column;} }
 </style>
 </head>
-
 <body>
 <div class="container">
 
@@ -140,6 +73,12 @@ th { background: #003366; color: #fff; }
 <button onclick="printReferral()" id="refBtn">Print Referral Slip</button>
 
 <div id="output"></div>
+
+<!-- Contact Buttons -->
+<div class="contact-btns">
+<a href="#" id="whatsappBtn" target="_blank">Contact via WhatsApp</a>
+<a href="https://drnisaraisani.info/appointment.html" class="appoint" target="_blank">Book Appointment</a>
+</div>
 
 <h3 id="dashTitle">Patient Dashboard</h3>
 <canvas id="chart"></canvas>
@@ -187,16 +126,14 @@ generatePatientID();
 
 // ================= LANGUAGE =================
 const TEXT={
-en:{
- title:"Virtual Neurology OPD", age:"Age", symptom:"Main Symptom", duration:"Duration",
+en:{ title:"Virtual Neurology OPD", age:"Age", symptom:"Main Symptom", duration:"Duration",
  assess:"Run Assessment", referral:"Print Referral Slip", dashboard:"Patient Dashboard",
  disclaimer:"This tool provides clinical guidance only and does not replace physical examination or emergency care.",
  high:"Immediate emergency evaluation is required.",
  moderate:"Neurology OPD consultation is advised.",
  low:"Monitor symptoms and follow up if needed."
 },
-ur:{
- title:"ورچوئل نیورولوجی او پی ڈی", age:"عمر", symptom:"اہم علامت", duration:"دورانیہ",
+ur:{ title:"ورچوئل نیورولوجی او پی ڈی", age:"عمر", symptom:"اہم علامت", duration:"دورانیہ",
  assess:"جائزہ کریں", referral:"ریفرل سلپ پرنٹ کریں", dashboard:"مریض ڈیش بورڈ",
  disclaimer:"یہ سہولت صرف رہنمائی کے لیے ہے اور ایمرجنسی کا متبادل نہیں۔",
  high:"فوراً قریبی ایمرجنسی میں رجوع کریں۔",
@@ -215,6 +152,7 @@ function setLanguage(){
   refBtn.innerText = TEXT[l].referral;
   dashTitle.innerText = TEXT[l].dashboard;
   disclaimer.innerText = TEXT[l].disclaimer;
+  updateWhatsAppLink();
   if(window.lastResult){
     output.innerHTML = `<div class="result ${window.lastResult.r.css}">
       <b>Risk:</b> ${window.lastResult.r.level}<br>
@@ -274,6 +212,7 @@ function saveRecord(r){
   localStorage.setItem("VNOPD_RECORDS", JSON.stringify(data));
   localStorage.setItem("VNOPD_LASTRESULT", JSON.stringify(window.lastResult));
   loadHistory();
+  updateWhatsAppLink();
 }
 
 function loadHistory(){
@@ -305,6 +244,18 @@ function searchPatient(){
       <td>${r.date}</td>
     </tr>` :
     "<tr><td colspan='6'>No record found</td></tr>";
+}
+
+// ================= WHATSAPP LINK =================
+const whatsappNumber = "+601174726874";
+function updateWhatsAppLink(){
+  const btn = document.getElementById("whatsappBtn");
+  if(window.lastResult){
+    const msg = `Patient ID: ${pid.innerText}\nAge: ${window.lastResult.a}\nSymptom: ${window.lastResult.s}\nProbable Condition: ${window.lastResult.d}\nRisk: ${window.lastResult.r.level}`;
+    btn.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(msg)}`;
+  } else {
+    btn.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}`;
+  }
 }
 
 // ================= MAIN =================
