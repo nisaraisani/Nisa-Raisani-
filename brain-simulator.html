@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- ========= PAGE SEO ========= -->
+  <title>Brain Simulator | Dr. Nisa Raisani</title>
+  <meta name="description" content="Test your brain signals with our interactive mini-game. Connect the neurons correctly and see your brain light up!">
+  <!-- ============================================= -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* Cards & Game Styling */
+    .card h4 {color:#4caf50;}
+    .game-area {text-align:center; margin-top:40px;}
+    .neuron {display:inline-block; width:60px; height:60px; margin:20px; border-radius:50%; background:#ccc; cursor:pointer; transition:0.3s;}
+    .neuron.active {background:#4caf50;}
+    .neuron.connected {background:#2196f3;}
+    .status {margin-top:20px; font-weight:bold; font-size:1.2rem;}
+    .fade {opacity:0; transform:translateY(20px); transition:all 0.8s ease;}
+    .fade.show {opacity:1; transform:translateY(0);}
+    button {padding:8px 16px; border:none; background:#4caf50; color:#fff; border-radius:6px; cursor:pointer; transition:0.3s;}
+    button:hover {background:#45a049;}
+  </style>
+</head>
+<body>
+
+<!-- =====================
+     HEADER (LOCKED)
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- =====================
+     PAGE INTRO
+===================== -->
+<section class="fade" style="margin-top:80px;">
+  <h2>Brain Simulator Mini-Game</h2>
+  <p style="max-width:850px;margin:auto;">
+    Test your brain signals with our interactive mini-game. Click the neurons in the correct order to light them up. Can you connect your brain circuits perfectly?
+  </p>
+</section>
+
+<!-- =====================
+     GAME SECTION
+===================== -->
+<section class="fade game-area">
+  <div id="neurons">
+    <div class="neuron" data-id="1"></div>
+    <div class="neuron" data-id="2"></div>
+    <div class="neuron" data-id="3"></div>
+    <div class="neuron" data-id="4"></div>
+  </div>
+  <div class="status" id="status">Click neurons in the correct order!</div>
+  <button onclick="resetGame()">Reset Game</button>
+</section>
+
+<!-- =====================
+     FOOTER (LOCKED)
+===================== -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
+</footer>
+
+<!-- =====================
+     SCROLL ANIMATION
+===================== -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if(top < window.innerHeight - 100) el.classList.add('show');
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
+
+<!-- =====================
+     MOBILE MENU
+===================== -->
+<script>
+  function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("active");
+  }
+
+  // Brain Simulator Game Logic
+  const sequence = [1,2,3,4]; // Correct order
+  let userSequence = [];
+
+  const neurons = document.querySelectorAll('.neuron');
+  const status = document.getElementById('status');
+
+  neurons.forEach(n => {
+    n.addEventListener('click', () => {
+      const id = parseInt(n.getAttribute('data-id'));
+      n.classList.add('active');
+      userSequence.push(id);
+      checkSequence();
+    });
+  });
+
+  function checkSequence() {
+    for(let i=0;i<userSequence.length;i++){
+      if(userSequence[i] !== sequence[i]){
+        status.textContent = "Oops! Wrong neuron, try again.";
+        resetGameDelayed();
+        return;
+      }
+    }
+    if(userSequence.length === sequence.length){
+      status.textContent = "🎉 Perfect! All neurons connected!";
+      neurons.forEach(n => n.classList.add('connected'));
+    }
+  }
+
+  function resetGame(){
+    userSequence = [];
+    status.textContent = "Click neurons in the correct order!";
+    neurons.forEach(n => n.classList.remove('active','connected'));
+  }
+
+  function resetGameDelayed(){
+    setTimeout(resetGame, 1000);
+  }
+</script>
+
+</body>
+</html>
