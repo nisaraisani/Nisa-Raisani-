@@ -6,46 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f4f6f8;
-  padding:15px;
-}
-.container{
-  max-width:720px;
-  margin:auto;
-  background:#ffffff;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.1);
-}
-h2{text-align:center;color:#003366}
-p.center{text-align:center;color:#444}
+body{font-family:Arial,sans-serif;background:#f4f6f8;padding:15px}
+.container{max-width:820px;margin:auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+h2,h3{text-align:center;color:#003366}
 label{display:block;margin-top:12px;font-weight:bold}
-input,select,button{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  font-size:15px;
-}
-button{
-  background:#003366;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  margin-top:15px;
-}
+input,select,button{width:100%;padding:10px;margin-top:6px}
+button{background:#003366;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-top:12px}
 button:hover{background:#002244}
-.result{
-  margin-top:20px;
-  padding:18px;
-  border-radius:10px;
-}
+.result{margin-top:20px;padding:18px;border-radius:10px}
 .high{background:#ffe0e0}
 .moderate{background:#fff3cd}
 .low{background:#e6f4ea}
-small{color:#666;display:block;margin-top:15px}
+.box{background:#f2f2f2;padding:10px;border-radius:6px;margin-top:10px}
+canvas{margin-top:20px;width:100%}
+small{color:#555}
 </style>
 </head>
 
@@ -54,20 +28,21 @@ small{color:#666;display:block;margin-top:15px}
 <div class="container">
 
 <h2>Virtual Neurology OPD</h2>
-<p class="center">
-Online neurological assessment by<br>
+<p style="text-align:center">
 <b>Dr Nisa Rasani</b><br>
 Neurologist
 </p>
 
-<hr>
+<div class="box">
+<b>Patient ID:</b> <span id="pid"></span>
+</div>
 
 <label>Age</label>
-<input type="number" id="age" placeholder="Enter age">
+<input type="number" id="age">
 
 <label>Main Symptom</label>
 <select id="complaint">
-  <option value="">Select symptom</option>
+  <option value="">Select</option>
   <option>Chronic Headache</option>
   <option>Sudden Weakness</option>
   <option>Speech Difficulty</option>
@@ -75,104 +50,118 @@ Neurologist
   <option>Numbness / Tingling</option>
 </select>
 
-<label>Duration of Symptoms</label>
+<label>Duration</label>
 <select id="duration">
-  <option value="">Select duration</option>
+  <option value="">Select</option>
   <option>Few Hours</option>
   <option>Few Days</option>
   <option>Several Weeks</option>
 </select>
 
-<button onclick="runAssessment()">Get Assessment</button>
+<button onclick="runAssessment()">Run Assessment</button>
+<button onclick="printReferral()">Print Referral Slip</button>
 
 <div id="output"></div>
 
+<h3>Patient Assessment Dashboard</h3>
+<canvas id="chart" height="120"></canvas>
+
 <small>
-⚠️ This online assessment is for guidance only.  
-It does not replace physical examination or emergency medical care.
+⚠️ This tool provides clinical guidance only and does not replace physical examination or emergency care.
 </small>
 
 </div>
 
 <script>
-// ==============================
-// CLINICAL RISK ASSESSMENT
-// ==============================
-function assessRisk(symptom,duration){
-  if(
-    symptom==="Sudden Weakness" ||
-    symptom==="Speech Difficulty" ||
-    symptom==="Seizure"
-  ){
-    return {
-      level:"HIGH RISK",
-      css:"high",
-      advice:"Your symptoms may indicate a neurological emergency. Please go to the nearest emergency department immediately."
-    };
-  }
+// ================= PATIENT ID =================
+document.getElementById("pid").innerText =
+  "VNOPD-" + Math.floor(Math.random()*900000+100000);
 
-  if(
-    symptom==="Chronic Headache" ||
-    symptom==="Numbness / Tingling" ||
-    duration==="Several Weeks"
-  ){
-    return {
-      level:"MODERATE RISK",
-      css:"moderate",
-      advice:"Your symptoms require neurological evaluation. Please schedule a Neurology OPD consultation."
-    };
-  }
-
-  return {
-    level:"LOW RISK",
-    css:"low",
-    advice:"Your symptoms currently appear low risk. Monitor them and seek medical advice if they worsen."
-  };
+// ================= RISK ENGINE =================
+function assessRisk(c,d){
+  if(c==="Sudden Weakness"||c==="Speech Difficulty"||c==="Seizure")
+    return {level:"HIGH RISK",css:"high"};
+  if(c==="Chronic Headache"||c==="Numbness / Tingling"||d==="Several Weeks")
+    return {level:"MODERATE RISK",css:"moderate"};
+  return {level:"LOW RISK",css:"low"};
 }
 
-// ==============================
-// CONDITION SUGGESTION
-// ==============================
-function detectCondition(symptom){
+// ================= CONDITION MAP =================
+function detectCondition(c){
   const map={
-    "Chronic Headache":"Migraine or Tension-type Headache",
+    "Chronic Headache":"Migraine",
     "Sudden Weakness":"Possible Stroke",
     "Speech Difficulty":"Possible Stroke",
     "Seizure":"Seizure Disorder",
     "Numbness / Tingling":"Peripheral Neuropathy"
   };
-  return map[symptom] || "Neurological Condition";
+  return map[c]||"Neurological Condition";
 }
 
-// ==============================
-// MAIN FUNCTION
-// ==============================
-function runAssessment(){
-  let age=document.getElementById("age").value;
-  let symptom=document.getElementById("complaint").value;
-  let duration=document.getElementById("duration").value;
+// ================= DASHBOARD =================
+let stats={HIGH:0,MODERATE:0,LOW:0};
 
-  if(!age||!symptom||!duration){
-    alert("Please complete all fields.");
+function drawChart(){
+  const ctx=chart.getContext("2d");
+  ctx.clearRect(0,0,chart.width,chart.height);
+  const data=[stats.HIGH,stats.MODERATE,stats.LOW];
+  const labels=["High","Moderate","Low"];
+  const colors=["#ff6b6b","#f1c40f","#2ecc71"];
+  let x=40;
+  data.forEach((v,i)=>{
+    ctx.fillStyle=colors[i];
+    ctx.fillRect(x,100-v*10,40,v*10);
+    ctx.fillStyle="#000";
+    ctx.fillText(labels[i],x,115);
+    ctx.fillText(v,x+12,90-v*10);
+    x+=100;
+  });
+}
+
+// ================= MAIN =================
+function runAssessment(){
+  let age=ageInput.value;
+  let c=complaintInput.value;
+  let d=durationInput.value;
+
+  if(!age||!c||!d){
+    alert("Please complete all fields");
     return;
   }
 
-  let result=assessRisk(symptom,duration);
-  let condition=detectCondition(symptom);
+  let risk=assessRisk(c,d);
+  let condition=detectCondition(c);
 
-  document.getElementById("output").innerHTML=`
-    <div class="result ${result.css}">
-      <b>Risk Level:</b> ${result.level}<br><br>
-      <b>Possible Condition:</b><br>${condition}<br><br>
-      <b>Clinical Advice:</b><br>${result.advice}
-    </div>
-  `;
+  stats[risk.level.split(" ")[0]]++;
+  drawChart();
 
-  if(result.level==="HIGH RISK"){
-    alert("⚠️ Emergency symptoms detected. Please seek urgent medical care.");
-  }
+  window.lastResult={age,c,condition,risk:risk.level};
+
+  output.innerHTML=`
+  <div class="result ${risk.css}">
+    <b>Risk Level:</b> ${risk.level}<br><br>
+    <b>Possible Condition:</b> ${condition}<br><br>
+    <b>Clinical Advice:</b><br>
+    ${risk.level==="HIGH RISK"
+      ?"Please seek emergency medical care immediately."
+      :risk.level==="MODERATE RISK"
+      ?"Neurology OPD consultation is recommended."
+      :"Monitor symptoms and seek care if they worsen."}
+  </div>`;
 }
-</script>
 
-</body>
-</html>
+// ================= REFERRAL SLIP =================
+function printReferral(){
+  if(!window.lastResult){
+    alert("Please run assessment first");
+    return;
+  }
+  let w=window.open("");
+  w.document.write(`<pre>
+Referral Slip
+-------------------------
+Patient ID: ${pid.innerText}
+Age: ${lastResult.age}
+Complaint: ${lastResult.c}
+Condition: ${lastResult.condition}
+Risk:
