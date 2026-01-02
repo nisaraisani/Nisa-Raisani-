@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="style.css">
   
   <style>
-    /* Optional additional styling for cards and read-more */
+    /* Cards style as per template */
     .card h4 {color:#4caf50;}
     .read-more {color:#4caf50; cursor:pointer; text-decoration:underline;}
-    .reveal-text {display:none; margin-top:10px; color:#555;}
+    .reveal-text {display:none; margin-top:10px; color:#222; background:#fff; padding:10px; border-radius:8px;}
   </style>
 </head>
 
@@ -91,31 +91,35 @@
 <section class="fade">
   <h2>Learn More About Your Brain</h2>
 
-  <div class="card">
-    <p>
-      <span class="read-more" onclick="toggleText('text1')">Why stress affects focus</span>
-    </p>
-    <p id="text1" class="reveal-text">
-      Stress triggers chemical changes that alter attention and memory. Your brain prioritizes urgent tasks over less important ones to manage resources effectively.
-    </p>
-  </div>
+  <div class="grid">
 
-  <div class="card">
-    <p>
-      <span class="read-more" onclick="toggleText('text2')">Why decision-making feels tiring</span>
-    </p>
-    <p id="text2" class="reveal-text">
-      Every choice consumes mental energy. Fatigue signals encourage you to take breaks and make better decisions later.
-    </p>
-  </div>
+    <div class="card">
+      <p>
+        <span class="read-more" onclick="toggleText('text1')">Why stress affects focus</span>
+      </p>
+      <p id="text1" class="reveal-text">
+        Stress triggers chemical changes that alter attention and memory. Your brain prioritizes urgent tasks over less important ones to manage resources effectively.
+      </p>
+    </div>
 
-  <div class="card">
-    <p>
-      <span class="read-more" onclick="toggleText('text3')">Why thoughts race at night</span>
-    </p>
-    <p id="text3" class="reveal-text">
-      Nighttime quiet removes distractions, allowing your mind to reflect freely. Racing thoughts are normal and often help organize information.
-    </p>
+    <div class="card">
+      <p>
+        <span class="read-more" onclick="toggleText('text2')">Why decision-making feels tiring</span>
+      </p>
+      <p id="text2" class="reveal-text">
+        Every choice consumes mental energy. Fatigue signals encourage you to take breaks and make better decisions later.
+      </p>
+    </div>
+
+    <div class="card">
+      <p>
+        <span class="read-more" onclick="toggleText('text3')">Why thoughts race at night</span>
+      </p>
+      <p id="text3" class="reveal-text">
+        Nighttime quiet removes distractions, allowing your mind to reflect freely. Racing thoughts are normal and often help organize information.
+      </p>
+    </div>
+
   </div>
 </section>
 
@@ -166,5 +170,5 @@
 </script>
 
 </body>
-      </html>
-    
+  </html>
+  
