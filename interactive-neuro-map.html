@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Neuro Map & Symptom Checker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  h1, h2 {
+    color: #333;
+    margin: 20px 0 10px 0;
+  }
+  #brain-container {
+    position: relative;
+    display: inline-block;
+    margin: 20px auto;
+  }
+  #brain-map {
+    width: 400px;
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+  .region {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.3;
+    border: 2px solid #4a90e2;
+    transition: all 0.3s ease;
+  }
+  .region:hover {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  #info-box, #symptom-box {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+  }
+  .quiz-button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .quiz-button:hover {
+    background: #357ab8;
+  }
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Interactive Neuro Map</h1>
+<p>Click on a brain region to see its functions and related symptoms.</p>
+
+<div id="brain-container">
+  <img src="https://i.ibb.co/9Hj7R3c/brain.png" id="brain-map" alt="Brain Map">
+
+  <!-- Brain Regions -->
+  <div class="region" style="top:50px; left:140px; width:50px; height:50px;" 
+       data-name="Frontal Lobe" 
+       data-info="Responsible for decision making, problem solving, and motor functions." 
+       data-symptoms="Difficulty moving, poor decision making, speech problems."></div>
+
+  <div class="region" style="top:120px; left:220px; width:50px; height:50px;" 
+       data-name="Parietal Lobe" 
+       data-info="Processes sensory information such as touch, temperature, and pain." 
+       data-symptoms="Numbness, tingling, difficulty sensing temperature or pain."></div>
+
+  <div class="region" style="top:180px; left:120px; width:40px; height:40px;" 
+       data-name="Temporal Lobe" 
+       data-info="Involved in memory, speech, and hearing." 
+       data-symptoms="Memory loss, hearing issues, speech difficulties."></div>
+
+  <div class="region" style="top:240px; left:160px; width:40px; height:40px;" 
+       data-name="Occipital Lobe" 
+       data-info="Responsible for vision processing." 
+       data-symptoms="Vision problems, difficulty recognizing objects."></div>
+</div>
+
+<div id="info-box">
+  Click on a brain region to see details here.
+</div>
+
+<hr style="margin:40px 0; border:0; border-top:1px solid #ccc;">
+
+<h2>Mini Symptom Checker</h2>
+<p>Select your symptoms to get suggestions:</p>
+
+<div id="symptom-box">
+  <label><input type="checkbox" value="numbness"> Numbness or Tingling</label><br>
+  <label><input type="checkbox" value="memory"> Memory Loss</label><br>
+  <label><input type="checkbox" value="speech"> Speech Problems</label><br>
+  <label><input type="checkbox" value="vision"> Vision Issues</label><br>
+  <button class="quiz-button" onclick="checkSymptoms()">Check Risk</button>
+
+  <div id="quiz-result" style="margin-top:15px; font-weight:bold;"></div>
+</div>
+
+<script>
+  // Brain Region Info
+  const regions = document.querySelectorAll('.region');
+  const infoBox = document.getElementById('info-box');
+
+  regions.forEach(region => {
+    region.addEventListener('click', () => {
+      const name = region.getAttribute('data-name');
+      const info = region.getAttribute('data-info');
+      const symptoms = region.getAttribute('data-symptoms');
+      infoBox.innerHTML = `<h3>${name}</h3><p>${info}</p><p><strong>Common Symptoms:</strong> ${symptoms}</p>`;
+    });
+  });
+
+  // Symptom Checker
+  function checkSymptoms() {
+    const checkboxes = document.querySelectorAll('#symptom-box input[type="checkbox"]');
+    let selected = [];
+    checkboxes.forEach(cb => {
+      if(cb.checked) selected.push(cb.value);
+    });
+
+    const resultDiv = document.getElementById('quiz-result');
+
+    if(selected.length === 0){
+      resultDiv.innerHTML = "Please select at least one symptom.";
+      resultDiv.style.color = "red";
+      return;
+    }
+
+    let advice = "You may consult a neurologist for further assessment.";
+
+    if(selected.includes("vision") && selected.includes("speech")) {
+      advice += " Immediate consultation recommended if symptoms persist.";
+    } else if(selected.includes("memory") && selected.includes("numbness")) {
+      advice += " Keep monitoring and note any changes.";
+    }
+
+    resultDiv.innerHTML = advice;
+    resultDiv.style.color = "#333";
+  }
+</script>
+
+</body>
+  </html>
+  
