@@ -2,20 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Virtual Neurology OPD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- SEO -->
+<title>Online Neurology OPD | Virtual Neurologist Consultation</title>
+<meta name="description" content="Online Neurology OPD providing virtual neurologist consultation with real OPD-style interaction, neurological risk awareness, and safe clinical guidance.">
+<meta name="keywords" content="online neurology opd, virtual neurologist, neurology consultation online, stroke symptoms, seizure emergency, brain health opd">
+<meta name="robots" content="index, follow">
 
 <style>
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:#f4f7fb;
+  color:#222;
 }
-header{
-  background:#0b1f3a;
+header.hero{
+  background:linear-gradient(135deg,#0b1f3a,#173e73);
   color:#fff;
-  padding:18px;
-  text-align:center;
+  padding:70px 20px;
+}
+.hero-inner{
+  max-width:1100px;
+  margin:auto;
+}
+.hero h1{
+  font-size:36px;
+  margin:10px 0;
+}
+.hero p{
+  font-size:18px;
+  max-width:720px;
+  line-height:1.6;
 }
 .container{
   max-width:900px;
@@ -29,11 +47,6 @@ header{
   margin-bottom:20px;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
-h2{
-  margin-top:0;
-  border-left:5px solid #1ccad8;
-  padding-left:10px;
-}
 .flow{
   background:#eef3fb;
   border-left:6px solid #1ccad8;
@@ -41,17 +54,10 @@ h2{
   border-radius:10px;
   font-size:16px;
 }
-.flow strong{color:#0b1f3a}
-.hidden{display:none}
-button{
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:#0b1f3a;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:15px;
+h2{
+  margin-top:0;
+  border-left:5px solid #1ccad8;
+  padding-left:10px;
 }
 label{
   display:block;
@@ -64,6 +70,16 @@ input,select{
   margin-top:6px;
   border-radius:8px;
   border:1px solid #ccc;
+}
+button{
+  margin-top:18px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:#0b1f3a;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
 }
 .badge{
   display:inline-block;
@@ -79,28 +95,41 @@ input,select{
   border-left:6px solid #d32f2f;
   padding:15px;
   border-radius:8px;
-  margin-bottom:15px;
   color:#a71d2a;
+  margin-bottom:15px;
+}
+.hidden{display:none}
+.footer{
+  text-align:center;
+  font-size:13px;
+  opacity:.7;
+  margin:30px 0;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Virtual Neurology OPD</h1>
-<p>Online consultation experience</p>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Online Neurology OPD – Virtual Consultation Experience</h1>
+    <p>
+      A structured virtual neurology OPD designed to simulate real doctor consultation,
+      guiding patients through neurological symptoms, risk awareness, and safe next steps.
+    </p>
+  </div>
 </header>
 
 <div class="container">
 
 <!-- VIRTUAL FLOW -->
 <div id="flowBox" class="card flow">
-<strong>👨‍⚕️ Doctor:</strong>
-<span id="flowText">Please tell me your main neurological problem.</span>
+  <strong>👨‍⚕️ Doctor:</strong>
+  <span id="flowText">Please tell me your main neurological problem.</span>
 </div>
 
-<!-- OPD FORM (UNCHANGED CORE) -->
+<!-- OPD FORM -->
 <div class="card">
 <h2>Patient Information</h2>
 
@@ -131,7 +160,7 @@ input,select{
 <div id="alertBox" class="alert hidden"></div>
 
 <div class="card">
-<h2>Doctor Assessment</h2>
+<h2>Risk Level</h2>
 <div id="riskResult">—</div>
 </div>
 
@@ -143,6 +172,16 @@ input,select{
 <div class="card">
 <h2>Next Step Advice</h2>
 <div id="advice">—</div>
+</div>
+
+<div class="card small">
+<strong>Medical Disclaimer:</strong><br>
+This virtual OPD provides educational clinical guidance only and does not replace
+physical examination, investigations, or emergency medical care.
+</div>
+
+<div class="footer">
+© Virtual Neurology OPD – Designed for safe online consultation
 </div>
 
 </div>
@@ -157,7 +196,7 @@ function doctorFollowUp(){
   }else if(c==="seizure"){
     text.innerText="Was there loss of consciousness or body jerking?";
   }else if(c==="headache"){
-    text.innerText="Is this the worst headache you have ever experienced?";
+    text.innerText="Is this the worst headache of your life?";
   }else if(c==="memory"){
     text.innerText="Is the memory problem gradually worsening?";
   }else if(c==="vertigo"){
@@ -174,23 +213,23 @@ function runAssessment(){
   const d=document.getElementById("duration").value;
 
   let risk="<span class='badge low'>LOW RISK</span>";
-  let talk="At this stage, the problem does not look dangerous.";
+  let talk="At this stage, the condition does not appear dangerous.";
   let advice="OPD follow-up is appropriate.";
   let alert="";
 
-  document.getElementById("flowText").innerText="🧠 Neurologist is analyzing your condition...";
+  document.getElementById("flowText").innerText="🧠 Neurologist is reviewing your information...";
 
   setTimeout(()=>{
     if(c==="stroke"||c==="seizure"||c==="loc"){
       risk="<span class='badge high'>HIGH RISK</span>";
-      talk="Based on what you told me, this condition cannot be ignored.";
+      talk="Based on your symptoms, this condition should not be ignored.";
       advice="Immediate hospital evaluation is advised.";
       alert="⚠️ Possible neurological emergency. Do not delay.";
     }
     else if(d==="acute"){
       risk="<span class='badge mod'>MODERATE RISK</span>";
       talk="This problem needs early medical review.";
-      advice="Neurology consultation within few days.";
+      advice="Neurology consultation within a few days.";
     }
 
     document.getElementById("riskResult").innerHTML=risk;
