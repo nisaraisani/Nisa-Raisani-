@@ -5,7 +5,7 @@
 
   <!-- ========= PAGE SEO ========= -->
   <title>Neuro Reality Check | Brain Awareness Tool – Dr. Nisa Raisani</title>
-  <meta name="description" content="A 60-second neuroscience-inspired brain awareness check to understand focus, reaction, and mental load. Educational and non-diagnostic.">
+  <meta name="description" content="A 60-second neuroscience-inspired brain awareness experience to reflect focus, reaction awareness, and cognitive load. Educational and non-diagnostic.">
   <!-- ============================ -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +66,7 @@
     <div class="card">
       <h4>What It Reflects</h4>
       <p>
-        Focus consistency and reaction awareness at this moment — not disease.
+        Momentary focus, reaction awareness, and cognitive consistency — not disease.
       </p>
     </div>
 
@@ -81,14 +81,14 @@
 </section>
 
 <!-- =====================
-     NEURO REALITY CHECK TOOL
+     OPTION 1: NEURO REALITY CHECK
 ===================== -->
 <section class="fade">
-  <h2>Your 60-Second Reality Check</h2>
+  <h2>60-Second Reaction Awareness Check</h2>
 
   <p style="max-width:850px;margin:auto;">
     Click <strong>Start</strong>. When the box turns green, tap it as quickly as you can.
-    This simple interaction reflects attention and reaction awareness.
+    This interaction reflects attention and reaction awareness at this moment.
   </p>
 
   <div style="text-align:center;margin-top:30px;">
@@ -111,6 +111,40 @@
   <p style="font-size:14px;opacity:0.7;max-width:850px;margin:30px auto 0;">
     Disclaimer: This awareness tool does not diagnose neurological conditions
     and does not replace professional medical consultation.
+  </p>
+</section>
+
+<!-- =====================
+     OPTION 2: BRAIN CONSISTENCY METER (LITE)
+===================== -->
+<section class="fade">
+  <h2>Brain Consistency Meter</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    This short reflection checks response consistency and perceived mental load.
+    It does not judge personality, honesty, or mental health.
+  </p>
+
+  <div style="max-width:520px;margin:40px auto;text-align:left;">
+    <p><strong>Question 1:</strong> Are you feeling mentally tired right now?</p>
+    <button class="meter-btn" onclick="answer(1)">Yes</button>
+    <button class="meter-btn" onclick="answer(0)">No</button>
+
+    <p style="margin-top:20px;"><strong>Question 2:</strong> Is it easy to focus at this moment?</p>
+    <button class="meter-btn" onclick="answer(1)">Yes</button>
+    <button class="meter-btn" onclick="answer(0)">No</button>
+
+    <p style="margin-top:20px;"><strong>Question 3:</strong> Do you feel mentally calm right now?</p>
+    <button class="meter-btn" onclick="answer(1)">Yes</button>
+    <button class="meter-btn" onclick="answer(0)">No</button>
+  </div>
+
+  <div style="text-align:center;">
+    <p id="meterResult" style="font-weight:600;"></p>
+  </div>
+
+  <p style="font-size:14px;opacity:0.7;max-width:850px;margin:30px auto 0;">
+    Disclaimer: This reflection is educational and does not assess mental or neurological disorders.
   </p>
 </section>
 
@@ -154,7 +188,7 @@ function toggleMenu() {
 </script>
 
 <!-- =====================
-     REALITY CHECK LOGIC
+     OPTION 1 LOGIC
 ===================== -->
 <script>
 let startTime = null;
@@ -186,6 +220,32 @@ box.onclick = () => {
   result.textContent = message;
   startTime = null;
 };
+</script>
+
+<!-- =====================
+     OPTION 2 LOGIC
+===================== -->
+<script>
+let responses = [];
+
+function answer(value) {
+  responses.push(value);
+
+  if (responses.length === 3) {
+    const score = responses.reduce((a, b) => a + b, 0);
+    const result = document.getElementById("meterResult");
+
+    if (score === 3) {
+      result.textContent = "Your responses suggest a calm and balanced mental state at this moment.";
+    } else if (score === 2) {
+      result.textContent = "Your responses suggest mild cognitive load. A short pause may help.";
+    } else {
+      result.textContent = "Your responses suggest mental overload or fatigue. Consider rest and hydration.";
+    }
+
+    responses = [];
+  }
+}
 </script>
 
 </body>
