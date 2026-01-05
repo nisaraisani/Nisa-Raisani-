@@ -3,22 +3,27 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Medical Calculators | Dr. Nisa Raisani</title>
-<meta name="description" content="Medical calculators including BMI, BSA, IV infusion rate, pediatric and adult dose calculators with normal ranges.">
-
+<title>Medical Calculators (BMI, BSA, IV, Dose) | Dr. Nisa Raisani</title>
+<meta name="description" content="Medical calculators including BMI, BSA, IV infusion rate, pediatric and adult dose calculators with normal ranges and clinical guidance.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+/* ===== BASE ===== */
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:'Poppins',sans-serif;
   background:#f4f8fb;
-  color:#222;
+  color:#1f2937;
+}
+h1,h2,h3{
+  color:#0f3d5e;
 }
 header{
-  background:#0b5ed7;
+  background:#0f3d5e;
   color:#fff;
-  padding:15px;
+  padding:20px;
   text-align:center;
 }
 section{
@@ -33,56 +38,74 @@ section{
 }
 .card{
   background:#fff;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  padding:22px;
+  border-radius:18px;
+  box-shadow:0 8px 24px rgba(15,61,94,.08);
   text-align:center;
 }
 button{
-  padding:10px 18px;
+  padding:10px 20px;
   border:none;
   border-radius:25px;
-  background:#198754;
+  background:#0f766e;
   color:#fff;
   cursor:pointer;
 }
-button:hover{opacity:.9}
+button:hover{background:#115e59}
 
+/* ===== MODAL ===== */
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
+  background:rgba(15,23,42,.65);
+  z-index:9999;
 }
 .modal-box{
   background:#fff;
   max-width:420px;
   margin:80px auto;
-  padding:20px;
-  border-radius:14px;
+  padding:22px;
+  border-radius:18px;
   position:relative;
 }
 .close{
   position:absolute;
-  top:10px;
-  right:14px;
-  font-size:22px;
+  top:12px;
+  right:16px;
+  font-size:24px;
   cursor:pointer;
+  font-weight:bold;
 }
 input{
   width:100%;
   padding:10px;
   margin:6px 0;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
 }
 .result{
   margin-top:10px;
-  font-weight:bold;
+  padding:10px;
+  border-radius:10px;
+  font-weight:500;
 }
+.normal{background:#ecfdf5;color:#065f46}
+.warning{background:#fff7ed;color:#9a3412}
+.danger{background:#fef2f2;color:#991b1b}
+
+/* ===== FOOTER ===== */
 footer{
-  background:#0b5ed7;
+  background:#0f3d5e;
   color:#fff;
   text-align:center;
   padding:15px;
+}
+.disclaimer{
+  background:#fff;
+  border-left:4px solid #0f766e;
+  padding:15px;
+  border-radius:10px;
 }
 </style>
 </head>
@@ -91,12 +114,12 @@ footer{
 
 <header>
 <h1>Medical Calculators</h1>
-<p>Dr. Nisa Raisani</p>
+<p>Clinical reference tools — Dr. Nisa Raisani</p>
 </header>
 
 <section>
 <p>
-These calculators are for educational purposes only and include normal reference ranges.
+Evidence-based medical calculators with interpretation and normal ranges.
 </p>
 </section>
 
@@ -139,84 +162,86 @@ These calculators are for educational purposes only and include normal reference
 <!-- BMI -->
 <div class="modal" id="bmi">
 <div class="modal-box">
-<span class="close" onclick="closeC()">✖</span>
-<h3>BMI</h3>
-<input id="bw" placeholder="Weight kg">
-<input id="bh" placeholder="Height cm">
+<span class="close" onclick="closeC()">×</span>
+<h3>BMI Calculator</h3>
+<input id="bw" placeholder="Weight (kg)">
+<input id="bh" placeholder="Height (cm)">
 <button onclick="calcBMI()">Calculate</button>
-<div class="result" id="br"></div>
+<div id="br" class="result"></div>
 </div>
 </div>
 
 <!-- BSA -->
 <div class="modal" id="bsa">
 <div class="modal-box">
-<span class="close" onclick="closeC()">✖</span>
-<h3>BSA</h3>
-<input id="sw" placeholder="Weight kg">
-<input id="sh" placeholder="Height cm">
+<span class="close" onclick="closeC()">×</span>
+<h3>BSA Calculator</h3>
+<input id="sw" placeholder="Weight (kg)">
+<input id="sh" placeholder="Height (cm)">
 <button onclick="calcBSA()">Calculate</button>
-<div class="result" id="sr"></div>
-<p>Average adult BSA: 1.7 – 1.9 m²</p>
+<div id="sr" class="result normal"></div>
+<p>Average adult BSA: <strong>1.7 – 1.9 m²</strong></p>
 </div>
 </div>
 
 <!-- IV -->
 <div class="modal" id="iv">
 <div class="modal-box">
-<span class="close" onclick="closeC()">✖</span>
-<h3>IV Rate</h3>
-<input id="ivv" placeholder="Volume ml">
-<input id="ivt" placeholder="Time hr">
+<span class="close" onclick="closeC()">×</span>
+<h3>IV Infusion Rate</h3>
+<input id="ivv" placeholder="Volume (ml)">
+<input id="ivt" placeholder="Time (hours)">
 <button onclick="calcIV()">Calculate</button>
-<div class="result" id="ivr"></div>
+<div id="ivr" class="result"></div>
 </div>
 </div>
 
 <!-- Pediatric -->
 <div class="modal" id="ped">
 <div class="modal-box">
-<span class="close" onclick="closeC()">✖</span>
+<span class="close" onclick="closeC()">×</span>
 <h3>Pediatric Dose</h3>
-<input id="pd" placeholder="mg/kg">
-<input id="pw" placeholder="Weight kg">
+<input id="pd" placeholder="Dose (mg/kg)">
+<input id="pw" placeholder="Weight (kg)">
 <button onclick="calcPed()">Calculate</button>
-<div class="result" id="pr"></div>
+<div id="pr" class="result normal"></div>
 </div>
 </div>
 
 <!-- Adult -->
 <div class="modal" id="adult">
 <div class="modal-box">
-<span class="close" onclick="closeC()">✖</span>
+<span class="close" onclick="closeC()">×</span>
 <h3>Adult Dose</h3>
-<input id="ad" placeholder="mg/kg">
-<input id="aw" placeholder="Weight kg">
+<input id="ad" placeholder="Dose (mg/kg)">
+<input id="aw" placeholder="Weight (kg)">
 <button onclick="calcAdult()">Calculate</button>
-<div class="result" id="ar"></div>
+<div id="ar" class="result normal"></div>
 </div>
 </div>
 
 <!-- Insulin -->
 <div class="modal" id="ins">
 <div class="modal-box">
-<span class="close" onclick="closeC()">✖</span>
-<h3>Insulin</h3>
-<input id="iw" placeholder="Weight kg">
+<span class="close" onclick="closeC()">×</span>
+<h3>Insulin Dose</h3>
+<input id="iw" placeholder="Weight (kg)">
 <button onclick="calcIns()">Calculate</button>
-<div class="result" id="ir"></div>
+<div id="ir" class="result normal"></div>
+<p>Estimated TDD ≈ 0.4–0.6 units/kg/day</p>
 </div>
 </div>
 
-<section>
+<section class="disclaimer">
 <h3>Medical Disclaimer</h3>
 <p>
-This tool is for educational purposes only and does not replace professional medical advice.
+These calculators are for educational purposes only and do not replace
+professional medical judgment or institutional protocols.
 </p>
 </section>
 
 <footer>
-© 2025 Dr. Nisa Raisani
+© 2025 Dr. Nisa Raisani. All rights reserved.
 </footer>
 
 <script>
@@ -229,26 +254,33 @@ document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
 }
 
 function calcBMI(){
-let w=+bw.value, h=+bh.value/100;
+let w=+bw.value,h=+bh.value/100;
 let bmi=(w/(h*h)).toFixed(2);
-let s=bmi<18.5?"Underweight":bmi<25?"Normal":bmi<30?"Overweight":"Obese";
-br.innerHTML="BMI: "+bmi+" ("+s+")<br>Normal: 18.5–24.9";
+let cls="normal",msg="Normal";
+if(bmi<18.5){cls="warning";msg="Underweight";}
+else if(bmi>=25&&bmi<30){cls="warning";msg="Overweight";}
+else if(bmi>=30){cls="danger";msg="Obese – consult doctor";}
+br.className="result "+cls;
+br.innerHTML=`BMI: <strong>${bmi}</strong><br>${msg}<br>Normal: 18.5–24.9`;
 }
 
 function calcBSA(){
-sr.textContent="BSA: "+Math.sqrt((sw.value*sh.value)/3600).toFixed(2)+" m²";
+sr.className="result normal";
+sr.innerHTML=`BSA: <strong>${Math.sqrt((sw.value*sh.value)/3600).toFixed(2)} m²</strong>`;
 }
 function calcIV(){
-ivr.textContent="Rate: "+(ivv.value/ivt.value).toFixed(1)+" ml/hr";
+let r=(ivv.value/ivt.value).toFixed(1);
+ivr.className="result "+(r>200?"warning":"normal");
+ivr.innerHTML=`Rate: <strong>${r} ml/hr</strong>`;
 }
 function calcPed(){
-pr.textContent="Dose: "+(pd.value*pw.value).toFixed(1)+" mg";
+pr.innerHTML=`Dose: <strong>${(pd.value*pw.value).toFixed(1)} mg</strong>`;
 }
 function calcAdult(){
-ar.textContent="Dose: "+(ad.value*aw.value).toFixed(1)+" mg";
+ar.innerHTML=`Dose: <strong>${(ad.value*aw.value).toFixed(1)} mg</strong>`;
 }
 function calcIns(){
-ir.textContent="Estimated TDD: "+(0.5*iw.value).toFixed(1)+" units/day";
+ir.innerHTML=`Estimated TDD: <strong>${(0.5*iw.value).toFixed(1)} units/day</strong>`;
 }
 </script>
 
