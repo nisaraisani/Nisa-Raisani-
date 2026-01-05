@@ -1680,3 +1680,107 @@ footer a {
   cursor: pointer;
   z-index: 999999;
 }
+/* =================================================
+   MEDICAL PROFESSIONAL THEME – FINAL OVERRIDE
+================================================= */
+
+/* Base */
+body{
+  background:#f4f8fb !important;
+  color:#1f2937 !important;
+  font-family:'Poppins', sans-serif;
+}
+
+/* Headings */
+h1,h2,h3,h4{
+  color:#0f3d5e !important;
+}
+
+/* Sections */
+section{
+  background:transparent !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+/* Cards */
+.card{
+  background:#ffffff !important;
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(15,61,94,.08);
+}
+
+/* Buttons */
+button,
+.calc-btn{
+  background:#0f766e !important; /* medical teal */
+  color:#ffffff !important;
+  border:none;
+}
+button:hover{
+  background:#115e59 !important;
+}
+
+/* Calculator Modals */
+.modal{
+  background:rgba(15,23,42,.65) !important;
+  z-index:9999;
+}
+
+.modal-box{
+  background:#ffffff !important;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
+
+/* Close button */
+.close{
+  color:#0f172a !important;
+  font-size:24px;
+  font-weight:700;
+}
+
+/* Inputs */
+input{
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+}
+input:focus{
+  outline:none;
+  border-color:#0f766e;
+}
+
+/* Results */
+.result{
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+/* Result states */
+.result.normal{
+  background:#ecfdf5;
+  color:#065f46;
+}
+.result.warning{
+  background:#fff7ed;
+  color:#9a3412;
+}
+.result.danger{
+  background:#fef2f2;
+  color:#991b1b;
+}
+
+/* Disclaimer */
+.disclaimer{
+  background:#ffffff;
+  border-left:4px solid #0f766e;
+  padding:15px;
+  border-radius:10px;
+}
+
+/* Footer */
+footer{
+  background:#0f3d5e !important;
+  color:#ffffff !important;
+   }
