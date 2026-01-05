@@ -3,56 +3,47 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- ========= SEO ========= -->
-<title>Medical Calculators | BMI, BSA, Drug Dose & IV Infusion | Dr. Nisa Raisani</title>
-<meta name="description" content="Complete medical calculators including BMI (WHO), BSA, drug dosage, IV infusion rate and insulin correction. Educational tools for healthcare professionals.">
-<!-- ======================= -->
+<title>Medical Calculators | Dr. Nisa Raisani</title>
+<meta name="description" content="Medical calculators including BMI, BSA, drug dose, IV infusion and insulin correction for educational use.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
+<!-- PAGE-ONLY SAFE STYLES -->
 <style>
 .calc-btn{padding:10px 18px;background:#0f4c5c;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-top:10px}
-.calc-btn:hover{opacity:.9}
-
 .calc-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;justify-content:center;align-items:center}
-.calc-box{background:#fff;padding:25px;width:100%;max-width:440px;border-radius:10px;position:relative;font-family:Poppins}
+.calc-box{background:#fff;padding:25px;max-width:420px;width:100%;border-radius:10px;position:relative}
 .calc-box label{display:block;margin-top:10px}
 .calc-box input{width:100%;padding:8px;margin-top:5px}
 .result-box{margin-top:15px;background:#f1f5f9;padding:10px;border-radius:6px}
-
-.close-calc{
-position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;
-background:#e5e7eb;color:#0f172a;display:flex;align-items:center;justify-content:center;
-font-size:22px;font-weight:700;cursor:pointer
-}
-.close-calc:hover{background:#cbd5e1}
-
-small{display:block;margin-top:10px;color:#475569;font-size:12px}
+.close-calc{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#e5e7eb;color:#111;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;cursor:pointer}
+small{font-size:12px;color:#555}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER (UNCHANGED) -->
 <header class="navbar">
-<div class="logo">Dr. Nisa Raisani</div>
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
-<nav id="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="clinical.html">Clinical</a>
-<a href="research.html">Research</a>
-<a href="appointment.html">Appointment</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <div class="logo">Dr. Nisa Raisani</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
 <section class="fade" style="margin-top:80px;">
 <h2>Medical Calculators</h2>
 <p style="max-width:850px;margin:auto;">
-Professional medical calculators for educational and clinical reference use.
+Educational medical calculators for reference use only.
 </p>
 </section>
 
@@ -60,131 +51,112 @@ Professional medical calculators for educational and clinical reference use.
 <div class="grid">
 
 <div class="card">
-<h4>Body Mass Index (BMI)</h4>
-<p>WHO classification for adults (educational use only).</p>
-<button class="calc-btn" onclick="openBMI()">Calculate</button>
+<h4>BMI Calculator</h4>
+<p>WHO adult classification.</p>
+<button class="calc-btn" onclick="openPopup('bmi')">Calculate</button>
 </div>
 
 <div class="card">
-<h4>Body Surface Area (BSA)</h4>
-<p>Used for drug dosing & clinical assessment.</p>
-<button class="calc-btn" onclick="openBSA()">Calculate</button>
+<h4>BSA Calculator</h4>
+<p>Mosteller formula.</p>
+<button class="calc-btn" onclick="openPopup('bsa')">Calculate</button>
 </div>
 
 <div class="card">
-<h4>Drug Dosage Calculator</h4>
-<p>Weight-based adult medication dose.</p>
-<button class="calc-btn" onclick="openDose()">Calculate</button>
+<h4>Drug Dose</h4>
+<p>Weight based.</p>
+<button class="calc-btn" onclick="openPopup('dose')">Calculate</button>
 </div>
 
 <div class="card">
-<h4>IV Infusion Rate</h4>
-<p>Calculate drops per minute.</p>
-<button class="calc-btn" onclick="openIV()">Calculate</button>
+<h4>IV Infusion</h4>
+<p>ml/min.</p>
+<button class="calc-btn" onclick="openPopup('iv')">Calculate</button>
 </div>
 
 <div class="card">
 <h4>Insulin Correction</h4>
-<p>Simple correction dose calculator.</p>
-<button class="calc-btn" onclick="openInsulin()">Calculate</button>
+<p>Correction factor.</p>
+<button class="calc-btn" onclick="openPopup('insulin')">Calculate</button>
 </div>
 
 </div>
 </section>
 
 <!-- BMI -->
-<div id="bmiPopup" class="calc-popup"><div class="calc-box">
-<span class="close-calc" onclick="closeBMI()">×</span>
-<h3>BMI Calculator</h3>
-<label>Weight (kg)</label><input id="bmiW" type="number">
-<label>Height (cm)</label><input id="bmiH" type="number">
-<button class="calc-btn" onclick="calcBMI()">Calculate</button>
-<div id="bmiR" class="result-box"></div>
-<small>WHO classification used. Educational purpose only.</small>
+<div id="bmi" class="calc-popup"><div class="calc-box">
+<span class="close-calc" onclick="closePopup('bmi')">×</span>
+<label>Weight (kg)</label><input id="bw">
+<label>Height (cm)</label><input id="bh">
+<button class="calc-btn" onclick="bmiCalc()">Result</button>
+<div id="br" class="result-box"></div>
+<small>WHO reference only.</small>
 </div></div>
 
 <!-- BSA -->
-<div id="bsaPopup" class="calc-popup"><div class="calc-box">
-<span class="close-calc" onclick="closeBSA()">×</span>
-<h3>BSA Calculator</h3>
-<label>Weight (kg)</label><input id="bsaW" type="number">
-<label>Height (cm)</label><input id="bsaH" type="number">
-<button class="calc-btn" onclick="calcBSA()">Calculate</button>
-<div id="bsaR" class="result-box"></div>
-<small>Average adult BSA: 1.7–1.9 m²</small>
+<div id="bsa" class="calc-popup"><div class="calc-box">
+<span class="close-calc" onclick="closePopup('bsa')">×</span>
+<label>Weight (kg)</label><input id="sw">
+<label>Height (cm)</label><input id="sh">
+<button class="calc-btn" onclick="bsaCalc()">Result</button>
+<div id="sr" class="result-box"></div>
+<small>Adult avg 1.7–1.9 m²</small>
 </div></div>
 
 <!-- Dose -->
-<div id="dosePopup" class="calc-popup"><div class="calc-box">
-<span class="close-calc" onclick="closeDose()">×</span>
-<h3>Drug Dose</h3>
-<label>Dose (mg/kg)</label><input id="dMg" type="number">
-<label>Weight (kg)</label><input id="dW" type="number">
-<button class="calc-btn" onclick="calcDose()">Calculate</button>
-<div id="doseR" class="result-box"></div>
-<small>Verify with clinical guidelines.</small>
+<div id="dose" class="calc-popup"><div class="calc-box">
+<span class="close-calc" onclick="closePopup('dose')">×</span>
+<label>mg/kg</label><input id="dm">
+<label>Weight (kg)</label><input id="dw">
+<button class="calc-btn" onclick="doseCalc()">Result</button>
+<div id="dr" class="result-box"></div>
 </div></div>
 
 <!-- IV -->
-<div id="ivPopup" class="calc-popup"><div class="calc-box">
-<span class="close-calc" onclick="closeIV()">×</span>
-<h3>IV Infusion Rate</h3>
-<label>Volume (ml)</label><input id="ivV" type="number">
-<label>Time (min)</label><input id="ivT" type="number">
-<button class="calc-btn" onclick="calcIV()">Calculate</button>
-<div id="ivR" class="result-box"></div>
+<div id="iv" class="calc-popup"><div class="calc-box">
+<span class="close-calc" onclick="closePopup('iv')">×</span>
+<label>Volume (ml)</label><input id="ivv">
+<label>Time (min)</label><input id="ivt">
+<button class="calc-btn" onclick="ivCalc()">Result</button>
+<div id="ivr" class="result-box"></div>
 </div></div>
 
 <!-- Insulin -->
-<div id="insPopup" class="calc-popup"><div class="calc-box">
-<span class="close-calc" onclick="closeInsulin()">×</span>
-<h3>Insulin Correction</h3>
-<label>Current Glucose</label><input id="g1" type="number">
-<label>Target Glucose</label><input id="g2" type="number">
-<label>Correction Factor</label><input id="cf" type="number">
-<button class="calc-btn" onclick="calcInsulin()">Calculate</button>
-<div id="insR" class="result-box"></div>
-<small>Clinical confirmation required.</small>
+<div id="insulin" class="calc-popup"><div class="calc-box">
+<span class="close-calc" onclick="closePopup('insulin')">×</span>
+<label>Current</label><input id="ig1">
+<label>Target</label><input id="ig2">
+<label>Factor</label><input id="icf">
+<button class="calc-btn" onclick="insCalc()">Result</button>
+<div id="ir" class="result-box"></div>
 </div></div>
 
 <footer>
-<div class="footer-menu">
-<a href="privacy.html">Privacy Policy</a>
-<a href="disclaimer.html">Medical Disclaimer</a>
-<a href="contact.html">Contact</a>
-</div>
 <p>© 2025 Dr. Nisa Raisani</p>
 </footer>
 
+<!-- SAFE JS -->
 <script>
-function toggleMenu(){nav-menu.classList.toggle("active")}
-
-const open=(i)=>document.getElementById(i).style.display="flex"
-const close=(i)=>document.getElementById(i).style.display="none"
-
-openBMI=()=>open("bmiPopup");closeBMI=()=>close("bmiPopup")
-openBSA=()=>open("bsaPopup");closeBSA=()=>close("bsaPopup")
-openDose=()=>open("dosePopup");closeDose=()=>close("dosePopup")
-openIV=()=>open("ivPopup");closeIV=()=>close("ivPopup")
-openInsulin=()=>open("insPopup");closeInsulin=()=>close("insPopup")
-
-function calcBMI(){
-let w=bmiW.value,h=bmiH.value/100
-if(!w||!h)return alert("Enter values")
-let b=(w/(h*h)).toFixed(1)
-let s=b<18.5?"Underweight":b<25?"Normal":b<30?"Overweight":"Obese"
-bmiR.innerHTML=`BMI: ${b}<br>Status: ${s}`
+function toggleMenu(){
+  document.getElementById("nav-menu").classList.toggle("active");
 }
 
-function calcBSA(){
-let b=Math.sqrt((bsaH.value*bsaW.value)/3600).toFixed(2)
-bsaR.innerHTML=`BSA: ${b} m²`
+function openPopup(id){document.getElementById(id).style.display="flex"}
+function closePopup(id){document.getElementById(id).style.display="none"}
+
+function bmiCalc(){
+let w=bw.value,h=bh.value/100;
+let b=(w/(h*h)).toFixed(1);
+let s=b<18.5?"Underweight":b<25?"Normal":b<30?"Overweight":"Obese";
+br.innerHTML=`BMI: ${b}<br>Status: ${s}`;
 }
 
-function calcDose(){doseR.innerHTML=`Total Dose: ${(dMg.value*dW.value).toFixed(1)} mg`}
-function calcIV(){ivR.innerHTML=`Rate: ${(ivV.value/ivT.value).toFixed(1)} ml/min`}
-function calcInsulin(){insR.innerHTML=`Units: ${((g1.value-g2.value)/cf.value).toFixed(1)}`}
+function bsaCalc(){sr.innerHTML=`BSA: ${(Math.sqrt(sh.value*sw.value/3600)).toFixed(2)} m²`}
+function doseCalc(){dr.innerHTML=`Dose: ${(dm.value*dw.value).toFixed(1)} mg`}
+function ivCalc(){ivr.innerHTML=`Rate: ${(ivv.value/ivt.value).toFixed(1)} ml/min`}
+function insCalc(){ir.innerHTML=`Units: ${((ig1.value-ig2.value)/icf.value).toFixed(1)}`}
 </script>
 
 </body>
-</html>
+  </html>
+  
