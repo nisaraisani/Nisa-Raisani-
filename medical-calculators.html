@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Medical Calculators (BMI, BSA, IV, Pregnancy, Kidney) | Dr. Nisa Raisani</title>
+  <!-- ========= PAGE SEO ========= -->
+  <title>Medical Calculators (BMI, BSA, IV Dose, Pregnancy, Kidney) | Dr. Nisa Raisani</title>
+  <meta name="description" content="Medical calculators including BMI, BSA, IV infusion rate, pediatric, adult, pregnancy and kidney dose calculators with normal ranges and clinical guidance.">
+  <!-- ============================ -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Original CSS maintained -->
+  <!-- Main CSS (LOCKED) -->
   <link rel="stylesheet" href="style.css">
 
+  <!-- Calculator Scoped CSS -->
   <style>
     .calc-btn{
       padding:10px 18px;
@@ -24,7 +29,7 @@
     }
     .calc-fields{
       display:none;
-      margin-top:15px;
+      margin-top:10px;
     }
     .calc-fields input, .calc-fields select{
       width:100%;
@@ -48,11 +53,10 @@
       border-radius:18px;
       box-shadow:0 2px 12px rgba(0,0,0,0.1);
       font-family:Poppins;
-      position:relative;
+      margin-bottom:20px;
     }
   </style>
 </head>
-
 <body>
 
 <header class="navbar">
@@ -69,7 +73,7 @@
   </nav>
 </header>
 
-<section class="fade" style="margin-top:80px;text-align:center;">
+<section class="fade" style="margin-top:80px;">
   <h2>Medical Calculators</h2>
   <p style="max-width:850px;margin:auto;">
     Evidence-based medical calculators for doctors, nurses and medical students.
@@ -160,21 +164,17 @@
 
   <!-- Pregnancy -->
   <div class="card">
-    <h4>Pregnancy Calculator</h4>
-    <p>Calculate Gestational Age, EDD, Pre-pregnancy BMI & Weight Gain guidance.</p>
+    <h4>Pregnancy: EDD & GA</h4>
+    <p>Calculate gestational age & expected delivery date.</p>
     <button class="calc-btn" onclick="toggleCalc('pregFields')">Open</button>
     <div class="calc-fields" id="pregFields">
       <input type="date" id="lmp" placeholder="Last Menstrual Period">
-      <input type="number" id="preWeight" placeholder="Pre-pregnancy Weight (kg)">
-      <input type="number" id="heightPreg" placeholder="Height (cm)">
       <button class="calc-btn" onclick="calcPregnancy()">Calculate</button>
       <div id="pregResult" class="calc-result normal"></div>
-      <div id="pregBMIResult" class="calc-result normal"></div>
-      <div id="weightGainResult" class="calc-result normal"></div>
     </div>
   </div>
 
-  <!-- Creatinine Clearance -->
+  <!-- CrCl -->
   <div class="card">
     <h4>Creatinine Clearance (CrCl)</h4>
     <p>Estimate kidney function & dose adjustment.</p>
@@ -189,14 +189,6 @@
       </select>
       <button class="calc-btn" onclick="calcCrCl()">Calculate</button>
       <div id="crResult" class="calc-result normal"></div>
-      <table>
-        <tr><th>Stage</th><th>eGFR (ml/min/1.73m²)</th><th>Interpretation</th></tr>
-        <tr><td>1</td><td>≥90</td><td>Normal kidney function</td></tr>
-        <tr><td>2</td><td>60–89</td><td>Mild decrease</td></tr>
-        <tr><td>3</td><td>30–59</td><td>Moderate impairment</td></tr>
-        <tr><td>4</td><td>15–29</td><td>Severe impairment</td></tr>
-        <tr><td>5</td><td><15</td><td>Kidney failure</td></tr>
-      </table>
     </div>
   </div>
 
@@ -219,14 +211,27 @@
 
 </section>
 
-<footer style="text-align:center;padding:20px;background:#0f766e;color:#fff;">
-<p>© 2026 Dr. Nisa Raisani. All rights reserved.</p>
+<section class="fade">
+  <h2>Medical Disclaimer</h2>
+  <p style="max-width:850px;margin:auto;">
+    These calculators are for educational purposes only and do not replace
+    professional medical judgment or institutional protocols.
+  </p>
+</section>
+
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
 </footer>
 
 <script>
 function toggleCalc(id){
-  let el=document.getElementById(id);
-  el.style.display=(el.style.display==='block')?'none':'block';
+  const el=document.getElementById(id);
+  el.style.display = (el.style.display==='block') ? 'none' : 'block';
 }
 
 // BMI, BSA, IV, Pediatric, Adult, Insulin
@@ -237,11 +242,9 @@ function calcPed(){ pr.innerHTML=`Dose: <strong>${(pd.value*pw.value).toFixed(1)
 function calcAdult(){ ar.innerHTML=`Dose: <strong>${(ad.value*aw.value).toFixed(1)} mg</strong>`; }
 function calcIns(){ ir.innerHTML=`Estimated TDD: <strong>${(0.5*iw.value).toFixed(1)} units/day</strong>`; }
 
-// Pregnancy professional
+// Pregnancy
 function calcPregnancy(){
   let lmp = new Date(document.getElementById('lmp').value);
-  let preW = +document.getElementById('preWeight').value;
-  let height = +document.getElementById('heightPreg').value/100;
   if(!lmp){ alert('Enter valid LMP date'); return; }
   let today = new Date();
   let diff = today-lmp;
@@ -249,24 +252,13 @@ function calcPregnancy(){
   let days = Math.floor((diff/(1000*60*60*24))%7);
   let edd = new Date(lmp); edd.setDate(edd.getDate()+280);
   let status="Normal"; if(weeks<37) status="Preterm"; else if(weeks>42) status="Post-term";
-  pregResult.innerHTML=`Gestational Age: <strong>${weeks}w + ${days}d</strong><br>EDD: <strong>${edd.toDateString()}</strong><br>Status: <strong>${status}</strong>`;
-  if(preW && height){
-    let bmi = (preW/(height*height)).toFixed(1);
-    pregBMIResult.innerHTML=`Pre-pregnancy BMI: <strong>${bmi}</strong>`;
-    let gain="", gainCls="normal";
-    if(bmi<18.5){gain="Recommended gain: 12.5–18 kg";}
-    else if(bmi<25){gain="Recommended gain: 11.5–16 kg";}
-    else if(bmi<30){gain="Recommended gain: 7–11.5 kg"; gainCls="warning";}
-    else{gain="Recommended gain: 5–9 kg"; gainCls="danger";}
-    weightGainResult.className="calc-result "+gainCls;
-    weightGainResult.innerHTML=gain;
-  }
+  pregResult.innerHTML=`Gestational Age: <strong>${weeks} weeks + ${days} days</strong><br>EDD: <strong>${edd.toDateString()}</strong><br>Status: <strong>${status}</strong>`;
 }
 
 // CrCl
 function calcCrCl(){
   let age=+crAge.value, weight=+crWeight.value, scr=+crScr.value, gender=crGender.value;
-  let crcl = ((140-age)*weight)/(72*scr); if(gender=='female') crcl*=0.85; crcl=crcl.toFixed(1);
+  let crcl=((140-age)*weight)/(72*scr); if(gender==='female') crcl*=0.85; crcl=crcl.toFixed(1);
   let cls="normal", msg="Normal kidney function";
   if(crcl<30){cls="danger";msg="Severe Impairment – consult nephrologist";}
   else if(crcl<60){cls="warning";msg="Moderate Impairment";}
@@ -277,7 +269,7 @@ function calcCrCl(){
 // eGFR
 function calcEGFR(){
   let age=+egAge.value, scr=+egScr.value, gender=egGender.value;
-  let egfr = 175 * Math.pow(scr,-1.154) * Math.pow(age,-0.203); if(gender=='female') egfr*=0.742; egfr=egfr.toFixed(1);
+  let egfr=175*Math.pow(scr,-1.154)*Math.pow(age,-0.203); if(gender==='female') egfr*=0.742; egfr=egfr.toFixed(1);
   let cls="normal", msg="Normal kidney function";
   if(egfr<15){cls="danger";msg="Kidney Failure – urgent care";}
   else if(egfr<30){cls="danger";msg="Severe Impairment";}
@@ -286,9 +278,10 @@ function calcEGFR(){
   egResult.className="calc-result "+cls; egResult.innerHTML=`eGFR: <strong>${egfr} ml/min/1.73m²</strong><br>${msg}`;
 }
 
-// Menu toggle
-function toggleMenu(){ document.getElementById("nav-menu")?.classList.toggle("active"); }
+// Menu
+function toggleMenu(){ document.getElementById("nav-menu").classList.toggle("active"); }
 </script>
 
 </body>
-</html>
+                                                              </html>
+  
