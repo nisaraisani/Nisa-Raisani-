@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Medical Calculators | BMI, BSA & Clinical Tools</title>
 
-<title>Medical Calculators – BMI, BSA, Pediatric, Adult & ICU Tools</title>
-
-<meta name="description" content="Complete medical calculators including BMI, BSA, pediatric, adult, geriatric and ICU tools. Designed for doctors, nurses and medical students.">
-
-<meta name="keywords" content="medical calculators, BMI calculator, BSA calculator, pediatric dose calculator, ICU calculator">
-
+<meta name="description" content="Professional medical calculators including BMI, BSA, adult, pediatric and ICU tools. Designed for doctors, nurses and medical students.">
+<meta name="keywords" content="medical calculators, BMI calculator, BSA calculator, clinical calculator">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   margin:0;
-  font-family:"Segoe UI",Arial,sans-serif;
+  font-family:Segoe UI,Arial,sans-serif;
   background:#f4f8fb;
   color:#123;
 }
@@ -25,7 +22,7 @@ header{
   text-align:center;
 }
 section{padding:25px}
-h2{color:#0b5ed7;margin-bottom:15px}
+h2{color:#0b5ed7}
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -35,7 +32,7 @@ h2{color:#0b5ed7;margin-bottom:15px}
   background:#fff;
   border-radius:14px;
   padding:20px;
-  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
 }
 .card h3{margin-top:0;color:#0b5ed7}
 .card p{font-size:14px;color:#555}
@@ -50,14 +47,40 @@ h2{color:#0b5ed7;margin-bottom:15px}
 }
 .card button:hover{background:#157347}
 
-.calc-box{
+footer{
+  background:#e9f0fb;
+  padding:15px;
+  text-align:center;
+  font-size:12px;
+}
+
+/* MODAL */
+.modal{
   display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,.55);
+  z-index:1000;
+}
+.modal-content{
   background:#fff;
-  margin:20px;
+  max-width:420px;
+  margin:60px auto;
   padding:25px;
   border-radius:14px;
-  box-shadow:0 6px 14px rgba(0,0,0,0.1);
+  position:relative;
 }
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+  color:#777;
+}
+.close-btn:hover{color:#000}
+
 input{
   width:100%;
   padding:10px;
@@ -65,7 +88,7 @@ input{
   border-radius:8px;
   border:1px solid #ccc;
 }
-.calc-box button{
+.modal-content button{
   background:#0b5ed7;
   color:#fff;
   border:none;
@@ -74,17 +97,11 @@ input{
   width:100%;
 }
 .info{
-  margin-top:10px;
   background:#eef4ff;
   padding:12px;
   border-radius:10px;
+  margin-top:10px;
   font-size:14px;
-}
-footer{
-  background:#e9f0fb;
-  padding:15px;
-  text-align:center;
-  font-size:12px;
 }
 </style>
 </head>
@@ -96,7 +113,6 @@ footer{
 <p>Pediatric • Adult • Geriatric • ICU • Universal</p>
 </header>
 
-<!-- PEDIATRIC -->
 <section>
 <h2>Pediatric Calculators</h2>
 <div class="grid">
@@ -108,7 +124,6 @@ footer{
 </div>
 </section>
 
-<!-- ADULT -->
 <section>
 <h2>Adult Calculators</h2>
 <div class="grid">
@@ -135,19 +150,6 @@ footer{
 </div>
 </section>
 
-<!-- GERIATRIC -->
-<section>
-<h2>Geriatric Calculators</h2>
-<div class="grid">
-  <div class="card">
-    <h3>Elderly Dose Adjustment</h3>
-    <p>Dose support for elderly patients.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-</div>
-</section>
-
-<!-- UNIVERSAL -->
 <section>
 <h2>Universal Calculators</h2>
 <div class="grid">
@@ -158,18 +160,12 @@ footer{
   </div>
   <div class="card">
     <h3>BSA Calculator</h3>
-    <p>Body Surface Area for dosing.</p>
+    <p>Body Surface Area for drug dosing.</p>
     <button onclick="showBSA()">Open</button>
-  </div>
-  <div class="card">
-    <h3>IV Infusion Rate</h3>
-    <p>Universal infusion rate tool.</p>
-    <button onclick="comingSoon()">Open</button>
   </div>
 </div>
 </section>
 
-<!-- ICU -->
 <section>
 <h2>ICU / CCU Calculators</h2>
 <div class="grid">
@@ -183,45 +179,52 @@ footer{
     <p>Mean arterial pressure.</p>
     <button onclick="comingSoon()">Open</button>
   </div>
-  <div class="card">
-    <h3>DKA Calculator</h3>
-    <p>DKA insulin & electrolyte guidance.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
 </div>
 </section>
 
-<!-- BMI -->
-<div id="bmiBox" class="calc-box">
-<h2>BMI Calculator</h2>
-<input type="number" id="bmiWeight" placeholder="Weight (kg)">
-<input type="number" id="bmiHeight" placeholder="Height (cm)">
-<button onclick="calcBMI()">Calculate BMI</button>
-<p id="bmiResult"></p>
-<p id="bmiStatus"></p>
-<div class="info">
-<strong>Normal BMI:</strong> 18.5 – 24.9<br>
-BMI is a screening tool, not a diagnosis.
-</div>
+<!-- BMI MODAL -->
+<div id="bmiModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>BMI Calculator</h2>
+
+    <input type="number" id="bmiWeight" placeholder="Weight (kg)">
+    <input type="number" id="bmiHeight" placeholder="Height (cm)">
+    <button onclick="calcBMI()">Calculate BMI</button>
+
+    <p id="bmiResult"></p>
+    <p id="bmiStatus"></p>
+
+    <div class="info">
+      <strong>Normal BMI:</strong> 18.5 – 24.9<br>
+      Screening tool only – clinical correlation advised.
+    </div>
+  </div>
 </div>
 
-<!-- BSA -->
-<div id="bsaBox" class="calc-box">
-<h2>BSA Calculator</h2>
-<input type="number" id="bsaWeight" placeholder="Weight (kg)">
-<input type="number" id="bsaHeight" placeholder="Height (cm)">
-<button onclick="calcBSA()">Calculate BSA</button>
-<p id="bsaResult"></p>
-<p id="bsaStatus"></p>
-<div class="info">
-<strong>Average BSA:</strong><br>
-Adult male ≈ 1.9 m²<br>
-Adult female ≈ 1.6 m²
-</div>
+<!-- BSA MODAL -->
+<div id="bsaModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>BSA Calculator</h2>
+
+    <input type="number" id="bsaWeight" placeholder="Weight (kg)">
+    <input type="number" id="bsaHeight" placeholder="Height (cm)">
+    <button onclick="calcBSA()">Calculate BSA</button>
+
+    <p id="bsaResult"></p>
+    <p id="bsaStatus"></p>
+
+    <div class="info">
+      <strong>Average Adult BSA</strong><br>
+      Male ≈ 1.9 m²<br>
+      Female ≈ 1.6 m²
+    </div>
+  </div>
 </div>
 
 <footer>
-⚠️ Educational purpose only. Not a substitute for professional medical advice.
+⚠️ Educational use only. Not a substitute for professional medical advice.
 </footer>
 
 <script>
@@ -229,13 +232,20 @@ function comingSoon(){
   alert("This calculator will be added in future updates.");
 }
 
-function hideAll(){
-  document.getElementById("bmiBox").style.display="none";
-  document.getElementById("bsaBox").style.display="none";
+function closeModal(){
+  document.getElementById("bmiModal").style.display="none";
+  document.getElementById("bsaModal").style.display="none";
 }
 
-function showBMI(){hideAll();document.getElementById("bmiBox").style.display="block";}
-function showBSA(){hideAll();document.getElementById("bsaBox").style.display="block";}
+function showBMI(){
+  closeModal();
+  document.getElementById("bmiModal").style.display="block";
+}
+
+function showBSA(){
+  closeModal();
+  document.getElementById("bsaModal").style.display="block";
+}
 
 function calcBMI(){
   let w=document.getElementById("bmiWeight").value;
@@ -243,7 +253,7 @@ function calcBMI(){
   if(!w||!h){alert("Please enter valid values");return;}
 
   let bmi=(w/(h*h)).toFixed(2);
-  let status="",note="";
+  let status,note;
 
   if(bmi<18.5){status="Underweight";note="Below normal range. Nutritional assessment recommended.";}
   else if(bmi<=24.9){status="Normal";note="Within normal healthy range.";}
@@ -260,10 +270,7 @@ function calcBSA(){
   if(!w||!h){alert("Please enter valid values");return;}
 
   let bsa=Math.sqrt((h*w)/3600).toFixed(2);
-  let comment="";
-  if(bsa<1.5) comment="Below average body surface area.";
-  else if(bsa<=2.1) comment="Within average adult range.";
-  else comment="Above average body surface area.";
+  let comment=(bsa<1.5)?"Below average body surface area":(bsa<=2.1)?"Within average adult range":"Above average body surface area";
 
   document.getElementById("bsaResult").innerHTML="<strong>BSA:</strong> "+bsa+" m²";
   document.getElementById("bsaStatus").innerHTML=comment;
