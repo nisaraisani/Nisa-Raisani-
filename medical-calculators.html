@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- ========= PAGE SEO ========= -->
+  <title>Medical Calculators (BMI, BSA, IV Dose) | Dr. Nisa Raisani</title>
+  <meta name="description" content="Medical calculators including BMI, BSA, IV infusion rate, pediatric and adult dose calculators with normal ranges and clinical guidance.">
+  <!-- ============================ -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS (LOCKED) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Calculator Scoped CSS (SAFE) -->
+  <style>
+    .calc-btn{
+      padding:10px 18px;
+      border-radius:25px;
+      background:#0f766e;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+    }
+    .calc-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.6);
+      z-index:9999;
+    }
+    .calc-box{
+      background:#fff;
+      max-width:420px;
+      margin:90px auto;
+      padding:22px;
+      border-radius:18px;
+      position:relative;
+      font-family:Poppins;
+    }
+    .calc-box input{
+      width:100%;
+      padding:10px;
+      margin:6px 0;
+      border-radius:10px;
+      border:1px solid #ccc;
+    }
+    .close-calc{
+      position:absolute;
+      top:12px;
+      right:16px;
+      font-size:22px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+    .calc-result{
+      margin-top:10px;
+      padding:10px;
+      border-radius:10px;
+      font-size:14px;
+    }
+    .normal{background:#ecfdf5;color:#065f46}
+    .warning{background:#fff7ed;color:#9a3412}
+    .danger{background:#fef2f2;color:#991b1b}
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER (LOCKED) ================= -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
+</header>
+
+<!-- ================= PAGE INTRO ================= -->
+<section class="fade" style="margin-top:80px;">
+  <h2>Medical Calculators</h2>
+  <p style="max-width:850px;margin:auto;">
+    Evidence-based medical calculators for doctors, nurses and medical students.
+    Includes interpretation, normal ranges and safety guidance.
+  </p>
+</section>
+
+<!-- ================= CALCULATOR CARDS ================= -->
+<section class="fade">
+  <div class="grid">
+
+    <div class="card">
+      <h4>BMI Calculator</h4>
+      <p>Body Mass Index with WHO classification.</p>
+      <button class="calc-btn" onclick="openCalc('bmi')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>BSA Calculator</h4>
+      <p>Body Surface Area (Mosteller formula).</p>
+      <button class="calc-btn" onclick="openCalc('bsa')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>IV Infusion Rate</h4>
+      <p>Calculate infusion rate in ml/hour.</p>
+      <button class="calc-btn" onclick="openCalc('iv')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>Pediatric Dose</h4>
+      <p>Weight-based pediatric dose calculator.</p>
+      <button class="calc-btn" onclick="openCalc('ped')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>Adult Dose</h4>
+      <p>Standard adult drug dose calculation.</p>
+      <button class="calc-btn" onclick="openCalc('adult')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>Insulin Dose</h4>
+      <p>Estimated total daily insulin dose.</p>
+      <button class="calc-btn" onclick="openCalc('ins')">Open</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= DISCLAIMER ================= -->
+<section class="fade">
+  <h2>Medical Disclaimer</h2>
+  <p style="max-width:850px;margin:auto;">
+    These calculators are for educational purposes only and do not replace
+    professional medical judgment or institutional protocols.
+  </p>
+</section>
+
+<!-- ================= FOOTER (LOCKED) ================= -->
+<footer>
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
+</footer>
+
+<!-- ================= CALCULATOR MODALS ================= -->
+
+<!-- BMI -->
+<div class="calc-modal" id="bmi">
+  <div class="calc-box">
+    <span class="close-calc" onclick="closeCalc()">×</span>
+    <h3>BMI Calculator</h3>
+    <input id="bw" placeholder="Weight (kg)">
+    <input id="bh" placeholder="Height (cm)">
+    <button class="calc-btn" onclick="calcBMI()">Calculate</button>
+    <div id="br" class="calc-result"></div>
+  </div>
+</div>
+
+<!-- BSA -->
+<div class="calc-modal" id="bsa">
+  <div class="calc-box">
+    <span class="close-calc" onclick="closeCalc()">×</span>
+    <h3>BSA Calculator</h3>
+    <input id="sw" placeholder="Weight (kg)">
+    <input id="sh" placeholder="Height (cm)">
+    <button class="calc-btn" onclick="calcBSA()">Calculate</button>
+    <div id="sr" class="calc-result normal"></div>
+    <p>Average adult BSA: <strong>1.7 – 1.9 m²</strong></p>
+  </div>
+</div>
+
+<!-- IV -->
+<div class="calc-modal" id="iv">
+  <div class="calc-box">
+    <span class="close-calc" onclick="closeCalc()">×</span>
+    <h3>IV Infusion Rate</h3>
+    <input id="ivv" placeholder="Volume (ml)">
+    <input id="ivt" placeholder="Time (hours)">
+    <button class="calc-btn" onclick="calcIV()">Calculate</button>
+    <div id="ivr" class="calc-result"></div>
+  </div>
+</div>
+
+<!-- Pediatric -->
+<div class="calc-modal" id="ped">
+  <div class="calc-box">
+    <span class="close-calc" onclick="closeCalc()">×</span>
+    <h3>Pediatric Dose</h3>
+    <input id="pd" placeholder="Dose (mg/kg)">
+    <input id="pw" placeholder="Weight (kg)">
+    <button class="calc-btn" onclick="calcPed()">Calculate</button>
+    <div id="pr" class="calc-result normal"></div>
+  </div>
+</div>
+
+<!-- Adult -->
+<div class="calc-modal" id="adult">
+  <div class="calc-box">
+    <span class="close-calc" onclick="closeCalc()">×</span>
+    <h3>Adult Dose</h3>
+    <input id="ad" placeholder="Dose (mg/kg)">
+    <input id="aw" placeholder="Weight (kg)">
+    <button class="calc-btn" onclick="calcAdult()">Calculate</button>
+    <div id="ar" class="calc-result normal"></div>
+  </div>
+</div>
+
+<!-- Insulin -->
+<div class="calc-modal" id="ins">
+  <div class="calc-box">
+    <span class="close-calc" onclick="closeCalc()">×</span>
+    <h3>Insulin Dose</h3>
+    <input id="iw" placeholder="Weight (kg)">
+    <button class="calc-btn" onclick="calcIns()">Calculate</button>
+    <div id="ir" class="calc-result normal"></div>
+    <p>Estimated TDD: 0.4 – 0.6 units/kg/day</p>
+  </div>
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+function openCalc(id){
+  document.querySelectorAll('.calc-modal').forEach(m=>m.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+function closeCalc(){
+  document.querySelectorAll('.calc-modal').forEach(m=>m.style.display='none');
+}
+
+function calcBMI(){
+  let w=+bw.value,h=+bh.value/100;
+  let bmi=(w/(h*h)).toFixed(2);
+  let cls="normal",msg="Normal";
+  if(bmi<18.5){cls="warning";msg="Underweight";}
+  else if(bmi>=25&&bmi<30){cls="warning";msg="Overweight";}
+  else if(bmi>=30){cls="danger";msg="Obese – consult professional";}
+  br.className="calc-result "+cls;
+  br.innerHTML=`BMI: <strong>${bmi}</strong><br>${msg}<br>Normal: 18.5–24.9`;
+}
+function calcBSA(){
+  sr.innerHTML=`BSA: <strong>${Math.sqrt((sw.value*sh.value)/3600).toFixed(2)} m²</strong>`;
+}
+function calcIV(){
+  let r=(ivv.value/ivt.value).toFixed(1);
+  ivr.className="calc-result "+(r>200?"warning":"normal");
+  ivr.innerHTML=`Rate: <strong>${r} ml/hr</strong>`;
+}
+function calcPed(){
+  pr.innerHTML=`Dose: <strong>${(pd.value*pw.value).toFixed(1)} mg</strong>`;
+}
+function calcAdult(){
+  ar.innerHTML=`Dose: <strong>${(ad.value*aw.value).toFixed(1)} mg</strong>`;
+}
+function calcIns(){
+  ir.innerHTML=`Estimated TDD: <strong>${(0.5*iw.value).toFixed(1)} units/day</strong>`;
+}
+</script>
+
+<!-- SCROLL + MENU (LOCKED) -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+
+  function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("active");
+  }
+</script>
+
+</body>
+  </html>
+  
