@@ -2,179 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<title>Medical Calculators (BMI, BSA, IV, Pregnancy, Kidney) | Dr. Nisa Raisani</title>
+<title>Medical Calculators | Dr. Nisa Raisani</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-  body{font-family:Poppins;margin:0;padding:0;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:20px;}
-  .card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:relative;}
-  .card h4{margin-top:0;}
-  .calc-btn{padding:10px 18px;border-radius:25px;background:#0f766e;color:#fff;border:none;cursor:pointer;margin-top:8px;}
-  .calc-fields{display:none;margin-top:15px;}
-  .calc-fields input, .calc-fields select{width:100%;padding:8px;margin:6px 0;border-radius:10px;border:1px solid #ccc;}
-  .calc-result{margin-top:10px;padding:10px;border-radius:10px;font-size:14px;}
-  .normal{background:#ecfdf5;color:#065f46;}
-  .warning{background:#fff7ed;color:#9a3412;}
-  .danger{background:#fef2f2;color:#991b1b;}
+body{font-family:Poppins;margin:0;padding:0;background:#f9fafb;}
+header.navbar{background:#0f766e;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
+header .logo{font-size:24px;font-weight:600;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:20px;}
+.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:relative;}
+.card h4{margin-top:0;}
+.card p{font-size:14px;color:#333;}
+.calc-btn{padding:10px 18px;border-radius:25px;background:#0f766e;color:#fff;border:none;cursor:pointer;margin-top:8px;}
+.calc-fields{display:none;margin-top:15px;}
+.calc-fields input, .calc-fields select{width:100%;padding:8px;margin:6px 0;border-radius:10px;border:1px solid #ccc;}
+.calc-result{margin-top:10px;padding:10px;border-radius:10px;font-size:14px;}
+.normal{background:#ecfdf5;color:#065f46;}
+.warning{background:#fff7ed;color:#9a3412;}
+.danger{background:#fef2f2;color:#991b1b;}
 </style>
 </head>
 <body>
 
-<header style="background:#0f766e;color:#fff;padding:12px 20px;">
-  <div style="font-size:24px;">Dr. Nisa Raisani</div>
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </header>
 
 <section style="text-align:center;margin:30px;">
-  <h2>Medical Calculators</h2>
-  <p style="max-width:850px;margin:auto;">Evidence-based medical calculators for doctors, nurses and medical students. Includes interpretation, normal ranges and safety guidance.</p>
+<h2>Medical Calculators</h2>
+<p style="max-width:850px;margin:auto;">Evidence-based medical calculators for doctors, nurses and medical students. Includes interpretation, normal ranges and safety guidance.</p>
 </section>
 
 <section class="grid">
 
-  <!-- BMI -->
-  <div class="card">
-    <h4>BMI Calculator</h4>
-    <p>Body Mass Index with WHO classification.</p>
-    <button class="calc-btn" onclick="toggleCalc('bmiFields')">Open</button>
-    <div class="calc-fields" id="bmiFields">
-      <input id="bw" placeholder="Weight (kg)">
-      <input id="bh" placeholder="Height (cm)">
-      <button class="calc-btn" onclick="calcBMI()">Calculate</button>
-      <div id="br" class="calc-result normal"></div>
-    </div>
+<!-- BMI -->
+<div class="card">
+  <h4>BMI Calculator</h4>
+  <p>Body Mass Index with WHO classification.</p>
+  <button class="calc-btn" onclick="toggleCalc('bmiFields')">Open</button>
+  <div class="calc-fields" id="bmiFields">
+    <input id="bw" placeholder="Weight (kg)">
+    <input id="bh" placeholder="Height (cm)">
+    <button class="calc-btn" onclick="calcBMI()">Calculate</button>
+    <div id="br" class="calc-result normal"></div>
   </div>
+</div>
 
-  <!-- BSA -->
-  <div class="card">
-    <h4>BSA Calculator</h4>
-    <p>Body Surface Area (Mosteller formula).</p>
-    <button class="calc-btn" onclick="toggleCalc('bsaFields')">Open</button>
-    <div class="calc-fields" id="bsaFields">
-      <input id="sw" placeholder="Weight (kg)">
-      <input id="sh" placeholder="Height (cm)">
-      <button class="calc-btn" onclick="calcBSA()">Calculate</button>
-      <div id="sr" class="calc-result normal"></div>
-      <p>Average adult BSA: <strong>1.7 – 1.9 m²</strong></p>
-    </div>
+<!-- BSA -->
+<div class="card">
+  <h4>BSA Calculator</h4>
+  <p>Body Surface Area (Mosteller formula).</p>
+  <button class="calc-btn" onclick="toggleCalc('bsaFields')">Open</button>
+  <div class="calc-fields" id="bsaFields">
+    <input id="sw" placeholder="Weight (kg)">
+    <input id="sh" placeholder="Height (cm)">
+    <button class="calc-btn" onclick="calcBSA()">Calculate</button>
+    <div id="sr" class="calc-result normal"></div>
+    <p>Average adult BSA: <strong>1.7 – 1.9 m²</strong></p>
   </div>
+</div>
 
-  <!-- IV Infusion -->
-  <div class="card">
-    <h4>IV Infusion Rate</h4>
-    <p>Calculate infusion rate in ml/hour.</p>
-    <button class="calc-btn" onclick="toggleCalc('ivFields')">Open</button>
-    <div class="calc-fields" id="ivFields">
-      <input id="ivv" placeholder="Volume (ml)">
-      <input id="ivt" placeholder="Time (hours)">
-      <button class="calc-btn" onclick="calcIV()">Calculate</button>
-      <div id="ivr" class="calc-result normal"></div>
-    </div>
+<!-- IV Infusion -->
+<div class="card">
+  <h4>IV Infusion Rate</h4>
+  <p>Calculate infusion rate in ml/hour.</p>
+  <button class="calc-btn" onclick="toggleCalc('ivFields')">Open</button>
+  <div class="calc-fields" id="ivFields">
+    <input id="ivv" placeholder="Volume (ml)">
+    <input id="ivt" placeholder="Time (hours)">
+    <button class="calc-btn" onclick="calcIV()">Calculate</button>
+    <div id="ivr" class="calc-result normal"></div>
   </div>
+</div>
 
-  <!-- Pediatric Dose -->
-  <div class="card">
-    <h4>Pediatric Dose</h4>
-    <p>Weight-based pediatric dose calculator.</p>
-    <button class="calc-btn" onclick="toggleCalc('pedFields')">Open</button>
-    <div class="calc-fields" id="pedFields">
-      <input id="pd" placeholder="Dose (mg/kg)">
-      <input id="pw" placeholder="Weight (kg)">
-      <button class="calc-btn" onclick="calcPed()">Calculate</button>
-      <div id="pr" class="calc-result normal"></div>
-    </div>
+<!-- Pediatric Dose -->
+<div class="card">
+  <h4>Pediatric Dose</h4>
+  <p>Weight-based pediatric dose calculator.</p>
+  <button class="calc-btn" onclick="toggleCalc('pedFields')">Open</button>
+  <div class="calc-fields" id="pedFields">
+    <input id="pd" placeholder="Dose (mg/kg)">
+    <input id="pw" placeholder="Weight (kg)">
+    <button class="calc-btn" onclick="calcPed()">Calculate</button>
+    <div id="pr" class="calc-result normal"></div>
   </div>
+</div>
 
-  <!-- Adult Dose -->
-  <div class="card">
-    <h4>Adult Dose</h4>
-    <p>Standard adult drug dose calculation.</p>
-    <button class="calc-btn" onclick="toggleCalc('adultFields')">Open</button>
-    <div class="calc-fields" id="adultFields">
-      <input id="ad" placeholder="Dose (mg/kg)">
-      <input id="aw" placeholder="Weight (kg)">
-      <button class="calc-btn" onclick="calcAdult()">Calculate</button>
-      <div id="ar" class="calc-result normal"></div>
-    </div>
+<!-- Adult Dose -->
+<div class="card">
+  <h4>Adult Dose</h4>
+  <p>Standard adult drug dose calculation.</p>
+  <button class="calc-btn" onclick="toggleCalc('adultFields')">Open</button>
+  <div class="calc-fields" id="adultFields">
+    <input id="ad" placeholder="Dose (mg/kg)">
+    <input id="aw" placeholder="Weight (kg)">
+    <button class="calc-btn" onclick="calcAdult()">Calculate</button>
+    <div id="ar" class="calc-result normal"></div>
   </div>
+</div>
 
-  <!-- Insulin -->
-  <div class="card">
-    <h4>Insulin Dose</h4>
-    <p>Estimated total daily insulin dose.</p>
-    <button class="calc-btn" onclick="toggleCalc('insFields')">Open</button>
-    <div class="calc-fields" id="insFields">
-      <input id="iw" placeholder="Weight (kg)">
-      <button class="calc-btn" onclick="calcIns()">Calculate</button>
-      <div id="ir" class="calc-result normal"></div>
-      <p>Estimated TDD: 0.4 – 0.6 units/kg/day</p>
-    </div>
+<!-- Insulin -->
+<div class="card">
+  <h4>Insulin Dose</h4>
+  <p>Estimated total daily insulin dose.</p>
+  <button class="calc-btn" onclick="toggleCalc('insFields')">Open</button>
+  <div class="calc-fields" id="insFields">
+    <input id="iw" placeholder="Weight (kg)">
+    <button class="calc-btn" onclick="calcIns()">Calculate</button>
+    <div id="ir" class="calc-result normal"></div>
+    <p>Estimated TDD: 0.4 – 0.6 units/kg/day</p>
   </div>
+</div>
 
-  <!-- Pregnancy -->
-  <div class="card">
-    <h4>Pregnancy: EDD & GA</h4>
-    <p>Calculate gestational age & expected delivery date.</p>
-    <button class="calc-btn" onclick="toggleCalc('pregFields')">Open</button>
-    <div class="calc-fields" id="pregFields">
-      <input type="date" id="lmp" placeholder="Last Menstrual Period">
-      <button class="calc-btn" onclick="calcPregnancy()">Calculate</button>
-      <div id="pregResult" class="calc-result normal"></div>
-    </div>
+<!-- Pregnancy -->
+<div class="card">
+  <h4>Pregnancy: EDD & GA</h4>
+  <p>Enter <strong>Last Menstrual Period (LMP)</strong> to calculate gestational age & expected delivery date.</p>
+  <button class="calc-btn" onclick="toggleCalc('pregFields')">Open</button>
+  <div class="calc-fields" id="pregFields">
+    <input type="date" id="lmp" placeholder="Select LMP date">
+    <button class="calc-btn" onclick="calcPregnancy()">Calculate</button>
+    <div id="pregResult" class="calc-result normal"></div>
   </div>
+</div>
 
-  <!-- Creatinine Clearance -->
-  <div class="card">
-    <h4>Creatinine Clearance (CrCl)</h4>
-    <p>Estimate kidney function & dose adjustment.</p>
-    <button class="calc-btn" onclick="toggleCalc('crFields')">Open</button>
-    <div class="calc-fields" id="crFields">
-      <input id="crAge" placeholder="Age (years)">
-      <input id="crWeight" placeholder="Weight (kg)">
-      <input id="crScr" placeholder="Serum Creatinine (mg/dL)">
-      <select id="crGender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <button class="calc-btn" onclick="calcCrCl()">Calculate</button>
-      <div id="crResult" class="calc-result normal"></div>
-    </div>
+<!-- Creatinine Clearance -->
+<div class="card">
+  <h4>Creatinine Clearance (CrCl)</h4>
+  <p>Estimate kidney function & dose adjustment.</p>
+  <button class="calc-btn" onclick="toggleCalc('crFields')">Open</button>
+  <div class="calc-fields" id="crFields">
+    <input id="crAge" placeholder="Age (years)">
+    <input id="crWeight" placeholder="Weight (kg)">
+    <input id="crScr" placeholder="Serum Creatinine (mg/dL)">
+    <select id="crGender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <button class="calc-btn" onclick="calcCrCl()">Calculate</button>
+    <div id="crResult" class="calc-result normal"></div>
   </div>
+</div>
 
-  <!-- eGFR -->
-  <div class="card">
-    <h4>eGFR Calculator</h4>
-    <p>Chronic kidney disease staging.</p>
-    <button class="calc-btn" onclick="toggleCalc('egFields')">Open</button>
-    <div class="calc-fields" id="egFields">
-      <input id="egAge" placeholder="Age (years)">
-      <input id="egScr" placeholder="Serum Creatinine (mg/dL)">
-      <select id="egGender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <button class="calc-btn" onclick="calcEGFR()">Calculate</button>
-      <div id="egResult" class="calc-result normal"></div>
-    </div>
+<!-- eGFR -->
+<div class="card">
+  <h4>eGFR Calculator</h4>
+  <p>Chronic kidney disease staging.</p>
+  <button class="calc-btn" onclick="toggleCalc('egFields')">Open</button>
+  <div class="calc-fields" id="egFields">
+    <input id="egAge" placeholder="Age (years)">
+    <input id="egScr" placeholder="Serum Creatinine (mg/dL)">
+    <select id="egGender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <button class="calc-btn" onclick="calcEGFR()">Calculate</button>
+    <div id="egResult" class="calc-result normal"></div>
   </div>
+</div>
 
 </section>
 
 <footer style="text-align:center;padding:20px;background:#0f766e;color:#fff;">
-  <p>© 2026 Dr. Nisa Raisani. All rights reserved.</p>
+<p>© 2026 Dr. Nisa Raisani. All rights reserved.</p>
 </footer>
 
 <script>
-// toggle calculator fields
+// Toggle inline calculator
 function toggleCalc(id){
   let el=document.getElementById(id);
-  el.style.display = (el.style.display==='block')?'none':'block';
+  el.style.display=(el.style.display==='block')?'none':'block';
 }
 
-// Existing calculators
+// BMI
 function calcBMI(){
   let w=+bw.value,h=+bh.value/100;
   let bmi=(w/(h*h)).toFixed(2);
@@ -185,84 +186,83 @@ function calcBMI(){
   br.className="calc-result "+cls;
   br.innerHTML=`BMI: <strong>${bmi}</strong><br>${msg}<br>Normal: 18.5–24.9`;
 }
+
+// BSA
 function calcBSA(){
   sr.innerHTML=`BSA: <strong>${Math.sqrt((sw.value*sh.value)/3600).toFixed(2)} m²</strong>`;
 }
+
+// IV Infusion
 function calcIV(){
   let r=(ivv.value/ivt.value).toFixed(1);
   ivr.className="calc-result "+(r>200?"warning":"normal");
   ivr.innerHTML=`Rate: <strong>${r} ml/hr</strong>`;
 }
-function calcPed(){
-  pr.innerHTML=`Dose: <strong>${(pd.value*pw.value).toFixed(1)} mg</strong>`;
-}
-function calcAdult(){
-  ar.innerHTML=`Dose: <strong>${(ad.value*aw.value).toFixed(1)} mg</strong>`;
-}
-function calcIns(){
-  ir.innerHTML=`Estimated TDD: <strong>${(0.5*iw.value).toFixed(1)} units/day</strong>`;
-}
 
-// New calculators
-function calcPregnancy() {
-  let lmpDate = new Date(document.getElementById('lmp').value);
+// Pediatric
+function calcPed(){ pr.innerHTML=`Dose: <strong>${(pd.value*pw.value).toFixed(1)} mg</strong>`; }
+// Adult
+function calcAdult(){ ar.innerHTML=`Dose: <strong>${(ad.value*aw.value).toFixed(1)} mg</strong>`; }
+// Insulin
+function calcIns(){ ir.innerHTML=`Estimated TDD: <strong>${(0.5*iw.value).toFixed(1)} units/day</strong>`; }
+
+// Pregnancy
+function calcPregnancy(){
+  let lmpDate=new Date(document.getElementById('lmp').value);
   if(!lmpDate){ alert('Enter valid date'); return; }
-  let today = new Date();
-  let diff = today - lmpDate;
-  let weeks = Math.floor(diff / (1000*60*60*24*7));
-  let days = Math.floor((diff / (1000*60*60*24)) % 7);
-  let edd = new Date(lmpDate);
+  let today=new Date();
+  let diff=today-lmpDate;
+  let weeks=Math.floor(diff/(1000*60*60*24*7));
+  let days=Math.floor((diff/(1000*60*60*24))%7);
+  let edd=new Date(lmpDate);
   edd.setDate(edd.getDate()+280);
-  
-  let status = "Normal";
+  let status="Normal";
   if(weeks<37) status="Preterm";
   else if(weeks>42) status="Post-term";
-  
-  document.getElementById('pregResult').innerHTML = 
-    `Gestational Age: <strong>${weeks} weeks + ${days} days</strong><br>
-     Expected Delivery: <strong>${edd.toDateString()}</strong><br>
-     Status: <strong>${status}</strong>`;
+  document.getElementById('pregResult').innerHTML=`Gestational Age: <strong>${weeks} weeks + ${days} days</strong><br>
+Expected Delivery: <strong>${edd.toDateString()}</strong><br>
+Status: <strong>${status}</strong>`;
 }
 
+// CrCl
 function calcCrCl(){
-  let age = +document.getElementById('crAge').value;
-  let weight = +document.getElementById('crWeight').value;
-  let scr = +document.getElementById('crScr').value;
-  let gender = document.getElementById('crGender').value;
-  
-  let crcl = ((140-age)*weight)/(72*scr);
-  if(gender=='female') crcl *= 0.85;
-  crcl = crcl.toFixed(1);
-
-  let cls="normal", msg="Normal kidney function";
+  let age=+document.getElementById('crAge').value;
+  let weight=+document.getElementById('crWeight').value;
+  let scr=+document.getElementById('crScr').value;
+  let gender=document.getElementById('crGender').value;
+  let crcl=((140-age)*weight)/(72*scr);
+  if(gender=='female') crcl*=0.85;
+  crcl=crcl.toFixed(1);
+  let cls="normal",msg="Normal kidney function";
   if(crcl<30){ cls="danger"; msg="Severe Impairment – consult nephrologist";}
   else if(crcl<60){ cls="warning"; msg="Moderate Impairment";}
   else if(crcl<90){ cls="warning"; msg="Mild Impairment";}
-
-  document.getElementById('crResult').className="calc-result "+cls;
-  document.getElementById('crResult').innerHTML=`CrCl: <strong>${crcl} ml/min</strong><br>${msg}`;
+  crResult.className="calc-result "+cls;
+  crResult.innerHTML=`CrCl: <strong>${crcl} ml/min</strong><br>${msg}`;
 }
 
+// eGFR
 function calcEGFR(){
-  let age = +document.getElementById('egAge').value;
-  let scr = +document.getElementById('egScr').value;
-  let gender = document.getElementById('egGender').value;
-
-  let egfr = 175 * Math.pow(scr,-1.154) * Math.pow(age,-0.203);
-  if(gender=='female') egfr *= 0.742;
-  egfr = egfr.toFixed(1);
-
-  let cls="normal", msg="Normal kidney function";
-  if(egfr<15){ cls="danger"; msg="Kidney Failure – urgent care";}
-  else if(egfr<30){ cls="danger"; msg="Severe Impairment";}
-  else if(egfr<60){ cls="warning"; msg="Moderate Impairment";}
-  else if(egfr<90){ cls="warning"; msg="Mild Decrease";}
-
-  document.getElementById('egResult').className="calc-result "+cls;
-  document.getElementById('egResult').innerHTML=`eGFR: <strong>${egfr} ml/min/1.73m²</strong><br>${msg}`;
+  let age=+document.getElementById('egAge').value;
+  let scr=+document.getElementById('egScr').value;
+  let gender=document.getElementById('egGender').value;
+  let egfr=175*Math.pow(scr,-1.154)*Math.pow(age,-0.203);
+  if(gender=='female') egfr*=0.742;
+  egfr=egfr.toFixed(1);
+  let cls="normal",msg="Normal kidney function";
+  if(egfr<15){cls="danger";msg="Kidney Failure – urgent care";}
+  else if(egfr<30){cls="danger";msg="Severe Impairment";}
+  else if(egfr<60){cls="warning";msg="Moderate Impairment";}
+  else if(egfr<90){cls="warning";msg="Mild Decrease";}
+  egResult.className="calc-result "+cls;
+  egResult.innerHTML=`eGFR: <strong>${egfr} ml/min/1.73m²</strong><br>${msg}`;
 }
+
+// Menu toggle (if needed)
+function toggleMenu(){document.getElementById("nav-menu")?.classList.toggle("active");}
 </script>
 
 </body>
-        </html>
+  </html>
+
   
