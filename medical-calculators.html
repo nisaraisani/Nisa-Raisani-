@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Medical Calculators – BMI, BSA, Pediatric, Adult & ICU Tools</title>
 
-<title>Medical Calculators – BMI, BSA & Clinical Dose Tools</title>
+<meta name="description" content="Complete medical calculators including pediatric, adult, geriatric, ICU, BMI and BSA calculators. Designed for doctors, nurses and medical students.">
 
-<meta name="description" content="Free medical calculators including BMI, BSA, infusion dose and insulin calculators. Designed for doctors, nurses and medical students.">
-
-<meta name="keywords" content="medical calculators, BMI calculator, BSA calculator, clinical dose calculator, medical dosage">
-
-<meta name="author" content="Medical Calculators App">
+<meta name="keywords" content="medical calculators, BMI calculator, BSA calculator, pediatric dose calculator, ICU calculator, insulin calculator">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,7 +24,6 @@ header{
   text-align:center;
 }
 section{padding:25px}
-h1,h2{margin:0}
 h2{color:#0b5ed7;margin-bottom:15px}
 .grid{
   display:grid;
@@ -52,6 +48,7 @@ h2{color:#0b5ed7;margin-bottom:15px}
   cursor:pointer;
 }
 .card button:hover{background:#157347}
+
 .calc-box{
   display:none;
   background:#fff;
@@ -95,37 +92,107 @@ footer{
 
 <header>
 <h1>Medical Calculators</h1>
-<p>BMI, BSA & Clinical Dose Support Tools</p>
+<p>Pediatric • Adult • Geriatric • ICU • Universal Tools</p>
 </header>
 
+<!-- PEDIATRIC -->
 <section>
-<h2>Adult Medical Calculators</h2>
+<h2>Pediatric Calculators</h2>
 <div class="grid">
   <div class="card">
-    <h3>Medication Dosage Calculator</h3>
-    <p>Standard medication dose calculation for adult patients.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-  <div class="card">
-    <h3>Insulin Calculator</h3>
-    <p>Insulin dose estimation tool for adults.</p>
+    <h3>Weight Based Dosing</h3>
+    <p>Pediatric medication dosing by weight.</p>
     <button onclick="comingSoon()">Open</button>
   </div>
 </div>
 </section>
 
+<!-- ADULT -->
 <section>
-<h2>Universal Medical Calculators</h2>
+<h2>Adult Calculators</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Medication Dosage</h3>
+    <p>Standard adult dose calculations.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+
+  <div class="card">
+    <h3>Reconstitution Calculator</h3>
+    <p>Drug dilution and reconstitution.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+
+  <div class="card">
+    <h3>Insulin Calculator</h3>
+    <p>Insulin dose estimation.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+
+  <div class="card">
+    <h3>Infusion Dose Calculator</h3>
+    <p>IV infusion dose calculations.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+</div>
+</section>
+
+<!-- GERIATRIC -->
+<section>
+<h2>Geriatric Calculators</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Elderly Dose Adjustment</h3>
+    <p>Dose support for elderly patients.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+</div>
+</section>
+
+<!-- UNIVERSAL -->
+<section>
+<h2>Universal Calculators</h2>
 <div class="grid">
   <div class="card">
     <h3>BMI Calculator</h3>
-    <p>Body Mass Index calculation and interpretation.</p>
+    <p>Body Mass Index with interpretation.</p>
     <button onclick="showBMI()">Open</button>
   </div>
+
   <div class="card">
     <h3>BSA Calculator</h3>
-    <p>Body Surface Area calculator used in drug dosing.</p>
+    <p>Body Surface Area for drug dosing.</p>
     <button onclick="showBSA()">Open</button>
+  </div>
+
+  <div class="card">
+    <h3>IV Infusion Rate</h3>
+    <p>Universal infusion rate tool.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+</div>
+</section>
+
+<!-- ICU -->
+<section>
+<h2>ICU / CCU Calculators</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Critical Care Drips</h3>
+    <p>Vasopressors & inotropes.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+
+  <div class="card">
+    <h3>MAP Calculator</h3>
+    <p>Mean arterial pressure.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+
+  <div class="card">
+    <h3>DKA Calculator</h3>
+    <p>DKA insulin & electrolyte guidance.</p>
+    <button onclick="comingSoon()">Open</button>
   </div>
 </div>
 </section>
@@ -138,8 +205,8 @@ footer{
 <button onclick="calcBMI()">Calculate BMI</button>
 <p id="bmiResult"></p>
 <div class="info">
-BMI estimates body fat using height and weight.<br>
-Normal BMI: 18.5 – 24.9
+<strong>Normal BMI:</strong> 18.5 – 24.9<br>
+BMI is a screening tool, not a diagnosis.
 </div>
 </div>
 
@@ -151,7 +218,9 @@ Normal BMI: 18.5 – 24.9
 <button onclick="calcBSA()">Calculate BSA</button>
 <p id="bsaResult"></p>
 <div class="info">
-Average BSA: Adult male ≈ 1.9 m² | Adult female ≈ 1.6 m²
+<strong>Average BSA:</strong><br>
+Adult male ≈ 1.9 m²<br>
+Adult female ≈ 1.6 m²
 </div>
 </div>
 
@@ -160,13 +229,16 @@ Average BSA: Adult male ≈ 1.9 m² | Adult female ≈ 1.6 m²
 </footer>
 
 <script>
-function comingSoon(){alert("This calculator will be added soon.");}
+function comingSoon(){
+  alert("This calculator will be added in future updates.");
+}
 function hideAll(){
   document.getElementById("bmiBox").style.display="none";
   document.getElementById("bsaBox").style.display="none";
 }
 function showBMI(){hideAll();document.getElementById("bmiBox").style.display="block";}
 function showBSA(){hideAll();document.getElementById("bsaBox").style.display="block";}
+
 function calcBMI(){
   let w=document.getElementById("bmiWeight").value;
   let h=document.getElementById("bmiHeight").value/100;
