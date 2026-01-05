@@ -4,15 +4,14 @@
 <meta charset="UTF-8">
 
 <title>Medical Calculators | Dr. Nisa Raisani</title>
-<meta name="description" content="Clinical medical calculators including BMI, BSA, IV infusion, insulin and drug dose calculators.">
+<meta name="description" content="Professional medical calculators including BMI, BSA, IV infusion rate, insulin and drug dose calculators.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* ===== Calculator UI ===== */
 .calc-btn{
   padding:10px 18px;
   border-radius:25px;
@@ -27,24 +26,20 @@
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.6);
-  z-index:3000;
+  z-index:5000;
 }
 
-.modal-content{
+.modal-box{
   background:#fff;
   max-width:420px;
   margin:80px auto;
   padding:25px;
-  border-radius:14px;
+  border-radius:16px;
   position:relative;
   font-family:Poppins;
 }
 
-.modal-content h3{
-  margin-bottom:10px;
-}
-
-.modal-content input{
+.modal-box input{
   width:100%;
   padding:10px;
   margin:6px 0;
@@ -52,10 +47,10 @@
   border:1px solid #ccc;
 }
 
-.modal-content button{
+.modal-box button{
   width:100%;
-  margin-top:10px;
   padding:10px;
+  margin-top:10px;
   border:none;
   border-radius:25px;
   background:#198754;
@@ -66,7 +61,7 @@
 .close{
   position:absolute;
   top:12px;
-  right:15px;
+  right:16px;
   font-size:22px;
   cursor:pointer;
 }
@@ -80,7 +75,7 @@
 
 <body>
 
-<!-- HEADER (LOCKED) -->
+<!-- ================= HEADER (LOCKED) ================= -->
 <header class="navbar">
   <div class="logo">Dr. Nisa Raisani</div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -95,58 +90,58 @@
   </nav>
 </header>
 
-<!-- INTRO -->
+<!-- ================= INTRO ================= -->
 <section class="fade" style="margin-top:80px;">
-<h2>Medical Calculators</h2>
-<p style="max-width:850px;margin:auto;">
-Reliable clinical calculators for medical professionals and students.
-</p>
+  <h2>Medical Calculators</h2>
+  <p style="max-width:850px;margin:auto;">
+    Evidence-based clinical calculators for medical professionals and students.
+  </p>
 </section>
 
-<!-- CARDS -->
+<!-- ================= CARDS ================= -->
 <section class="fade">
 <div class="grid">
 
 <div class="card">
 <h4>BMI Calculator</h4>
-<p>Body Mass Index with clinical range.</p>
-<button class="calc-btn" onclick="openModal('bmiModal')">Open</button>
+<p>Body Mass Index with standard ranges.</p>
+<button class="calc-btn" onclick="openCalc('bmi')">Open</button>
 </div>
 
 <div class="card">
 <h4>BSA Calculator</h4>
-<p>Body Surface Area (Mosteller formula).</p>
-<button class="calc-btn" onclick="openModal('bsaModal')">Open</button>
+<p>Body Surface Area (Mosteller).</p>
+<button class="calc-btn" onclick="openCalc('bsa')">Open</button>
 </div>
 
 <div class="card">
 <h4>IV Infusion Rate</h4>
-<p>ml per hour calculation.</p>
-<button class="calc-btn" onclick="openModal('ivModal')">Open</button>
+<p>Calculate ml/hour.</p>
+<button class="calc-btn" onclick="openCalc('iv')">Open</button>
 </div>
 
 <div class="card">
 <h4>Pediatric Dose</h4>
 <p>Weight-based dose.</p>
-<button class="calc-btn" onclick="openModal('pedModal')">Open</button>
+<button class="calc-btn" onclick="openCalc('ped')">Open</button>
 </div>
 
 <div class="card">
 <h4>Adult Dose</h4>
 <p>Adult medication dosing.</p>
-<button class="calc-btn" onclick="openModal('adultModal')">Open</button>
+<button class="calc-btn" onclick="openCalc('adult')">Open</button>
 </div>
 
 <div class="card">
 <h4>Insulin Dose</h4>
-<p>Total daily insulin dose.</p>
-<button class="calc-btn" onclick="openModal('insModal')">Open</button>
+<p>Total daily insulin estimate.</p>
+<button class="calc-btn" onclick="openCalc('ins')">Open</button>
 </div>
 
 </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER (LOCKED) ================= -->
 <footer>
 <div class="footer-menu">
 <a href="privacy.html">Privacy Policy</a>
@@ -156,110 +151,123 @@ Reliable clinical calculators for medical professionals and students.
 <p>© 2025 Dr. Nisa Raisani</p>
 </footer>
 
-<!-- ===== MODALS ===== -->
+<!-- ================= MODALS ================= -->
 
-<div class="modal" id="bmiModal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
+<div class="modal" id="bmi" onclick="bgClose(event,'bmi')">
+<div class="modal-box">
+<span class="close" onclick="closeCalc()">×</span>
 <h3>BMI Calculator</h3>
 <input id="bmiW" placeholder="Weight (kg)">
 <input id="bmiH" placeholder="Height (cm)">
 <button onclick="calcBMI()">Calculate</button>
-<div class="result" id="bmiResult"></div>
+<div class="result" id="bmiR"></div>
 </div>
 </div>
 
-<div class="modal" id="bsaModal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
+<div class="modal" id="bsa" onclick="bgClose(event,'bsa')">
+<div class="modal-box">
+<span class="close" onclick="closeCalc()">×</span>
 <h3>BSA Calculator</h3>
 <input id="bsaW" placeholder="Weight (kg)">
 <input id="bsaH" placeholder="Height (cm)">
 <button onclick="calcBSA()">Calculate</button>
-<div class="result" id="bsaResult"></div>
+<div class="result" id="bsaR"></div>
 </div>
 </div>
 
-<div class="modal" id="ivModal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
+<div class="modal" id="iv" onclick="bgClose(event,'iv')">
+<div class="modal-box">
+<span class="close" onclick="closeCalc()">×</span>
 <h3>IV Infusion Rate</h3>
-<input id="ivVol" placeholder="Volume (ml)">
-<input id="ivTime" placeholder="Time (hours)">
+<input id="ivV" placeholder="Volume (ml)">
+<input id="ivT" placeholder="Time (hours)">
 <button onclick="calcIV()">Calculate</button>
-<div class="result" id="ivResult"></div>
+<div class="result" id="ivR"></div>
 </div>
 </div>
 
-<div class="modal" id="pedModal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
+<div class="modal" id="ped" onclick="bgClose(event,'ped')">
+<div class="modal-box">
+<span class="close" onclick="closeCalc()">×</span>
 <h3>Pediatric Dose</h3>
-<input id="pdDose" placeholder="Dose (mg/kg)">
-<input id="pdWt" placeholder="Weight (kg)">
+<input id="pdD" placeholder="Dose (mg/kg)">
+<input id="pdW" placeholder="Weight (kg)">
 <button onclick="calcPed()">Calculate</button>
-<div class="result" id="pedResult"></div>
+<div class="result" id="pdR"></div>
 </div>
 </div>
 
-<div class="modal" id="adultModal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
+<div class="modal" id="adult" onclick="bgClose(event,'adult')">
+<div class="modal-box">
+<span class="close" onclick="closeCalc()">×</span>
 <h3>Adult Dose</h3>
-<input id="adDose" placeholder="Dose (mg/kg)">
-<input id="adWt" placeholder="Weight (kg)">
+<input id="adD" placeholder="Dose (mg/kg)">
+<input id="adW" placeholder="Weight (kg)">
 <button onclick="calcAdult()">Calculate</button>
-<div class="result" id="adultResult"></div>
+<div class="result" id="adR"></div>
 </div>
 </div>
 
-<div class="modal" id="insModal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
+<div class="modal" id="ins" onclick="bgClose(event,'ins')">
+<div class="modal-box">
+<span class="close" onclick="closeCalc()">×</span>
 <h3>Insulin Dose</h3>
-<input id="insWt" placeholder="Weight (kg)">
+<input id="insW" placeholder="Weight (kg)">
 <button onclick="calcIns()">Calculate</button>
-<div class="result" id="insResult"></div>
+<div class="result" id="insR"></div>
 </div>
 </div>
 
-<!-- ===== JAVASCRIPT ===== -->
+<!-- ================= SCRIPTS ================= -->
+
 <script>
-function openModal(id){
+function openCalc(id){
   document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
   document.getElementById(id).style.display='block';
 }
-function closeModal(){
+function closeCalc(){
   document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
+}
+function bgClose(e,id){
+  if(e.target.id===id) closeCalc();
 }
 
 /* Calculations */
 function calcBMI(){
-  let w=bmiW.value, h=bmiH.value/100;
-  let bmi=(w/(h*h)).toFixed(2);
-  bmiResult.innerText="BMI: "+bmi;
+  const w=document.getElementById('bmiW').value;
+  const h=document.getElementById('bmiH').value/100;
+  document.getElementById('bmiR').innerText="BMI: "+(w/(h*h)).toFixed(2);
 }
-
 function calcBSA(){
-  let bsa=Math.sqrt((bsaW.value*bsaH.value)/3600).toFixed(2);
-  bsaResult.innerText="BSA: "+bsa+" m²";
+  document.getElementById('bsaR').innerText=
+  "BSA: "+Math.sqrt((bsaW.value*bsaH.value)/3600).toFixed(2)+" m²";
 }
-
 function calcIV(){
-  ivResult.innerText="Rate: "+(ivVol.value/ivTime.value).toFixed(1)+" ml/hr";
+  document.getElementById('ivR').innerText=
+  "Rate: "+(ivV.value/ivT.value).toFixed(1)+" ml/hr";
 }
-
 function calcPed(){
-  pedResult.innerText="Dose: "+(pdDose.value*pdWt.value).toFixed(1)+" mg";
+  document.getElementById('pdR').innerText=
+  "Dose: "+(pdD.value*pdW.value).toFixed(1)+" mg";
 }
-
 function calcAdult(){
-  adultResult.innerText="Dose: "+(adDose.value*adWt.value).toFixed(1)+" mg";
+  document.getElementById('adR').innerText=
+  "Dose: "+(adD.value*adW.value).toFixed(1)+" mg";
+}
+function calcIns(){
+  document.getElementById('insR').innerText=
+  "Estimated TDD: "+(0.5*insW.value).toFixed(1)+" units/day";
 }
 
-function calcIns(){
-  insResult.innerText="Estimated TDD: "+(0.5*insWt.value).toFixed(1)+" units/day";
-}
+/* Scroll animation (MANDATORY) */
+const fades=document.querySelectorAll('.fade');
+const showOnScroll=()=>{fades.forEach(el=>{
+  if(el.getBoundingClientRect().top<window.innerHeight-100){
+    el.classList.add('show');
+  }
+})};
+window.addEventListener('scroll',showOnScroll);
+showOnScroll();
 
 /* Menu */
 function toggleMenu(){
@@ -268,4 +276,5 @@ function toggleMenu(){
 </script>
 
 </body>
-</html>
+  </html>
+  
