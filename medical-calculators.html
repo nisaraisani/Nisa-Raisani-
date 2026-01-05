@@ -1,279 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Medical Calculators | BMI, BSA & Clinical Tools</title>
+  <meta charset="UTF-8">
 
-<meta name="description" content="Professional medical calculators including BMI, BSA, adult, pediatric and ICU tools. Designed for doctors, nurses and medical students.">
-<meta name="keywords" content="medical calculators, BMI calculator, BSA calculator, clinical calculator">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ========= PAGE SEO ========= -->
+  <title>Medical Calculators | Dr. Nisa Raisani</title>
+  <meta name="description" content="Medical calculators including BMI, BSA, IV infusion rate, insulin, pediatric and adult dose calculators for clinical use.">
+  <!-- ============================ -->
 
-<style>
-body{
-  margin:0;
-  font-family:Segoe UI,Arial,sans-serif;
-  background:#f4f8fb;
-  color:#123;
-}
-header{
-  background:#0b5ed7;
-  color:#fff;
-  padding:25px;
-  text-align:center;
-}
-section{padding:25px}
-h2{color:#0b5ed7}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:16px;
-}
-.card{
-  background:#fff;
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 6px 14px rgba(0,0,0,.08);
-}
-.card h3{margin-top:0;color:#0b5ed7}
-.card p{font-size:14px;color:#555}
-.card button{
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:25px;
-  background:#198754;
-  color:#fff;
-  cursor:pointer;
-}
-.card button:hover{background:#157347}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-footer{
-  background:#e9f0fb;
-  padding:15px;
-  text-align:center;
-  font-size:12px;
-}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,.55);
-  z-index:1000;
-}
-.modal-content{
-  background:#fff;
-  max-width:420px;
-  margin:60px auto;
-  padding:25px;
-  border-radius:14px;
-  position:relative;
-}
-.close-btn{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:22px;
-  cursor:pointer;
-  color:#777;
-}
-.close-btn:hover{color:#000}
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
 
-input{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-.modal-content button{
-  background:#0b5ed7;
-  color:#fff;
-  border:none;
-  padding:10px;
-  border-radius:20px;
-  width:100%;
-}
-.info{
-  background:#eef4ff;
-  padding:12px;
-  border-radius:10px;
-  margin-top:10px;
-  font-size:14px;
-}
-</style>
+  <!-- Calculator Styles -->
+  <style>
+    .calc-btn{
+      margin-top:10px;
+      padding:10px 18px;
+      border-radius:30px;
+      border:none;
+      background:#0b5ed7;
+      color:#fff;
+      cursor:pointer;
+      font-family:Poppins;
+    }
+    .modal{
+      display:none;
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:rgba(0,0,0,.55);
+      z-index:2000;
+    }
+    .modal-box{
+      background:#fff;
+      max-width:420px;
+      margin:80px auto;
+      padding:25px;
+      border-radius:16px;
+      position:relative;
+      font-family:Poppins;
+    }
+    .close{
+      position:absolute;
+      top:12px;right:18px;
+      font-size:22px;
+      cursor:pointer;
+    }
+    .modal-box input{
+      width:100%;
+      padding:10px;
+      margin:6px 0;
+      border-radius:8px;
+      border:1px solid #ccc;
+    }
+    .modal-box button{
+      width:100%;
+      padding:10px;
+      margin-top:8px;
+      border:none;
+      border-radius:25px;
+      background:#198754;
+      color:#fff;
+    }
+    .result{
+      margin-top:10px;
+      font-weight:500;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-<h1>Medical Calculators</h1>
-<p>Pediatric • Adult • Geriatric • ICU • Universal</p>
+<!-- =====================
+     HEADER (LOCKED)
+===================== -->
+<header class="navbar">
+  <div class="logo">Dr. Nisa Raisani</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="clinical.html">Clinical</a>
+    <a href="research.html">Research</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="contact.html">Contact</a>
+    <button class="lang-btn">EN / اردو</button>
+  </nav>
 </header>
 
-<section>
-<h2>Pediatric Calculators</h2>
-<div class="grid">
-  <div class="card">
-    <h3>Weight Based Dosing</h3>
-    <p>Pediatric medication dosing by weight.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-</div>
+<!-- =====================
+     PAGE INTRO
+===================== -->
+<section class="fade" style="margin-top:80px;">
+  <h2>Medical Calculators</h2>
+
+  <p style="max-width:850px;margin:auto;">
+    This page provides essential medical calculators for doctors, nurses,
+    and medical students. These tools support quick clinical reference and
+    educational use.
+  </p>
 </section>
 
-<section>
-<h2>Adult Calculators</h2>
-<div class="grid">
-  <div class="card">
-    <h3>Medication Dosage</h3>
-    <p>Standard adult dose calculations.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-  <div class="card">
-    <h3>Reconstitution</h3>
-    <p>Drug dilution & reconstitution.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-  <div class="card">
-    <h3>Insulin Calculator</h3>
-    <p>Insulin dose estimation.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-  <div class="card">
-    <h3>Infusion Dose</h3>
-    <p>IV infusion dose calculations.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-</div>
-</section>
+<!-- =====================
+     CALCULATOR CARDS
+===================== -->
+<section class="fade">
+  <div class="grid">
 
-<section>
-<h2>Universal Calculators</h2>
-<div class="grid">
-  <div class="card">
-    <h3>BMI Calculator</h3>
-    <p>Body Mass Index with interpretation.</p>
-    <button onclick="showBMI()">Open</button>
-  </div>
-  <div class="card">
-    <h3>BSA Calculator</h3>
-    <p>Body Surface Area for drug dosing.</p>
-    <button onclick="showBSA()">Open</button>
-  </div>
-</div>
-</section>
-
-<section>
-<h2>ICU / CCU Calculators</h2>
-<div class="grid">
-  <div class="card">
-    <h3>Critical Care Drips</h3>
-    <p>Vasopressors & inotropes.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-  <div class="card">
-    <h3>MAP Calculator</h3>
-    <p>Mean arterial pressure.</p>
-    <button onclick="comingSoon()">Open</button>
-  </div>
-</div>
-</section>
-
-<!-- BMI MODAL -->
-<div id="bmiModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h2>BMI Calculator</h2>
-
-    <input type="number" id="bmiWeight" placeholder="Weight (kg)">
-    <input type="number" id="bmiHeight" placeholder="Height (cm)">
-    <button onclick="calcBMI()">Calculate BMI</button>
-
-    <p id="bmiResult"></p>
-    <p id="bmiStatus"></p>
-
-    <div class="info">
-      <strong>Normal BMI:</strong> 18.5 – 24.9<br>
-      Screening tool only – clinical correlation advised.
+    <div class="card">
+      <h4>BMI Calculator</h4>
+      <p>Body Mass Index with clinical interpretation.</p>
+      <button class="calc-btn" onclick="openCalc('bmi')">Open</button>
     </div>
-  </div>
-</div>
 
-<!-- BSA MODAL -->
-<div id="bsaModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h2>BSA Calculator</h2>
-
-    <input type="number" id="bsaWeight" placeholder="Weight (kg)">
-    <input type="number" id="bsaHeight" placeholder="Height (cm)">
-    <button onclick="calcBSA()">Calculate BSA</button>
-
-    <p id="bsaResult"></p>
-    <p id="bsaStatus"></p>
-
-    <div class="info">
-      <strong>Average Adult BSA</strong><br>
-      Male ≈ 1.9 m²<br>
-      Female ≈ 1.6 m²
+    <div class="card">
+      <h4>BSA Calculator</h4>
+      <p>Body Surface Area used for drug dosing.</p>
+      <button class="calc-btn" onclick="openCalc('bsa')">Open</button>
     </div>
-  </div>
-</div>
 
+    <div class="card">
+      <h4>IV Infusion Rate</h4>
+      <p>Calculate infusion rate in ml/hour.</p>
+      <button class="calc-btn" onclick="openCalc('iv')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>Pediatric Dose</h4>
+      <p>Weight-based pediatric medication dosing.</p>
+      <button class="calc-btn" onclick="openCalc('ped')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>Adult Dose</h4>
+      <p>Adult medication dose calculation.</p>
+      <button class="calc-btn" onclick="openCalc('adult')">Open</button>
+    </div>
+
+    <div class="card">
+      <h4>Insulin Dose</h4>
+      <p>Estimated total daily insulin dose.</p>
+      <button class="calc-btn" onclick="openCalc('ins')">Open</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================
+     DISCLAIMER SECTION
+===================== -->
+<section class="fade">
+  <h2>Clinical Disclaimer</h2>
+  <p style="max-width:850px;margin:auto;">
+    These calculators are for <strong>educational and reference purposes only</strong>.
+    They do not replace professional medical judgment or institutional protocols.
+  </p>
+</section>
+
+<!-- =====================
+     FOOTER (LOCKED)
+===================== -->
 <footer>
-⚠️ Educational use only. Not a substitute for professional medical advice.
+  <div class="footer-menu">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
 </footer>
 
+<!-- =====================
+     CALCULATOR MODALS
+===================== -->
+<div class="modal" id="bmi">
+  <div class="modal-box">
+    <span class="close" onclick="closeCalc()">×</span>
+    <h3>BMI Calculator</h3>
+    <input id="bw" placeholder="Weight (kg)">
+    <input id="bh" placeholder="Height (cm)">
+    <button onclick="bmiRes.innerHTML='BMI: '+(bw.value/(bh.value/100)**2).toFixed(2)">Calculate</button>
+    <div class="result" id="bmiRes"></div>
+  </div>
+</div>
+
+<div class="modal" id="bsa">
+  <div class="modal-box">
+    <span class="close" onclick="closeCalc()">×</span>
+    <h3>BSA Calculator</h3>
+    <input id="bsw" placeholder="Weight (kg)">
+    <input id="bsh" placeholder="Height (cm)">
+    <button onclick="bsaRes.innerHTML='BSA: '+Math.sqrt((bsw.value*bsh.value)/3600).toFixed(2)+' m²'">Calculate</button>
+    <div class="result" id="bsaRes"></div>
+  </div>
+</div>
+
+<div class="modal" id="iv">
+  <div class="modal-box">
+    <span class="close" onclick="closeCalc()">×</span>
+    <h3>IV Infusion Rate</h3>
+    <input id="ivv" placeholder="Volume (ml)">
+    <input id="ivt" placeholder="Time (hours)">
+    <button onclick="ivRes.innerHTML='Rate: '+(ivv.value/ivt.value).toFixed(1)+' ml/hr'">Calculate</button>
+    <div class="result" id="ivRes"></div>
+  </div>
+</div>
+
+<div class="modal" id="ped">
+  <div class="modal-box">
+    <span class="close" onclick="closeCalc()">×</span>
+    <h3>Pediatric Dose</h3>
+    <input id="pmg" placeholder="Dose (mg/kg)">
+    <input id="pw" placeholder="Weight (kg)">
+    <button onclick="pedRes.innerHTML='Dose: '+(pmg.value*pw.value).toFixed(1)+' mg'">Calculate</button>
+    <div class="result" id="pedRes"></div>
+  </div>
+</div>
+
+<div class="modal" id="adult">
+  <div class="modal-box">
+    <span class="close" onclick="closeCalc()">×</span>
+    <h3>Adult Dose</h3>
+    <input id="amg" placeholder="Dose (mg/kg)">
+    <input id="aw" placeholder="Weight (kg)">
+    <button onclick="adultRes.innerHTML='Dose: '+(amg.value*aw.value).toFixed(1)+' mg'">Calculate</button>
+    <div class="result" id="adultRes"></div>
+  </div>
+</div>
+
+<div class="modal" id="ins">
+  <div class="modal-box">
+    <span class="close" onclick="closeCalc()">×</span>
+    <h3>Insulin Dose</h3>
+    <input id="iw" placeholder="Weight (kg)">
+    <button onclick="insRes.innerHTML='Estimated TDD: '+(0.5*iw.value).toFixed(1)+' units/day'">Calculate</button>
+    <div class="result" id="insRes"></div>
+  </div>
+</div>
+
+<!-- =====================
+     SCRIPTS
+===================== -->
 <script>
-function comingSoon(){
-  alert("This calculator will be added in future updates.");
+function openCalc(id){
+  document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
+  document.getElementById(id).style.display='block';
 }
-
-function closeModal(){
-  document.getElementById("bmiModal").style.display="none";
-  document.getElementById("bsaModal").style.display="none";
+function closeCalc(){
+  document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
 }
+</script>
 
-function showBMI(){
-  closeModal();
-  document.getElementById("bmiModal").style.display="block";
-}
+<!-- Scroll Animation -->
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const showOnScroll = () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+</script>
 
-function showBSA(){
-  closeModal();
-  document.getElementById("bsaModal").style.display="block";
-}
-
-function calcBMI(){
-  let w=document.getElementById("bmiWeight").value;
-  let h=document.getElementById("bmiHeight").value/100;
-  if(!w||!h){alert("Please enter valid values");return;}
-
-  let bmi=(w/(h*h)).toFixed(2);
-  let status,note;
-
-  if(bmi<18.5){status="Underweight";note="Below normal range. Nutritional assessment recommended.";}
-  else if(bmi<=24.9){status="Normal";note="Within normal healthy range.";}
-  else if(bmi<=29.9){status="Overweight";note="Above normal range. Lifestyle modification advised.";}
-  else{status="Obese";note="Significantly above normal range. Clinical evaluation advised.";}
-
-  document.getElementById("bmiResult").innerHTML="<strong>BMI:</strong> "+bmi;
-  document.getElementById("bmiStatus").innerHTML="<strong>Status:</strong> "+status+"<br>"+note;
-}
-
-function calcBSA(){
-  let w=document.getElementById("bsaWeight").value;
-  let h=document.getElementById("bsaHeight").value;
-  if(!w||!h){alert("Please enter valid values");return;}
-
-  let bsa=Math.sqrt((h*w)/3600).toFixed(2);
-  let comment=(bsa<1.5)?"Below average body surface area":(bsa<=2.1)?"Within average adult range":"Above average body surface area";
-
-  document.getElementById("bsaResult").innerHTML="<strong>BSA:</strong> "+bsa+" m²";
-  document.getElementById("bsaStatus").innerHTML=comment;
+<!-- Mobile Menu -->
+<script>
+function toggleMenu() {
+  document.getElementById("nav-menu").classList.toggle("active");
 }
 </script>
 
