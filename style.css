@@ -1666,3 +1666,17 @@ footer a {
     padding: 30px;
   }
 }
+/* ===== FORCE MODAL CLOSE BUTTON ===== */
+.close-btn {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 999999;
+}
