@@ -1,72 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
   <meta charset="UTF-8">
 
-  <!-- ========= PAGE SEO (EDIT ONLY THESE) ========= -->
-  <title>Medical Calculators | Dr. Nisa Raisani</title>
-  <meta name="description" content="Medical calculators including BMI, BSA, IV infusion rate, pediatric, adult, pregnancy, CrCl, and eGFR.">
-  <!-- ============================================= -->
+  <!-- ========= PAGE SEO ========= -->
+  <title>میڈیکل کیلکولیٹرز | ڈاکٹر نیسا رئیسانی</title>
+  <meta name="description" content="BMI، BSA، IV infusion، Pediatric، Adult، Pregnancy اور Kidney کے کیلکولیٹرز، مکمل رہنمائی اور normal ranges کے ساتھ۔">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Main CSS (DO NOT CHANGE PATH) -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Inline Calculator Styles -->
   <style>
-    .calc-btn{
-      padding:10px 18px;
-      border-radius:25px;
-      background:#0f766e;
-      color:#fff;
-      border:none;
-      cursor:pointer;
-      margin-top:8px;
-    }
-    .calc-fields{
-      display:none;
-      margin-top:10px;
-    }
-    .calc-fields input, .calc-fields select{
-      width:100%;
-      padding:10px;
-      margin:6px 0;
-      border-radius:10px;
-      border:1px solid #ccc;
-    }
-    .calc-result{
-      margin-top:10px;
-      padding:10px;
-      border-radius:10px;
-      font-size:14px;
-    }
+    .calc-btn{padding:10px 18px;border-radius:25px;background:#0f766e;color:#fff;border:none;cursor:pointer;}
+    .calc-result{margin-top:10px;padding:10px;border-radius:10px;font-size:14px;}
     .normal{background:#ecfdf5;color:#065f46}
     .warning{background:#fff7ed;color:#9a3412}
     .danger{background:#fef2f2;color:#991b1b}
-    .card{
-      background:#fff;
-      padding:22px;
-      border-radius:18px;
-      box-shadow:0 2px 12px rgba(0,0,0,0.1);
-      font-family:Poppins;
-      margin-bottom:20px;
-    }
+    .calc-input{width:100%;padding:10px;margin:6px 0;border-radius:10px;border:1px solid #ccc;}
+    table.ckd-table{width:100%;border-collapse:collapse;margin-top:10px;}
+    table.ckd-table th, table.ckd-table td{border:1px solid #ccc;padding:6px;text-align:center;}
   </style>
 </head>
-
 <body>
 
-<!-- =====================
-     HEADER (LOCKED)
-===================== -->
 <header class="navbar">
   <div class="logo">Dr. Nisa Raisani</div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
   <nav id="nav-menu">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -78,284 +41,236 @@
   </nav>
 </header>
 
-<!-- =====================
-     PAGE INTRO
-===================== -->
 <section class="fade" style="margin-top:80px;">
-  <h2>Medical Calculators</h2>
+  <h2>میڈیکل کیلکولیٹرز</h2>
   <p style="max-width:850px;margin:auto;">
-    Evidence-based medical calculators for doctors, nurses, and medical students. Includes interpretation, normal ranges, and clinical guidance.
+    یہ کیلکولیٹرز ڈاکٹرز، نرسز اور میڈیکل اسٹوڈنٹس کے لیے ہیں۔ ہر کیلکولیشن کے نیچے واضح نتائج اور رہنمائی شامل ہے۔
   </p>
 </section>
 
-<!-- =====================
-     CARDS SECTION
-===================== -->
 <section class="fade">
   <div class="grid">
 
     <!-- BMI -->
     <div class="card">
-      <h4>BMI Calculator</h4>
-      <p>Body Mass Index with WHO classification.</p>
-      <button class="calc-btn" onclick="toggleCalc('bmiFields')">Open Calculator</button>
-      <div class="calc-fields" id="bmiFields">
-        <input id="bw" placeholder="Weight (kg)">
-        <input id="bh" placeholder="Height (cm)">
-        <button class="calc-btn" onclick="calcBMI()">Calculate</button>
-        <div id="br" class="calc-result normal"></div>
-      </div>
+      <h4>BMI کیلکولیٹر</h4>
+      <p>وزن اور قد کی بنیاد پر BMI اور WHO classification دکھائیں۔</p>
+      <input class="calc-input" id="bw" placeholder="وزن (کلوگرام)">
+      <input class="calc-input" id="bh" placeholder="قد (سینٹی میٹر)">
+      <button class="calc-btn" onclick="calcBMI()">Calculate</button>
+      <div id="br" class="calc-result normal"></div>
     </div>
 
     <!-- BSA -->
     <div class="card">
-      <h4>BSA Calculator</h4>
-      <p>Body Surface Area (Mosteller formula).</p>
-      <button class="calc-btn" onclick="toggleCalc('bsaFields')">Open Calculator</button>
-      <div class="calc-fields" id="bsaFields">
-        <input id="sw" placeholder="Weight (kg)">
-        <input id="sh" placeholder="Height (cm)">
-        <button class="calc-btn" onclick="calcBSA()">Calculate</button>
-        <div id="sr" class="calc-result normal"></div>
-        <p>Average adult BSA: <strong>1.7 – 1.9 m²</strong></p>
-      </div>
+      <h4>BSA کیلکولیٹر</h4>
+      <p>Body Surface Area (Mosteller formula)۔</p>
+      <input class="calc-input" id="sw" placeholder="وزن (کلوگرام)">
+      <input class="calc-input" id="sh" placeholder="قد (سینٹی میٹر)">
+      <button class="calc-btn" onclick="calcBSA()">Calculate</button>
+      <div id="sr" class="calc-result normal"></div>
     </div>
 
     <!-- IV -->
     <div class="card">
-      <h4>IV Infusion Rate</h4>
-      <p>Calculate infusion rate in ml/hour.</p>
-      <button class="calc-btn" onclick="toggleCalc('ivFields')">Open Calculator</button>
-      <div class="calc-fields" id="ivFields">
-        <input id="ivv" placeholder="Volume (ml)">
-        <input id="ivt" placeholder="Time (hours)">
-        <button class="calc-btn" onclick="calcIV()">Calculate</button>
-        <div id="ivr" class="calc-result normal"></div>
-      </div>
+      <h4>IV infusion rate</h4>
+      <p>IV کی شرح ml/hour میں کیلکولیٹ کریں۔</p>
+      <input class="calc-input" id="ivv" placeholder="Volume (ml)">
+      <input class="calc-input" id="ivt" placeholder="Time (hours)">
+      <button class="calc-btn" onclick="calcIV()">Calculate</button>
+      <div id="ivr" class="calc-result normal"></div>
     </div>
 
     <!-- Pediatric -->
     <div class="card">
-      <h4>Pediatric Dose</h4>
-      <p>Weight-based pediatric dose calculator.</p>
-      <button class="calc-btn" onclick="toggleCalc('pedFields')">Open Calculator</button>
-      <div class="calc-fields" id="pedFields">
-        <input id="pd" placeholder="Dose (mg/kg)">
-        <input id="pw" placeholder="Weight (kg)">
-        <button class="calc-btn" onclick="calcPed()">Calculate</button>
-        <div id="pr" class="calc-result normal"></div>
-      </div>
+      <h4>پیدیاٹرک ڈوز کیلکولیٹر</h4>
+      <p>وزن کی بنیاد پر دوا کا حساب۔</p>
+      <input class="calc-input" id="pd" placeholder="Dose (mg/kg)">
+      <input class="calc-input" id="pw" placeholder="Weight (kg)">
+      <button class="calc-btn" onclick="calcPed()">Calculate</button>
+      <div id="pr" class="calc-result normal"></div>
     </div>
 
     <!-- Adult -->
     <div class="card">
-      <h4>Adult Dose</h4>
-      <p>Standard adult drug dose calculation.</p>
-      <button class="calc-btn" onclick="toggleCalc('adultFields')">Open Calculator</button>
-      <div class="calc-fields" id="adultFields">
-        <input id="ad" placeholder="Dose (mg/kg)">
-        <input id="aw" placeholder="Weight (kg)">
-        <button class="calc-btn" onclick="calcAdult()">Calculate</button>
-        <div id="ar" class="calc-result normal"></div>
-      </div>
+      <h4>ایڈلٹ ڈوز کیلکولیٹر</h4>
+      <p>عام بالغ افراد کے لیے دوا کی مقدار۔</p>
+      <input class="calc-input" id="ad" placeholder="Dose (mg/kg)">
+      <input class="calc-input" id="aw" placeholder="Weight (kg)">
+      <button class="calc-btn" onclick="calcAdult()">Calculate</button>
+      <div id="ar" class="calc-result normal"></div>
     </div>
 
     <!-- Insulin -->
     <div class="card">
-      <h4>Insulin Dose</h4>
-      <p>Estimated total daily insulin dose.</p>
-      <button class="calc-btn" onclick="toggleCalc('insFields')">Open Calculator</button>
-      <div class="calc-fields" id="insFields">
-        <input id="iw" placeholder="Weight (kg)">
-        <button class="calc-btn" onclick="calcIns()">Calculate</button>
-        <div id="ir" class="calc-result normal"></div>
-        <p>Estimated TDD: 0.4 – 0.6 units/kg/day</p>
-      </div>
+      <h4>انسولین ڈوز کیلکولیٹر</h4>
+      <p>کل یومیہ اندازہ شدہ ڈوز۔</p>
+      <input class="calc-input" id="iw" placeholder="Weight (kg)">
+      <button class="calc-btn" onclick="calcIns()">Calculate</button>
+      <div id="ir" class="calc-result normal"></div>
     </div>
 
     <!-- Pregnancy -->
     <div class="card">
-      <h4>Pregnancy: EDD & GA</h4>
-      <p>Calculate gestational age & expected delivery date.</p>
-      <button class="calc-btn" onclick="toggleCalc('pregFields')">Open Calculator</button>
-      <div class="calc-fields" id="pregFields">
-        <input type="date" id="lmp" placeholder="Last Menstrual Period">
-        <button class="calc-btn" onclick="calcPregnancy()">Calculate</button>
-        <div id="pregResult" class="calc-result normal"></div>
-      </div>
+      <h4>حمل: EDD اور GA</h4>
+      <p>آخری حیض کی تاریخ درج کریں، GA، EDD اور وزن میں اضافہ دیکھیں۔</p>
+      <input type="date" class="calc-input" id="lmp" placeholder="آخری حیض کی تاریخ">
+      <input class="calc-input" id="pregWeight" placeholder="حمل کے دوران وزن (کلوگرام)">
+      <button class="calc-btn" onclick="calcPregnancy()">Calculate</button>
+      <div id="pregResult" class="calc-result normal"></div>
     </div>
 
     <!-- Creatinine Clearance -->
     <div class="card">
       <h4>Creatinine Clearance (CrCl)</h4>
-      <p>Estimate kidney function & dose adjustment.</p>
-      <button class="calc-btn" onclick="toggleCalc('crFields')">Open Calculator</button>
-      <div class="calc-fields" id="crFields">
-        <input id="crAge" placeholder="Age (years)">
-        <input id="crWeight" placeholder="Weight (kg)">
-        <input id="crScr" placeholder="Serum Creatinine (mg/dL)">
-        <select id="crGender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <button class="calc-btn" onclick="calcCrCl()">Calculate</button>
-        <div id="crResult" class="calc-result normal"></div>
-      </div>
+      <p>گردے کی کارکردگی اور ڈوز ایڈجسٹمنٹ۔</p>
+      <input class="calc-input" id="crAge" placeholder="Age (years)">
+      <input class="calc-input" id="crWeight" placeholder="Weight (kg)">
+      <input class="calc-input" id="crScr" placeholder="Serum Creatinine (mg/dL)">
+      <select class="calc-input" id="crGender">
+        <option value="male">مرد</option>
+        <option value="female">عورت</option>
+      </select>
+      <button class="calc-btn" onclick="calcCrCl()">Calculate</button>
+      <div id="crResult" class="calc-result normal"></div>
     </div>
 
     <!-- eGFR -->
     <div class="card">
-      <h4>eGFR Calculator</h4>
-      <p>Chronic kidney disease staging.</p>
-      <button class="calc-btn" onclick="toggleCalc('egFields')">Open Calculator</button>
-      <div class="calc-fields" id="egFields">
-        <input id="egAge" placeholder="Age (years)">
-        <input id="egScr" placeholder="Serum Creatinine (mg/dL)">
-        <select id="egGender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <button class="calc-btn" onclick="calcEGFR()">Calculate</button>
-        <div id="egResult" class="calc-result normal"></div>
-      </div>
+      <h4>eGFR / CKD Stage</h4>
+      <p>گردے کی بیماری کی سٹیج اور risk guidance۔</p>
+      <input class="calc-input" id="egAge" placeholder="Age (years)">
+      <input class="calc-input" id="egScr" placeholder="Serum Creatinine (mg/dL)">
+      <select class="calc-input" id="egGender">
+        <option value="male">مرد</option>
+        <option value="female">عورت</option>
+      </select>
+      <button class="calc-btn" onclick="calcEGFR()">Calculate</button>
+      <div id="egResult" class="calc-result normal"></div>
     </div>
 
   </div>
 </section>
 
-<!-- =====================
-     FOOTER (LOCKED)
-===================== -->
 <footer>
   <div class="footer-menu">
     <a href="privacy.html">Privacy Policy</a>
     <a href="disclaimer.html">Medical Disclaimer</a>
     <a href="contact.html">Contact</a>
   </div>
-
-  <p>
-    © 2025 Dr. Nisa Raisani. All rights reserved.
-  </p>
+  <p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
 </footer>
 
-<!-- =====================
-     SCROLL ANIMATION (MANDATORY)
-===================== -->
 <script>
-  const fades = document.querySelectorAll('.fade');
-  const showOnScroll = () => {
-    fades.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight - 100) {
-        el.classList.add('show');
-      }
-    });
-  };
-  window.addEventListener('scroll', showOnScroll);
-  showOnScroll();
-</script>
-
-<!-- =====================
-     MOBILE MENU (MANDATORY)
-===================== -->
-<script>
-function toggleMenu() {
-  document.getElementById("nav-menu").classList.toggle("active");
-}
-</script>
-
-<!-- =====================
-     CALCULATOR FUNCTIONS
-===================== -->
-<script>
-function toggleCalc(id){
-  const el=document.getElementById(id);
-  el.style.display = (el.style.display==='block') ? 'none' : 'block';
-}
-
-// BMI
 function calcBMI(){
-  let w=+bw.value, h=+bh.value/100;
+  let w=+bw.value,h=+bh.value/100;
   let bmi=(w/(h*h)).toFixed(2);
-  let cls="normal", msg="Normal";
-  if(bmi<18.5){cls="warning"; msg="Underweight";}
-  else if(bmi>=25 && bmi<30){cls="warning"; msg="Overweight";}
-  else if(bmi>=30){cls="danger"; msg="Obese – consult professional";}
+  let cls="normal",msg="نارمل";
+  if(bmi<18.5){cls="warning";msg="کم وزن";}
+  else if(bmi>=25&&bmi<30){cls="warning";msg="زیادہ وزن";}
+  else if(bmi>=30){cls="danger";msg="موٹاپا – ڈاکٹر سے مشورہ";}
   br.className="calc-result "+cls;
   br.innerHTML=`BMI: <strong>${bmi}</strong><br>${msg}<br>Normal: 18.5–24.9`;
 }
 
-// BSA
 function calcBSA(){
-  sr.innerHTML=`BSA: <strong>${Math.sqrt((sw.value*sh.value)/3600).toFixed(2)} m²</strong>`;
+  let val=Math.sqrt((sw.value*sh.value)/3600).toFixed(2);
+  sr.innerHTML=`BSA: <strong>${val} m²</strong>`;
 }
 
-// IV
 function calcIV(){
   let r=(ivv.value/ivt.value).toFixed(1);
   ivr.className="calc-result "+(r>200?"warning":"normal");
   ivr.innerHTML=`Rate: <strong>${r} ml/hr</strong>`;
 }
 
-// Pediatric
 function calcPed(){
   pr.innerHTML=`Dose: <strong>${(pd.value*pw.value).toFixed(1)} mg</strong>`;
 }
 
-// Adult
 function calcAdult(){
   ar.innerHTML=`Dose: <strong>${(ad.value*aw.value).toFixed(1)} mg</strong>`;
 }
 
-// Insulin
 function calcIns(){
   ir.innerHTML=`Estimated TDD: <strong>${(0.5*iw.value).toFixed(1)} units/day</strong>`;
 }
 
-// Pregnancy
 function calcPregnancy(){
-  let lmp = new Date(document.getElementById('lmp').value);
-  if(!lmp){ alert('Enter valid LMP date'); return; }
+  let lmpDate = new Date(document.getElementById('lmp').value);
+  if(!lmpDate){ alert('صحیح تاریخ درج کریں'); return; }
   let today = new Date();
-  let diff = today - lmp;
+  let diff = today - lmpDate;
   let weeks = Math.floor(diff / (1000*60*60*24*7));
   let days = Math.floor((diff / (1000*60*60*24)) % 7);
-  let edd = new Date(lmp); edd.setDate(edd.getDate()+280);
-  let status="Normal"; if(weeks<37) status="Preterm"; else if(weeks>42) status="Post-term";
-  pregResult.className="calc-result normal";
-  pregResult.innerHTML=`Gestational Age: <strong>${weeks} weeks + ${days} days</strong><br>Expected Delivery: <strong>${edd.toDateString()}</strong><br>Status: <strong>${status}</strong>`;
+  let edd = new Date(lmpDate); edd.setDate(edd.getDate()+280);
+
+  let weight = +document.getElementById('pregWeight').value;
+  let gainMsg="";
+  if(weight>0){
+    let minGain = 11.5; let maxGain = 16;
+    if(weight<minGain) gainMsg="وزن کم ہے";
+    else if(weight>maxGain) gainMsg="وزن زیادہ ہے";
+    else gainMsg="وزن مناسب ہے";
+  }
+
+  let status = "نارمل";
+  if(weeks<37) status="Preterm";
+  else if(weeks>42) status="Post-term";
+
+  pregResult.innerHTML=
+    `Gestational Age: <strong>${weeks} ہفتے + ${days} دن</strong><br>
+     Expected Delivery: <strong>${edd.toDateString()}</strong><br>
+     Status: <strong>${status}</strong><br>
+     Weight Gain: <strong>${gainMsg}</strong>`;
 }
 
-// CrCl
 function calcCrCl(){
-  let age=+crAge.value, weight=+crWeight.value, scr=+crScr.value, gender=crGender.value;
-  let crcl=((140-age)*weight)/(72*scr);
-  if(gender==='female') crcl*=0.85;
+  let age=+crAge.value,weight=+crWeight.value,scr=+crScr.value,gender=crGender.value;
+  let crcl=((140-age)*weight)/(72*scr); if(gender=='female') crcl*=0.85;
   crcl=crcl.toFixed(1);
-  let cls="normal", msg="Normal kidney function";
-  if(crcl<30){cls="danger"; msg="Severe Impairment – consult nephrologist";}
-  else if(crcl<60){cls="warning"; msg="Moderate Impairment";}
-  else if(crcl<90){cls="warning"; msg="Mild Impairment";}
+
+  let cls="normal",msg="گردے کی کارکردگی نارمل";
+  if(crcl<30){cls="danger";msg="شدید کمی – نیفرولوجسٹ سے رجوع کریں";}
+  else if(crcl<60){cls="warning";msg="متوسط کمی";}
+  else if(crcl<90){cls="warning";msg="ہلکی کمی";}
+
   crResult.className="calc-result "+cls;
   crResult.innerHTML=`CrCl: <strong>${crcl} ml/min</strong><br>${msg}`;
 }
 
-// eGFR
 function calcEGFR(){
-  let age=+egAge.value, scr=+egScr.value, gender=egGender.value;
-  let egfr=175*Math.pow(scr,-1.154)*Math.pow(age,-0.203);
-  if(gender==='female') egfr*=0.742;
+  let age=+egAge.value,scr=+egScr.value,gender=egGender.value;
+  let egfr=175*Math.pow(scr,-1.154)*Math.pow(age,-0.203); if(gender=='female') egfr*=0.742;
   egfr=egfr.toFixed(1);
-  let cls="normal", msg="Normal kidney function";
-  if(egfr<15){cls="danger"; msg="Kidney Failure – urgent care";}
-  else if(egfr<30){cls="danger"; msg="Severe Impairment";}
-  else if(egfr<60){cls="warning"; msg="Moderate Impairment";}
-  else if(egfr<90){cls="warning"; msg="Mild Decrease";}
-  egResult.className="calc-result "+cls;
-  egResult.innerHTML=`eGFR: <strong>${egfr} ml/min/1.73m²</strong><br>${msg}`;
-}
-</script>
 
+  let cls="normal",msg="گردے کی کارکردگی نارمل";
+  if(egfr<15){cls="danger";msg="Kidney Failure – فوری علاج";}
+  else if(egfr<30){cls="danger";msg="شدید کمی";}
+  else if(egfr<60){cls="warning";msg="متوسط کمی";}
+  else if(egfr<90){cls="warning";msg="ہلکی کمی";}
+
+  let ckdTable=`<table class="ckd-table">
+    <tr><th>Stage</th><th>eGFR (ml/min)</th><th>Risk / Guidance</th></tr>
+    <tr><td>1</td><td>≥90</td><td>Normal kidney function</td></tr>
+    <tr><td>2</td><td>60–89</td><td>Mild decrease</td></tr>
+    <tr><td>3a</td><td>45–59</td><td>Moderate decrease</td></tr>
+    <tr><td>3b</td><td>30–44</td><td>Moderate decrease</td></tr>
+    <tr><td>4</td><td>15–29</td><td>Severe decrease</td></tr>
+    <tr><td>5</td><td><15</td><td>Kidney failure</td></tr>
+  </table>`;
+
+  egResult.className="calc-result "+cls;
+  egResult.innerHTML=`eGFR: <strong>${egfr} ml/min/1.73m²</strong><br>${msg}<br>${ckdTable}`;
+}
+
+// Scroll animation & mobile menu
+const fades = document.querySelectorAll('.fade');
+const showOnScroll = () => { fades.forEach(el=>{ if(el.getBoundingClientRect().top<window.innerHeight-100) el.classList.add('show'); });};
+window.addEventListener('scroll', showOnScroll);
+showOnScroll();
+
+function toggleMenu(){ document.getElementById("nav-menu").classList.toggle("active"); }
+</script>
 </body>
-  </html>
-  
+</html>
