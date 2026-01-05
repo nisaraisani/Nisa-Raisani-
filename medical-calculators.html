@@ -227,35 +227,82 @@ Adult female ≈ 1.6 m²
 <footer>
 ⚠️ Educational purpose only. Not a substitute for professional medical advice.
 </footer>
-
 <script>
-function comingSoon(){
-  alert("This calculator will be added in future updates.");
-}
-function hideAll(){
-  document.getElementById("bmiBox").style.display="none";
-  document.getElementById("bsaBox").style.display="none";
-}
-function showBMI(){hideAll();document.getElementById("bmiBox").style.display="block";}
-function showBSA(){hideAll();document.getElementById("bsaBox").style.display="block";}
-
 function calcBMI(){
-  let w=document.getElementById("bmiWeight").value;
-  let h=document.getElementById("bmiHeight").value/100;
-  if(w&&h){
-    let bmi=(w/(h*h)).toFixed(2);
-    document.getElementById("bmiResult").innerText="BMI = "+bmi;
+  let w = document.getElementById("bmiWeight").value;
+  let h = document.getElementById("bmiHeight").value / 100;
+
+  if(!w || !h){
+    alert("Please enter valid weight and height.");
+    return;
   }
-}
-function calcBSA(){
-  let w=document.getElementById("bsaWeight").value;
-  let h=document.getElementById("bsaHeight").value;
-  if(w&&h){
-    let bsa=Math.sqrt((h*w)/3600).toFixed(2);
-    document.getElementById("bsaResult").innerText="BSA = "+bsa+" m²";
+
+  let bmi = (w / (h*h)).toFixed(2);
+  let status = "";
+  let note = "";
+
+  if(bmi < 18.5){
+    status = "Underweight";
+    note = "Below normal range. Nutritional assessment recommended.";
   }
+  else if(bmi <= 24.9){
+    status = "Normal";
+    note = "Within normal healthy range.";
+  }
+  else if(bmi <= 29.9){
+    status = "Overweight";
+    note = "Above normal range. Lifestyle modification advised.";
+  }
+  else{
+    status = "Obese";
+    note = "Significantly above normal range. Clinical evaluation advised.";
+  }
+
+  document.getElementById("bmiResult").innerHTML =
+    "<strong>BMI:</strong> " + bmi;
+
+  document.getElementById("bmiStatus").innerHTML =
+    "<strong>Status:</strong> " + status + "<br>" +
+    "<em>Normal BMI: 18.5 – 24.9</em><br>" +
+    note;
 }
 </script>
+
+function calcBSA(){
+  let w = document.getElementById("bsaWeight").value;
+  let h = document.getElementById("bsaHeight").value;
+
+  if(!w || !h){
+    alert("Please enter valid weight and height.");
+    return;
+  }
+
+  let bsa = Math.sqrt((h * w) / 3600).toFixed(2);
+  let comment = "";
+
+  // Average reference
+  if(bsa < 1.5){
+    comment = "Below average body surface area.";
+  }
+  else if(bsa <= 2.1){
+    comment = "Within average adult range.";
+  }
+  else{
+    comment = "Above average body surface area.";
+  }
+
+  document.getElementById("bsaResult").innerHTML =
+    "<strong>BSA:</strong> " + bsa + " m²";
+
+  document.getElementById("bsaStatus").innerHTML =
+    "<em>Average adult BSA:</em><br>" +
+    "• Male ≈ 1.9 m²<br>" +
+    "• Female ≈ 1.6 m²<br><br>" +
+    comment +
+    "<br><small>BSA is commonly used for drug dosing and chemotherapy.</small>";
+}
+</script>
+
 
 </body>
 </html>
