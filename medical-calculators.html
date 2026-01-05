@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Medical Calculators – BMI, BSA & Clinical Dose Tools</title>
+
+<meta name="description" content="Free medical calculators including BMI, BSA, infusion dose and insulin calculators. Designed for doctors, nurses and medical students.">
+
+<meta name="keywords" content="medical calculators, BMI calculator, BSA calculator, clinical dose calculator, medical dosage">
+
+<meta name="author" content="Medical Calculators App">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#f4f8fb;
+  color:#123;
+}
+header{
+  background:#0b5ed7;
+  color:#fff;
+  padding:25px;
+  text-align:center;
+}
+section{padding:25px}
+h1,h2{margin:0}
+h2{color:#0b5ed7;margin-bottom:15px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:16px;
+}
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+}
+.card h3{margin-top:0;color:#0b5ed7}
+.card p{font-size:14px;color:#555}
+.card button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:25px;
+  background:#198754;
+  color:#fff;
+  cursor:pointer;
+}
+.card button:hover{background:#157347}
+.calc-box{
+  display:none;
+  background:#fff;
+  margin:20px;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.1);
+}
+input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+.calc-box button{
+  background:#0b5ed7;
+  color:#fff;
+  border:none;
+  padding:10px;
+  border-radius:20px;
+  width:100%;
+}
+.info{
+  margin-top:10px;
+  background:#eef4ff;
+  padding:12px;
+  border-radius:10px;
+  font-size:14px;
+}
+footer{
+  background:#e9f0fb;
+  padding:15px;
+  text-align:center;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Medical Calculators</h1>
+<p>BMI, BSA & Clinical Dose Support Tools</p>
+</header>
+
+<section>
+<h2>Adult Medical Calculators</h2>
+<div class="grid">
+  <div class="card">
+    <h3>Medication Dosage Calculator</h3>
+    <p>Standard medication dose calculation for adult patients.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+  <div class="card">
+    <h3>Insulin Calculator</h3>
+    <p>Insulin dose estimation tool for adults.</p>
+    <button onclick="comingSoon()">Open</button>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Universal Medical Calculators</h2>
+<div class="grid">
+  <div class="card">
+    <h3>BMI Calculator</h3>
+    <p>Body Mass Index calculation and interpretation.</p>
+    <button onclick="showBMI()">Open</button>
+  </div>
+  <div class="card">
+    <h3>BSA Calculator</h3>
+    <p>Body Surface Area calculator used in drug dosing.</p>
+    <button onclick="showBSA()">Open</button>
+  </div>
+</div>
+</section>
+
+<!-- BMI -->
+<div id="bmiBox" class="calc-box">
+<h2>BMI Calculator</h2>
+<input type="number" id="bmiWeight" placeholder="Weight (kg)">
+<input type="number" id="bmiHeight" placeholder="Height (cm)">
+<button onclick="calcBMI()">Calculate BMI</button>
+<p id="bmiResult"></p>
+<div class="info">
+BMI estimates body fat using height and weight.<br>
+Normal BMI: 18.5 – 24.9
+</div>
+</div>
+
+<!-- BSA -->
+<div id="bsaBox" class="calc-box">
+<h2>BSA Calculator</h2>
+<input type="number" id="bsaWeight" placeholder="Weight (kg)">
+<input type="number" id="bsaHeight" placeholder="Height (cm)">
+<button onclick="calcBSA()">Calculate BSA</button>
+<p id="bsaResult"></p>
+<div class="info">
+Average BSA: Adult male ≈ 1.9 m² | Adult female ≈ 1.6 m²
+</div>
+</div>
+
+<footer>
+⚠️ Educational purpose only. Not a substitute for professional medical advice.
+</footer>
+
+<script>
+function comingSoon(){alert("This calculator will be added soon.");}
+function hideAll(){
+  document.getElementById("bmiBox").style.display="none";
+  document.getElementById("bsaBox").style.display="none";
+}
+function showBMI(){hideAll();document.getElementById("bmiBox").style.display="block";}
+function showBSA(){hideAll();document.getElementById("bsaBox").style.display="block";}
+function calcBMI(){
+  let w=document.getElementById("bmiWeight").value;
+  let h=document.getElementById("bmiHeight").value/100;
+  if(w&&h){
+    let bmi=(w/(h*h)).toFixed(2);
+    document.getElementById("bmiResult").innerText="BMI = "+bmi;
+  }
+}
+function calcBSA(){
+  let w=document.getElementById("bsaWeight").value;
+  let h=document.getElementById("bsaHeight").value;
+  if(w&&h){
+    let bsa=Math.sqrt((h*w)/3600).toFixed(2);
+    document.getElementById("bsaResult").innerText="BSA = "+bsa+" m²";
+  }
+}
+</script>
+
+</body>
+</html>
