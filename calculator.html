@@ -1,194 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Medical Calculators</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Medical Calculators</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #e8f3f0;
-      color: #033;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#e8f3f0;
+}
+header{
+  background:#1aa39a;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+section{padding:20px}
+h2{color:#045}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+.card h3{margin-top:0;color:#1a7f78}
+.card button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  background:#1aa39a;
+  color:#fff;
+  cursor:pointer;
+}
+.card button:hover{background:#148a82}
 
-    header {
-      background: #1aa39a;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    section {
-      padding: 20px;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      color: #045;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #1a7f78;
-    }
-
-    .card p {
-      font-size: 14px;
-      color: #555;
-    }
-
-    .card button {
-      margin-top: 10px;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 20px;
-      background: #1aa39a;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .card button:hover {
-      background: #148a82;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 12px;
-      background: #d6ebe7;
-    }
-  </style>
+.calc-box{
+  display:none;
+  background:#fff;
+  margin:20px;
+  padding:20px;
+  border-radius:14px;
+}
+input{
+  width:100%;
+  padding:8px;
+  margin:8px 0;
+}
+footer{
+  background:#d6ebe7;
+  padding:12px;
+  text-align:center;
+  font-size:12px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Medical Dose Calculators</h1>
-  <p>Safe • Accurate • Clinical Support</p>
+<h1>Medical Dose Calculators</h1>
+<p>Clinical Support Tool</p>
 </header>
-
-<!-- PEDIATRIC -->
-<section>
-  <h2>Pediatric Calculators</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Weight Based Dosing</h3>
-      <p>Medication dose calculations for children based on weight.</p>
-      <button>Use Calculator</button>
-    </div>
-  </div>
-</section>
 
 <!-- ADULT -->
 <section>
-  <h2>Adult Calculators</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Medication Dosage</h3>
-      <p>Standard dosage calculator for adult patients.</p>
-      <button>Open</button>
-    </div>
+<h2>Adult Calculators</h2>
+<div class="grid">
 
-    <div class="card">
-      <h3>Reconstitution</h3>
-      <p>Drug dilution & reconstitution calculator.</p>
-      <button>Open</button>
-    </div>
+<div class="card">
+<h3>Medication Dosage</h3>
+<button onclick="comingSoon()">Open</button>
+</div>
 
-    <div class="card">
-      <h3>Insulin Calculator</h3>
-      <p>Insulin dosing support for adult patients.</p>
-      <button>Open</button>
-    </div>
+<div class="card">
+<h3>Reconstitution</h3>
+<button onclick="comingSoon()">Open</button>
+</div>
 
-    <div class="card">
-      <h3>Infusion Dose</h3>
-      <p>IV infusion dose calculations.</p>
-      <button>Open</button>
-    </div>
-  </div>
-</section>
+<div class="card">
+<h3>Insulin Calculator</h3>
+<button onclick="comingSoon()">Open</button>
+</div>
 
-<!-- GERIATRIC -->
-<section>
-  <h2>Geriatric Calculators</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Elderly Dosing</h3>
-      <p>Adjusted dose calculations for elderly patients.</p>
-      <button>Use Calculator</button>
-    </div>
-  </div>
+<div class="card">
+<h3>Infusion Dose</h3>
+<button onclick="comingSoon()">Open</button>
+</div>
+
+</div>
 </section>
 
 <!-- UNIVERSAL -->
 <section>
-  <h2>Universal Calculators</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>BSA Calculator</h3>
-      <p>Body Surface Area calculation for all ages.</p>
-      <button>Open</button>
-    </div>
+<h2>Universal Calculators</h2>
+<div class="grid">
 
-    <div class="card">
-      <h3>IV Infusion Rate</h3>
-      <p>Infusion rate calculator applicable to all patients.</p>
-      <button>Open</button>
-    </div>
+<div class="card">
+<h3>BSA Calculator</h3>
+<button onclick="showBSA()">Open</button>
+</div>
 
-    <div class="card">
-      <h3>BMI Calculator</h3>
-      <p>Body Mass Index calculation.</p>
-      <button>Open</button>
-    </div>
-  </div>
+<div class="card">
+<h3>BMI Calculator</h3>
+<button onclick="showBMI()">Open</button>
+</div>
+
+<div class="card">
+<h3>IV Infusion Rate</h3>
+<button onclick="comingSoon()">Open</button>
+</div>
+
+</div>
 </section>
 
-<!-- ICU -->
-<section>
-  <h2>ICU / CCU Calculators</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Critical Care Drips</h3>
-      <p>Vasopressors & inotropes infusion calculations.</p>
-      <button>Use Now</button>
-    </div>
+<!-- BMI -->
+<div id="bmiBox" class="calc-box">
+<h3>BMI Calculator</h3>
+<input id="bmiWeight" type="number" placeholder="Weight (kg)">
+<input id="bmiHeight" type="number" placeholder="Height (cm)">
+<button onclick="calcBMI()">Calculate</button>
+<p id="bmiResult"></p>
+</div>
 
-    <div class="card">
-      <h3>MAP Calculator</h3>
-      <p>Mean Arterial Pressure assessment.</p>
-      <button>Open</button>
-    </div>
-
-    <div class="card">
-      <h3>DKA Smart Calculator</h3>
-      <p>Insulin & potassium guidance for DKA.</p>
-      <button>Open</button>
-    </div>
-  </div>
-</section>
+<!-- BSA -->
+<div id="bsaBox" class="calc-box">
+<h3>BSA Calculator (Mosteller)</h3>
+<input id="bsaWeight" type="number" placeholder="Weight (kg)">
+<input id="bsaHeight" type="number" placeholder="Height (cm)">
+<button onclick="calcBSA()">Calculate</button>
+<p id="bsaResult"></p>
+</div>
 
 <footer>
-  ⚠️ This application is for educational purposes only and does not replace clinical judgment.
+⚠️ Educational purpose only — Not a substitute for clinical judgement.
 </footer>
 
+<script>
+function comingSoon(){
+  alert("Calculator logic will be added in next update");
+}
+
+function showBMI(){
+  hideAll();
+  document.getElementById("bmiBox").style.display="block";
+}
+
+function showBSA(){
+  hideAll();
+  document.getElementById("bsaBox").style.display="block";
+}
+
+function hideAll(){
+  document.getElementById("bmiBox").style.display="none";
+  document.getElementById("bsaBox").style.display="none";
+}
+
+function calcBMI(){
+  let w=document.getElementById("bmiWeight").value;
+  let h=document.getElementById("bmiHeight").value/100;
+  if(w && h){
+    let bmi=(w/(h*h)).toFixed(2);
+    document.getElementById("bmiResult").innerText="BMI = "+bmi;
+  }
+}
+
+function calcBSA(){
+  let w=document.getElementById("bsaWeight").value;
+  let h=document.getElementById("bsaHeight").value;
+  if(w && h){
+    let bsa=Math.sqrt((h*w)/3600).toFixed(2);
+    document.getElementById("bsaResult").innerText="BSA = "+bsa+" m²";
+  }
+}
+</script>
+
 </body>
-</html>
+  </html>
+  
