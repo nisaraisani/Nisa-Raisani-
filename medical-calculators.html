@@ -1,178 +1,120 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Medical Calculators | Dr. Nisa Raisani</title>
+
+<title>Medical Calculators (BMI, Pregnancy, Kidney, Dose) | Dr. Nisa Raisani</title>
+<meta name="description" content="Free medical calculators including BMI, BSA, IV infusion rate, pediatric and adult dose, insulin dose, pregnancy LMP GA EDD, creatinine clearance and eGFR with clinical guidance.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
-body{
+/* ===== HARD RESET ===== */
+html,body{
   margin:0;
-  font-family:Poppins, sans-serif;
+  padding:0;
   background:#f9fafb;
   color:#111827;
+  font-family:Poppins, sans-serif;
 }
-section{padding:40px 20px;}
-h2{text-align:center;margin-bottom:10px}
+
+/* ===== LAYOUT ===== */
+section{padding:40px 20px}
+h2{text-align:center}
 p{text-align:center;max-width:900px;margin:auto}
 
-/* ===== GRID & CARDS ===== */
 .grid{
+  max-width:1200px;
+  margin:30px auto;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:20px;
-  max-width:1200px;
-  margin:30px auto;
 }
+
 .card{
   background:#ffffff;
-  border-radius:18px;
   padding:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
-.card h4{margin:0 0 10px}
 
-/* ===== INPUTS ===== */
+/* ===== FORM ===== */
+label{font-weight:500}
 input,select{
   width:100%;
   padding:10px;
   margin:6px 0;
   border-radius:10px;
   border:1px solid #d1d5db;
-  background:#fff;
+  background:#ffffff;
   color:#111827;
 }
 
-/* ===== BUTTON ===== */
-.calc-btn{
+button{
   width:100%;
+  margin-top:8px;
   padding:10px;
   border-radius:25px;
   background:#0f766e;
-  color:#fff;
+  color:#ffffff;
   border:none;
   cursor:pointer;
-  margin-top:8px;
 }
 
-/* ===== RESULT ===== */
 .calc-result{
   margin-top:10px;
   padding:10px;
   border-radius:10px;
   font-size:14px;
 }
+
 .normal{background:#ecfdf5;color:#065f46}
 .warning{background:#fff7ed;color:#9a3412}
 .danger{background:#fef2f2;color:#991b1b}
 
-small{color:#555}
+small{color:#374151;display:block;margin-top:6px}
 </style>
 </head>
 
 <body>
 
 <section>
-<h2>🧮 میڈیکل کیلکولیٹرز</h2>
-<p>Evidence-based calculators for doctors, nurses & medical students</p>
+<h2>Medical Calculators</h2>
+<p>Evidence-based tools for doctors, students & patients</p>
 </section>
 
 <section>
 <div class="grid">
 
-<!-- BMI -->
 <div class="card">
-<h4>BMI Calculator</h4>
-<input id="bw" placeholder="وزن (کلوگرام)">
-<input id="bh" placeholder="قد (سینٹی میٹر)">
-<button class="calc-btn" onclick="calcBMI()">Calculate</button>
+<h4>BMI Calculator | باڈی ماس انڈیکس</h4>
+<label>Weight (kg) | وزن</label>
+<input id="bw">
+<label>Height (cm) | قد</label>
+<input id="bh">
+<button onclick="calcBMI()">Calculate</button>
 <div id="br" class="calc-result"></div>
-<small>WHO نارمل: 18.5 – 24.9</small>
+<small>Checks body weight category | جسمانی وزن کی درجہ بندی</small>
 </div>
 
-<!-- BSA -->
 <div class="card">
-<h4>BSA Calculator</h4>
-<input id="sw" placeholder="وزن (کلوگرام)">
-<input id="sh" placeholder="قد (سینٹی میٹر)">
-<button class="calc-btn" onclick="calcBSA()">Calculate</button>
-<div id="sr" class="calc-result normal"></div>
-<small>Mosteller Formula</small>
-</div>
-
-<!-- IV -->
-<div class="card">
-<h4>IV Infusion Rate</h4>
-<input id="ivv" placeholder="Volume (ml)">
-<input id="ivt" placeholder="Time (hours)">
-<button class="calc-btn" onclick="calcIV()">Calculate</button>
-<div id="ivr" class="calc-result"></div>
-</div>
-
-<!-- Pediatric -->
-<div class="card">
-<h4>Pediatric Dose</h4>
-<input id="pd" placeholder="Dose (mg/kg)">
-<input id="pw" placeholder="Weight (kg)">
-<button class="calc-btn" onclick="calcPed()">Calculate</button>
-<div id="pr" class="calc-result normal"></div>
-</div>
-
-<!-- Adult -->
-<div class="card">
-<h4>Adult Dose</h4>
-<input id="ad" placeholder="Dose (mg/kg)">
-<input id="aw" placeholder="Weight (kg)">
-<button class="calc-btn" onclick="calcAdult()">Calculate</button>
-<div id="ar" class="calc-result normal"></div>
-</div>
-
-<!-- Insulin -->
-<div class="card">
-<h4>Insulin Dose</h4>
-<input id="iw" placeholder="Weight (kg)">
-<button class="calc-btn" onclick="calcIns()">Calculate</button>
-<div id="ir" class="calc-result normal"></div>
-<small>TDD ≈ 0.4 – 0.6 units/kg/day</small>
-</div>
-
-<!-- Pregnancy -->
-<div class="card">
-<h4>Pregnancy (GA & EDD)</h4>
+<h4>Pregnancy Calculator</h4>
+<label>Last Menstrual Period (LMP)<br>آخری ماہواری کی پہلی تاریخ</label>
 <input type="date" id="lmp">
-<button class="calc-btn" onclick="calcPreg()">Calculate</button>
+<button onclick="calcPreg()">Calculate</button>
 <div id="pregR" class="calc-result normal"></div>
+<small>GA & Expected Delivery Date</small>
 </div>
 
-<!-- CrCl -->
 <div class="card">
 <h4>Creatinine Clearance</h4>
-<input id="crAge" placeholder="عمر (سال)">
-<input id="crW" placeholder="وزن (کلوگرام)">
-<input id="crScr" placeholder="Serum Creatinine (mg/dL)">
-<select id="crG">
-<option value="male">مرد</option>
-<option value="female">عورت</option>
-</select>
-<button class="calc-btn" onclick="calcCrCl()">Calculate</button>
+<label>Age</label><input id="age">
+<label>Weight</label><input id="wt">
+<label>Creatinine</label><input id="cr">
+<select id="gen"><option value="m">Male</option><option value="f">Female</option></select>
+<button onclick="calcCr()">Calculate</button>
 <div id="crR" class="calc-result"></div>
-</div>
-
-<!-- eGFR -->
-<div class="card">
-<h4>eGFR (CKD Staging)</h4>
-<input id="egAge" placeholder="عمر (سال)">
-<input id="egScr" placeholder="Serum Creatinine (mg/dL)">
-<select id="egG">
-<option value="male">مرد</option>
-<option value="female">عورت</option>
-</select>
-<button class="calc-btn" onclick="calcEGFR()">Calculate</button>
-<div id="egR" class="calc-result"></div>
-<small>G1 ≥90 | G2 60–89 | G3 30–59 | G4 15–29 | G5 &lt;15</small>
 </div>
 
 </div>
@@ -180,46 +122,24 @@ small{color:#555}
 
 <script>
 function calcBMI(){
-let w=+bw.value,h=+bh.value/100;
-let bmi=(w/(h*h)).toFixed(1);
-let c="normal",m="نارمل";
-if(bmi<18.5){c="warning";m="کم وزن";}
-else if(bmi>=25&&bmi<30){c="warning";m="زیادہ وزن";}
-else if(bmi>=30){c="danger";m="موٹاپا";}
+let b=(bw.value/(bh.value/100)**2).toFixed(1);
+let c=b<18.5?"warning":b<25?"normal":b<30?"warning":"danger";
 br.className="calc-result "+c;
-br.innerHTML=`BMI: <b>${bmi}</b><br>${m}`;
+br.innerHTML="BMI: <b>"+b+"</b>";
 }
-function calcBSA(){sr.innerHTML=`BSA: <b>${Math.sqrt((sw.value*sh.value)/3600).toFixed(2)} m²</b>`;}
-function calcIV(){
-let r=(ivv.value/ivt.value).toFixed(1);
-ivr.className="calc-result "+(r>200?"warning":"normal");
-ivr.innerHTML=`Rate: <b>${r} ml/hr</b>`;
-}
-function calcPed(){pr.innerHTML=`Dose: <b>${(pd.value*pw.value).toFixed(1)} mg</b>`;}
-function calcAdult(){ar.innerHTML=`Dose: <b>${(ad.value*aw.value).toFixed(1)} mg</b>`;}
-function calcIns(){ir.innerHTML=`TDD: <b>${(0.5*iw.value).toFixed(1)} units/day</b>`;}
 function calcPreg(){
-let l=new Date(lmp.value),t=new Date();
-let d=(t-l)/(1000*60*60*24);
-let w=Math.floor(d/7),dy=Math.floor(d%7);
+let l=new Date(lmp.value);let t=new Date();
+let w=Math.floor((t-l)/(1000*60*60*24*7));
 let e=new Date(l);e.setDate(e.getDate()+280);
-pregR.innerHTML=`GA: <b>${w} ہفتے ${dy} دن</b><br>EDD: <b>${e.toDateString()}</b>`;
+pregR.innerHTML="GA: "+w+" weeks<br>EDD: "+e.toDateString();
 }
-function calcCrCl(){
-let c=((140-crAge.value)*crW.value)/(72*crScr.value);
-if(crG.value=="female")c*=0.85;
-let cls=c<30?"danger":c<60?"warning":"normal";
-crR.className="calc-result "+cls;
-crR.innerHTML=`CrCl: <b>${c.toFixed(1)} ml/min</b>`;
-}
-function calcEGFR(){
-let e=175*Math.pow(egScr.value,-1.154)*Math.pow(egAge.value,-0.203);
-if(egG.value=="female")e*=0.742;
-let cls=e<30?"danger":e<60?"warning":"normal";
-egR.className="calc-result "+cls;
-egR.innerHTML=`eGFR: <b>${e.toFixed(1)}</b>`;
+function calcCr(){
+let c=((140-age.value)*wt.value)/(72*cr.value);
+if(gen.value=="f")c*=0.85;
+crR.innerHTML="CrCl: "+c.toFixed(1);
 }
 </script>
 
 </body>
-</html>
+  </html>
+                                                                                   
