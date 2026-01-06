@@ -7,125 +7,61 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-
 <style>
-.calc-btn{
-  padding:10px 18px;
-  border-radius:25px;
-  background:#0f766e;
-  color:#fff;
-  border:none;
-  cursor:pointer;
-  font-size:14px;
-}
-.calc-modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  z-index:9999;
-}
-.calc-box{
-  background:#ffffff;
-  max-width:420px;
-  margin:90px auto;
-  padding:22px;
-  border-radius:18px;
-  position:relative;
-  font-family:Poppins;
-}
-.calc-box h3{
-  margin-bottom:10px;
-}
-.calc-box input,
-.calc-box select{
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-  border-radius:10px;
-  border:1px solid #cccccc;
-  font-size:14px;
-}
-.close-calc{
-  position:absolute;
-  top:12px;
-  right:16px;
-  font-size:22px;
-  cursor:pointer;
-  font-weight:bold;
-  color:#000;
-}
-.calc-result{
-  margin-top:12px;
-  padding:12px;
-  border-radius:10px;
-  font-size:14px;
-  line-height:1.5;
-}
-.normal{background:#ecfdf5;color:#065f46}
-.warning{background:#fff7ed;color:#9a3412}
-.danger{background:#fef2f2;color:#991b1b}
+body {font-family:Poppins,sans-serif; margin:0; background:#000; color:#fff;}
+.calc-btn{padding:10px 18px; border-radius:25px; background:#0f766e; color:#fff; border:none; cursor:pointer; font-size:14px;}
+.calc-modal{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999;}
+.calc-box{background:#111; max-width:500px; margin:80px auto; padding:22px; border-radius:18px; position:relative; font-family:Poppins;}
+.calc-box h3{margin-bottom:10px;}
+.calc-box input, .calc-box select{width:100%; padding:10px; margin:6px 0; border-radius:10px; border:1px solid #ccc; font-size:14px;}
+.close-calc{position:absolute; top:12px; right:16px; font-size:22px; cursor:pointer; font-weight:bold; color:#fff;}
+.calc-result{margin-top:12px; padding:12px; border-radius:10px; font-size:14px; line-height:1.5;}
+.normal{background:#065f46;color:#ecfdf5;}
+.warning{background:#9a3412;color:#fff7ed;}
+.danger{background:#991b1b;color:#fef2f2;}
+.card{background:#222; padding:15px; border-radius:12px; margin:10px; display:inline-block; width:200px; vertical-align:top;}
+.card h4{margin:5px 0;}
+.card p{font-size:13px; margin:5px 0 10px;}
+.grid{text-align:center;}
+footer{padding:20px;text-align:center;font-size:13px;}
+footer a{color:#fff;margin:0 8px; text-decoration:none;}
+label{display:block; margin-top:6px;}
 </style>
 </head>
 <body>
 
-<header class="navbar">
+<header style="padding:12px; background:#111; display:flex; justify-content:space-between; align-items:center;">
 <div class="logo">Dr. Nisa Raisani</div>
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-<nav id="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="clinical.html">Clinical</a>
-<a href="research.html">Research</a>
-<a href="appointment.html">Appointment</a>
-<a href="contact.html">Contact</a>
-<button class="lang-btn">EN / اردو</button>
-</nav>
 </header>
 
-<section class="fade" style="margin-top:80px;">
+<section style="margin-top:20px; text-align:center;">
 <h2>Medical Calculators</h2>
-<p style="max-width:850px;margin:auto;">
-Evidence-based medical calculators for doctors, nurses and medical students.
-Includes interpretation, normal ranges and safety guidance.
-</p>
+<p>Evidence-based medical calculators with interpretation, normal ranges, and guidance.</p>
 </section>
 
-<section class="fade">
+<section>
 <div class="grid">
-
 <div class="card"><h4>BMI Calculator</h4><p>Body Mass Index with WHO classification.</p><button class="calc-btn" onclick="openCalc('bmi')">Open</button></div>
 <div class="card"><h4>BSA Calculator</h4><p>Body Surface Area (Mosteller).</p><button class="calc-btn" onclick="openCalc('bsa')">Open</button></div>
 <div class="card"><h4>IV Infusion Rate</h4><p>Infusion rate in ml/hour.</p><button class="calc-btn" onclick="openCalc('iv')">Open</button></div>
 <div class="card"><h4>Pediatric Dose</h4><p>Weight-based pediatric dosing.</p><button class="calc-btn" onclick="openCalc('ped')">Open</button></div>
 <div class="card"><h4>Adult Dose</h4><p>Standard adult dose calculation.</p><button class="calc-btn" onclick="openCalc('adult')">Open</button></div>
 <div class="card"><h4>Insulin Dose</h4><p>Total daily insulin dose.</p><button class="calc-btn" onclick="openCalc('ins')">Open</button></div>
-<div class="card"><h4>Pregnancy</h4><p>GA, EDD, pregnancy BMI & weight gain.</p><button class="calc-btn" onclick="openCalc('preg')">Open</button></div>
-<div class="card"><h4>Creatinine Clearance</h4><p>Renal function & drug dosing.</p><button class="calc-btn" onclick="openCalc('crcl')">Open</button></div>
+<div class="card"><h4>Pregnancy</h4><p>GA, EDD, BMI & weight gain.</p><button class="calc-btn" onclick="openCalc('preg')">Open</button></div>
+<div class="card"><h4>Creatinine Clearance</h4><p>Renal function & dosing guidance.</p><button class="calc-btn" onclick="openCalc('crcl')">Open</button></div>
 <div class="card"><h4>eGFR / CKD</h4><p>CKD staging with risk guidance.</p><button class="calc-btn" onclick="openCalc('egfr')">Open</button></div>
-
 </div>
-</section>
-
-<section class="fade">
-<h2>Medical Disclaimer</h2>
-<p style="max-width:850px;margin:auto;">
-These calculators are for educational purposes only and do not replace
-professional medical judgment or institutional protocols.
-</p>
 </section>
 
 <footer>
-<div class="footer-menu">
-<a href="privacy.html">Privacy Policy</a>
-<a href="disclaimer.html">Medical Disclaimer</a>
-<a href="contact.html">Contact</a>
-</div>
-<p>© 2025 Dr. Nisa Raisani. All rights reserved.</p>
+<a href="#">Privacy Policy</a>
+<a href="#">Medical Disclaimer</a>
+<a href="#">Contact</a>
+<p>© 2026 Dr. Nisa Raisani</p>
 </footer>
 
-<!-- ================= MODALS ================= -->
+<!-- MODALS -->
 <!-- BMI -->
 <div class="calc-modal" id="bmi">
 <div class="calc-box">
@@ -134,7 +70,7 @@ professional medical judgment or institutional protocols.
 <input id="bw" placeholder="Weight (kg)">
 <input id="bh" placeholder="Height (cm)">
 <button class="calc-btn" onclick="calcBMI()">Calculate</button>
-<div id="br" class="calc-result"></div>
+<div id="br" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -143,7 +79,10 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>BSA Calculator</h3>
-<p>Coming soon</p>
+<input id="bsaW" placeholder="Weight (kg)">
+<input id="bsaH" placeholder="Height (cm)">
+<button class="calc-btn" onclick="calcBSA()">Calculate</button>
+<div id="bsaResult" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -152,7 +91,10 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>IV Infusion Rate</h3>
-<p>Coming soon</p>
+<input id="ivVol" placeholder="Volume (ml)">
+<input id="ivTime" placeholder="Time (hours)">
+<button class="calc-btn" onclick="calcIV()">Calculate</button>
+<div id="ivResult" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -161,7 +103,10 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Pediatric Dose</h3>
-<p>Coming soon</p>
+<input id="pedWt" placeholder="Weight (kg)">
+<input id="pedDose" placeholder="Drug mg/kg">
+<button class="calc-btn" onclick="calcPed()">Calculate</button>
+<div id="pedResult" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -170,7 +115,10 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Adult Dose</h3>
-<p>Coming soon</p>
+<input id="adultWt" placeholder="Weight (kg)">
+<input id="adultDose" placeholder="Drug dose mg">
+<button class="calc-btn" onclick="calcAdult()">Calculate</button>
+<div id="adultResult" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -179,7 +127,9 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Insulin Dose</h3>
-<p>Coming soon</p>
+<input id="insWt" placeholder="Weight (kg)">
+<button class="calc-btn" onclick="calcIns()">Calculate</button>
+<div id="insResult" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -188,7 +138,7 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Pregnancy Calculator</h3>
-<label>Last Menstrual Period (LMP)</label>
+<label>Enter Last Menstrual Period (LMP) – select the first day of your last period</label>
 <input type="date" id="lmp">
 <input id="pWeight" placeholder="Current Weight (kg)">
 <input id="pHeight" placeholder="Height (cm)">
@@ -204,13 +154,13 @@ professional medical judgment or institutional protocols.
 <h3>Creatinine Clearance (Cockcroft-Gault)</h3>
 <input id="crAge" placeholder="Age (years)">
 <input id="crWeight" placeholder="Weight (kg)">
-<input id="crScr" placeholder="Serum Creatinine (mg/dL)">
+<input id="crScr" placeholder="Serum Creatinine (mg/dL) – normal adult 0.6–1.3">
 <select id="crGender">
 <option value="male">Male</option>
 <option value="female">Female</option>
 </select>
 <button class="calc-btn" onclick="calcCrCl()">Calculate</button>
-<div id="crResult" class="calc-result"></div>
+<div id="crResult" class="calc-result normal"></div>
 </div>
 </div>
 
@@ -220,98 +170,160 @@ professional medical judgment or institutional protocols.
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>eGFR & CKD Staging</h3>
 <input id="egAge" placeholder="Age (years)">
-<input id="egScr" placeholder="Serum Creatinine (mg/dL)">
+<input id="egScr" placeholder="Serum Creatinine (mg/dL) – normal adult 0.6–1.3">
 <select id="egGender">
 <option value="male">Male</option>
 <option value="female">Female</option>
 </select>
 <button class="calc-btn" onclick="calcEGFR()">Calculate</button>
-<div id="egResult" class="calc-result"></div>
+<div id="egResult" class="calc-result normal"></div>
 </div>
 </div>
 
 <script>
-function openCalc(id){
-  document.querySelectorAll('.calc-modal').forEach(m=>m.style.display='none');
-  document.getElementById(id).style.display='block';
-}
-function closeCalc(){
-  document.querySelectorAll('.calc-modal').forEach(m=>m.style.display='none');
-}
+// Modal open/close
+function openCalc(id){document.querySelectorAll('.calc-modal').forEach(m=>m.style.display='none');document.getElementById(id).style.display='block';}
+function closeCalc(){document.querySelectorAll('.calc-modal').forEach(m=>m.style.display='none');}
 
-/* BMI */
+// BMI
 function calcBMI(){
-  let w=parseFloat(bw.value);
-  let h=parseFloat(bh.value)/100;
+  let w=parseFloat(document.getElementById('bw').value);
+  let h=parseFloat(document.getElementById('bh').value)/100;
+  if(!w || !h){alert("Enter valid weight and height."); return;}
   let bmi=(w/(h*h)).toFixed(1);
   let cls="normal", msg="Normal weight", advice="Maintain healthy diet and activity.";
   if(bmi<18.5){cls="warning"; msg="Underweight"; advice="Consider nutritional consultation.";}
   else if(bmi>=25 && bmi<30){cls="warning"; msg="Overweight"; advice="Monitor diet and activity.";}
   else if(bmi>=30){cls="danger"; msg="Obese"; advice="Consult healthcare professional.";}
-  br.className="calc-result "+cls;
-  br.innerHTML="BMI: <strong>"+bmi+"</strong><br>Category: "+msg+"<br>Normal range: 18.5 – 24.9<br>Advice: "+advice;
+  document.getElementById('br').className="calc-result "+cls;
+  document.getElementById('br').innerHTML=`BMI: <strong>${bmi}</strong><br>Category: ${msg}<br>
+  <table border="1" cellpadding="4" cellspacing="0" style="margin-top:6px;"><tr><th>Category</th><th>BMI Range</th></tr>
+  <tr><td>Underweight</td><td><18.5</td></tr>
+  <tr><td>Normal</td><td>18.5–24.9</td></tr>
+  <tr><td>Overweight</td><td>25–29.9</td></tr>
+  <tr><td>Obese</td><td>≥30</td></tr></table>
+  Advice: ${advice}`;
 }
 
-/* Pregnancy */
+// BSA
+function calcBSA(){
+  let w=parseFloat(document.getElementById('bsaW').value);
+  let h=parseFloat(document.getElementById('bsaH').value);
+  if(!w || !h){alert("Enter weight and height."); return;}
+  let bsa=Math.sqrt(w*h/3600).toFixed(2);
+  document.getElementById('bsaResult').className="calc-result normal";
+  document.getElementById('bsaResult').innerHTML=`BSA: <strong>${bsa} m²</strong><br>Mosteller formula: √(Height(cm) × Weight(kg)/3600)`;
+}
+
+// IV infusion
+function calcIV(){
+  let vol=parseFloat(document.getElementById('ivVol').value);
+  let time=parseFloat(document.getElementById('ivTime').value);
+  if(!vol || !time){alert("Enter volume and time."); return;}
+  let rate=(vol/time).toFixed(1);
+  document.getElementById('ivResult').className="calc-result normal";
+  document.getElementById('ivResult').innerHTML=`IV Rate: <strong>${rate} ml/hr</strong><br>Normal infusion rate depends on fluid type and patient condition.`;
+}
+
+// Pediatric dose
+function calcPed(){
+  let wt=parseFloat(document.getElementById('pedWt').value);
+  let dose=parseFloat(document.getElementById('pedDose').value);
+  if(!wt || !dose){alert("Enter weight and dose."); return;}
+  let total=(wt*dose).toFixed(2);
+  document.getElementById('pedResult').className="calc-result normal";
+  document.getElementById('pedResult').innerHTML=`Dose: <strong>${total} mg</strong> (Weight × mg/kg)<br><table border="1" cellpadding="4"><tr><th>Weight (kg)</th><th>Example Dose</th></tr>
+  <tr><td>5</td><td>${(5*dose).toFixed(1)} mg</td></tr>
+  <tr><td>10</td><td>${(10*dose).toFixed(1)} mg</td></tr>
+  <tr><td>20</td><td>${(20*dose).toFixed(1)} mg</td></tr></table>`;
+}
+
+// Adult dose
+function calcAdult(){
+  let wt=parseFloat(document.getElementById('adultWt').value);
+  let dose=parseFloat(document.getElementById('adultDose').value);
+  if(!wt || !dose){alert("Enter weight and dose."); return;}
+  document.getElementById('adultResult').className="calc-result normal";
+  document.getElementById('adultResult').innerHTML=`Adult dose: <strong>${dose} mg</strong><br>Weight-based adjustment: ${(dose*wt/70).toFixed(1)} mg`;
+}
+
+// Insulin dose
+function calcIns(){
+  let wt=parseFloat(document.getElementById('insWt').value);
+  if(!wt){alert("Enter weight."); return;}
+  let tdd=(0.5*wt).toFixed(1);
+  document.getElementById('insResult').className="calc-result normal";
+  document.getElementById('insResult').innerHTML=`Total daily insulin dose (TDD): <strong>${tdd} units</strong><br>
+  <table border="1" cellpadding="4"><tr><th>Type</th><th>Split</th></tr>
+  <tr><td>Basal</td><td>${(tdd*0.5).toFixed(1)}</td></tr>
+  <tr><td>Bolus</td><td>${(tdd*0.5).toFixed(1)}</td></tr></table>`;
+}
+
+// Pregnancy
 function calcPregnancy(){
-  if(!lmp.value){pregResult.className="calc-result warning"; pregResult.innerHTML="Please enter your LMP date to calculate GA."; return;}
-  let lmpDate=new Date(lmp.value); let today=new Date();
-  if(lmpDate>today){pregResult.className="calc-result warning"; pregResult.innerHTML="LMP cannot be in the future!"; return;}
+  let lmp=document.getElementById('lmp').value;
+  let w=document.getElementById('pWeight').value;
+  let h=document.getElementById('pHeight').value;
+  if(!lmp){alert("Enter your LMP date (first day of last menstrual period)."); return;}
+  if(!w || !h){alert("Enter weight and height."); return;}
+  let lmpDate=new Date(lmp), today=new Date();
+  if(lmpDate>today){alert("LMP cannot be in the future!"); return;}
   let diff=today-lmpDate;
   let weeks=Math.floor(diff/(1000*60*60*24*7));
   let days=Math.floor((diff/(1000*60*60*24))%7);
   let edd=new Date(lmpDate); edd.setDate(edd.getDate()+280);
-  let bmi=(pWeight.value/Math.pow(pHeight.value/100,2)).toFixed(1);
+  let bmi=(w/((h/100)*(h/100))).toFixed(1);
   let gain="";
-  if(bmi<18.5) gain="12.5 – 18 kg";
-  else if(bmi<25) gain="11.5 – 16 kg";
-  else if(bmi<30) gain="7 – 11.5 kg";
-  else gain="5 – 9 kg";
-
-  let cls="normal", riskMsg="";
-  if(weeks<12 || weeks>40 || bmi<16 || bmi>35){cls="danger"; riskMsg="<br><strong>High-risk pregnancy detected.</strong> Consult a medical professional.";}
-  pregResult.className="calc-result "+cls;
-  pregResult.innerHTML=
-    "Gestational Age: <strong>"+weeks+" weeks "+days+" days</strong><br>"+
-    "Expected Delivery Date: <strong>"+edd.toDateString()+"</strong><br>"+
-    "Pregnancy BMI: <strong>"+bmi+"</strong><br>"+
-    "Recommended Weight Gain: <strong>"+gain+"</strong>"+riskMsg;
+  if(bmi<18.5) gain="12.5–18 kg";
+  else if(bmi<25) gain="11.5–16 kg";
+  else if(bmi<30) gain="7–11.5 kg";
+  else gain="5–9 kg";
+  let cls="normal", risk="";
+  if(weeks<12 || weeks>40 || bmi<16 || bmi>35) {cls="danger"; risk="<br><strong>High-risk pregnancy! Consult a medical professional.</strong>";}
+  document.getElementById('pregResult').className="calc-result "+cls;
+  document.getElementById('pregResult').innerHTML=`Gestational Age: <strong>${weeks} weeks ${days} days</strong><br>
+  Expected Delivery Date: <strong>${edd.toDateString()}</strong><br>
+  Pregnancy BMI: <strong>${bmi}</strong><br>
+  Recommended Weight Gain: <strong>${gain}</strong>${risk}`;
 }
 
-/* CrCl */
+// CrCl
 function calcCrCl(){
-  let crcl=((140-crAge.value)*crWeight.value)/(72*crScr.value);
-  if(crGender.value==="female") crcl*=0.85;
-  let cls="normal", msg="Normal renal function", advice="No action needed.";
-  if(crcl<30){cls="danger"; msg="Severe impairment"; advice="Adjust doses and consult nephrologist.";}
-  else if(crcl<60){cls="warning"; msg="Moderate impairment"; advice="Monitor renal function and dosage.";}
-  crResult.className="calc-result "+cls;
-  crResult.innerHTML="Creatinine Clearance: <strong>"+crcl.toFixed(1)+" ml/min</strong><br>"+msg+"<br>Advice: "+advice;
+  let age=parseFloat(document.getElementById('crAge').value);
+  let wt=parseFloat(document.getElementById('crWeight').value);
+  let scr=parseFloat(document.getElementById('crScr').value);
+  let gen=document.getElementById('crGender').value;
+  if(!age || !wt || !scr){alert("Enter age, weight, and serum creatinine."); return;}
+  let crcl=((140-age)*wt)/(72*scr);
+  if(gen=="female") crcl*=0.85;
+  let cls="normal", msg="Normal renal function", advice="No adjustment needed.";
+  if(crcl<30){cls="danger"; msg="Severe impairment"; advice="Adjust dose, consult nephrologist.";}
+  else if(crcl<60){cls="warning"; msg="Moderate impairment"; advice="Monitor and adjust as needed.";}
+  document.getElementById('crResult').className="calc-result "+cls;
+  document.getElementById('crResult').innerHTML=`Creatinine Clearance: <strong>${crcl.toFixed(1)} ml/min</strong><br>${msg}<br>Advice: ${advice}`;
 }
 
-/* eGFR */
+// eGFR
 function calcEGFR(){
-  let egfr=175*Math.pow(egScr.value,-1.154)*Math.pow(egAge.value,-0.203);
-  if(egGender.value==="female") egfr*=0.742;
-  let stage="";
-  if(egfr>=90) stage="G1";
-  else if(egfr>=60) stage="G2";
-  else if(egfr>=45) stage="G3a";
-  else if(egfr>=30) stage="G3b";
-  else if(egfr>=15) stage="G4";
-  else stage="G5";
-  let cls=egfr<30?"danger":egfr<60?"warning":"normal";
-  let advice=egfr<60?"Consult nephrologist.":"Maintain healthy lifestyle.";
-  egResult.className="calc-result "+cls;
-  egResult.innerHTML="eGFR: <strong>"+egfr.toFixed(1)+" ml/min/1.73m²</strong><br>CKD Stage: <strong>"+stage+"</strong><br>Advice: "+advice;
+  let age=parseFloat(document.getElementById('egAge').value);
+  let scr=parseFloat(document.getElementById('egScr').value);
+  let gen=document.getElementById('egGender').value;
+  if(!age || !scr){alert("Enter age and serum creatinine."); return;}
+  let egfr=175*Math.pow(scr,-1.154)*Math.pow(age,-0.203);
+  if(gen=="female") egfr*=0.742;
+  let stage="", cls="normal";
+  if(egfr>=90) stage="G1"; else if(egfr>=60) stage="G2";
+  else if(egfr>=45) stage="G3a"; else if(egfr>=30) stage="G3b";
+  else if(egfr>=15) stage="G4"; else stage="G5";
+  if(egfr<30) cls="danger"; else if(egfr<60) cls="warning";
+  document.getElementById('egResult').className="calc-result "+cls;
+  document.getElementById('egResult').innerHTML=`eGFR: <strong>${egfr.toFixed(1)} ml/min/1.73m²</strong><br>CKD Stage: <strong>${stage}</strong>`;
 }
 
-/* Scroll & Menu */
-const fades=document.querySelectorAll('.fade');
-const showOnScroll=()=>{ fades.forEach(el=>{ if(el.getBoundingClientRect().top<window.innerHeight-100) el.classList.add('show'); }); };
-window.addEventListener('scroll',showOnScroll); showOnScroll();
-function toggleMenu(){ document.getElementById("nav-menu").classList.toggle("active"); }
+// Menu toggle
+function toggleMenu(){alert("Menu toggle clicked");}
 </script>
+
 </body>
   </html>
   
