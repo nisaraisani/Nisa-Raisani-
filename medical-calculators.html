@@ -218,13 +218,16 @@ professional medical judgment or institutional protocols.
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Pregnancy Calculator</h3>
 <label>Last Menstrual Period (LMP)</label>
-<input type="date" id="lmp">
+<input type="date" id="lmp" placeholder="Select your LMP date">
+<small style="color:#555; display:block; margin-bottom:8px;">Enter the first day of your last menstrual period (MM/DD/YYYY)</small>
+
 <input id="pWeight" placeholder="Current Weight (kg)">
 <input id="pHeight" placeholder="Height (cm)">
 <button class="calc-btn" onclick="calcPregnancy()">Calculate</button>
 <div id="pregResult" class="calc-result normal"></div>
 </div>
 </div>
+
 
 <!-- CrCl -->
 <div class="calc-modal" id="crcl">
