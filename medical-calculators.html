@@ -158,36 +158,59 @@ professional medical judgment or institutional protocols.
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>IV Infusion Rate</h3>
-<p>Coming soon</p>
+<p>IV fluids ki speed calculate karne ke liye.</p>
+
+<input id="ivVol" placeholder="Total Volume (ml)">
+<input id="ivTime" placeholder="Time (hours)">
+<button class="calc-btn" onclick="calcIV()">Calculate</button>
+<div id="ivResult" class="calc-result"></div>
 </div>
 </div>
+
 
 <!-- Pediatric -->
 <div class="calc-modal" id="ped">
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Pediatric Dose</h3>
-<p>Coming soon</p>
+<p>Bachon me dawa weight ke hisaab se di jati hai.</p>
+
+<input id="pedW" placeholder="Weight (kg)">
+<input id="pedDose" placeholder="Dose (mg/kg)">
+<button class="calc-btn" onclick="calcPed()">Calculate</button>
+<div id="pedResult" class="calc-result"></div>
 </div>
 </div>
+
 
 <!-- Adult -->
 <div class="calc-modal" id="adult">
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Adult Dose</h3>
-<p>Coming soon</p>
+<p>Standard adult dosing estimation.</p>
+
+<input id="adDose" placeholder="Single Dose (mg)">
+<input id="adFreq" placeholder="Times per day">
+<button class="calc-btn" onclick="calcAdult()">Calculate</button>
+<div id="adResult" class="calc-result"></div>
 </div>
 </div>
+
 
 <!-- Insulin -->
 <div class="calc-modal" id="ins">
 <div class="calc-box">
 <span class="close-calc" onclick="closeCalc()">❌</span>
 <h3>Insulin Dose</h3>
-<p>Coming soon</p>
+<p>Total daily insulin weight based estimate.</p>
+
+<input id="insW" placeholder="Weight (kg)">
+<button class="calc-btn" onclick="calcInsulin()">Calculate</button>
+<div id="insResult" class="calc-result"></div>
 </div>
 </div>
+
 
 <!-- Pregnancy -->
 <div class="calc-modal" id="preg">
@@ -265,6 +288,39 @@ function calcBSA(){
     "BSA: <strong>"+bsa+" m²</strong><br>"+
     "Normal adult range: 1.6 – 2.0 m²<br>"+
     "Use: Drug dosing & fluid calculation.";
+  }
+  function calcIV(){
+  let rate=(ivVol.value/ivTime.value).toFixed(1);
+  ivResult.className="calc-result normal";
+  ivResult.innerHTML=
+    "Infusion Rate: <strong>"+rate+" ml/hour</strong><br>"+
+    "Guide: Monitor patient vitals regularly.<br>"+
+    "Warning: Elderly & cardiac patients need caution.";
+  }
+  function calcPed(){
+  let total=(pedW.value*pedDose.value).toFixed(1);
+  let cls=total>500?"danger":"normal";
+  pedResult.className="calc-result "+cls;
+  pedResult.innerHTML=
+    "Total Dose: <strong>"+total+" mg</strong><br>"+
+    "Rule: Pediatric dosing weight based hoti hai.<br>"+
+    (cls=="danger"?"⚠️ High dose — double check required.":"Dose within safe range.");
+  }
+  function calcAdult(){
+  let daily=adDose.value*adFreq.value;
+  adResult.className="calc-result normal";
+  adResult.innerHTML=
+    "Total Daily Dose: <strong>"+daily+" mg/day</strong><br>"+
+    "Always adjust for renal & hepatic function.";
+  }
+  function calcInsulin(){
+  let tdd=(insW.value*0.5).toFixed(1);
+  insResult.className="calc-result normal";
+  insResult.innerHTML=
+    "Total Daily Dose (TDD): <strong>"+tdd+" units</strong><br>"+
+    "Basal: "+(tdd/2).toFixed(1)+" units<br>"+
+    "Bolus: "+(tdd/2).toFixed(1)+" units<br>"+
+    "⚠️ Adjust as per glucose monitoring.";
   }
   
 /* Pregnancy */
