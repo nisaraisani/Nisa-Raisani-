@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neuro Case Notes Generator</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  input, textarea { width: 100%; padding: 8px; margin: 8px 0; }
+  button { padding: 10px 16px; background: blue; color: white; border: none; }
+  .output { background: #f9f9f9; padding: 12px; margin-top: 20px; border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+
+<h2>Neuro Case Notes Smart Generator</h2>
+
+<label>Patient Age & Gender:</label>
+<input type="text" id="ageGender" placeholder="e.g. 45 year male">
+
+<label>Chief Complaint:</label>
+<textarea id="chief" rows="2"></textarea>
+
+<label>Onset & Duration:</label>
+<input type="text" id="onset" placeholder="e.g. 3 hours ago">
+
+<label>Associated Symptoms:</label>
+<textarea id="assoc" rows="2"></textarea>
+
+<button onclick="generateNote()">Generate Notes</button>
+
+<div class="output" id="result"></div>
+
+<script>
+function generateNote() {
+  let ageGender  = document.getElementById("ageGender").value;
+  let chief      = document.getElementById("chief").value;
+  let onset      = document.getElementById("onset").value;
+  let assoc      = document.getElementById("assoc").value;
+
+  let note = `**History:** ${ageGender}, presenting with ${chief}, onset ${onset}. Associated with ${assoc}.\n\n`;
+  note += `**Differential Diagnosis:** Consider stroke, seizure, migraine, demyelinating, functional disorder.\n`;
+  note += `**Red Flags:** If sudden onset, focal deficit, change in consciousness — urgent imaging.\n`;
+  note += `**Plan:** Neurologic exam, MRI/CT, labs, refer to specialist.\n`;
+
+  document.getElementById("result").innerText = note;
+}
+</script>
+
+</body>
+</html>
